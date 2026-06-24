@@ -1,0 +1,78 @@
+<svg width="600" height="600" viewBox="0 0 600 600" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <path id="topArc" d="M 83.49 175.00 A 250 250 0 0 1 516.51 175.00" />
+    <path id="bottomArc" d="M 83.49 425.00 A 250 250 0 0 0 516.51 425.00" />
+    <style>
+      .badge-text {
+        font-family: 'Fredoka', 'Trebuchet MS', 'Segoe UI', sans-serif;
+        font-weight: 600;
+        font-size: 28px;
+        fill: #7f1117;
+        letter-spacing: 0.2px;
+      }
+      .line {
+        fill: none;
+        stroke: #7f1117;
+        stroke-width: 5;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+      }
+      .line-thin {
+        fill: none;
+        stroke: #7f1117;
+        stroke-width: 3.5;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+      }
+    </style>
+  </defs>
+
+  <!-- circular text -->
+  <text class="badge-text">
+    <textPath href="#topArc" startOffset="50%" text-anchor="middle">Cucino le verdure</textPath>
+  </text>
+  <text class="badge-text">
+    <textPath href="#bottomArc" startOffset="50%" text-anchor="middle">Venero i carboidrati</textPath>
+  </text>
+
+  <!-- ===== simplified chef figure ===== -->
+  <g>
+    <!-- raised left arm: shoulder out wide, up, then hand curls to the bandana -->
+    <path class="line" d="M 215 330 C 150 318, 102 270, 108 205 C 111 178, 130 165, 160 168" />
+    <path class="line" d="M 160 168 C 178 170, 190 182, 188 196" />
+
+    <!-- raised right arm (mirror) -->
+    <path class="line" d="M 385 330 C 450 318, 498 270, 492 205 C 489 178, 470 165, 440 168" />
+    <path class="line" d="M 440 168 C 422 170, 410 182, 412 196" />
+
+    <!-- head outline (simple rounded shape, no facial detail) -->
+    <path class="line" d="M 258 182 C 258 150, 278 126, 300 126 C 322 126, 342 150, 342 182 C 342 212, 325 234, 300 238 C 275 234, 258 212, 258 182 Z" />
+
+    <!-- bandana band across forehead -->
+    <path class="line" d="M 253 174 C 270 161, 330 161, 347 174" />
+    <!-- simple bow knot on top, hands rest just beside it -->
+    <path class="line-thin" d="M 286 142 C 279 128, 291 118, 300 128 C 309 118, 321 128, 314 142" />
+
+    <!-- shoulders / torso (rounded trapezoid, coat) -->
+    <path class="line" d="M 220 330 C 220 278, 257 244, 300 244 C 343 244, 380 278, 380 330 L 380 398 L 220 398 Z" />
+
+    <!-- center coat seam -->
+    <path class="line-thin" d="M 300 244 L 300 386" />
+
+    <!-- buttons -->
+    <circle class="line-thin" cx="300" cy="278" r="4.5" />
+    <circle class="line-thin" cx="300" cy="308" r="4.5" />
+    <circle class="line-thin" cx="300" cy="338" r="4.5" />
+    <circle class="line-thin" cx="300" cy="368" r="4.5" />
+
+    <!-- apron hem -->
+    <path class="line" d="M 220 398 C 220 411, 228 418, 238 420 L 362 420 C 372 418, 380 411, 380 398" />
+
+    <!-- apron stripes (simplified) -->
+    <path class="line-thin" d="M 250 401 L 248 418" />
+    <path class="line-thin" d="M 282 401 L 281 421" />
+    <path class="line-thin" d="M 300 401 L 300 421" />
+    <path class="line-thin" d="M 318 401 L 319 421" />
+    <path class="line-thin" d="M 350 401 L 352 418" />
+  </g>
+</svg>

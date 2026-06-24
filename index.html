@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- SEO -->
+  <title>Enza e basta — Chef vegetale: corsi, consulenze, eventi e domicilio</title>
+  <meta name="description" content="Enza De Iorio, chef di cucina vegetariana e vegana a Firenze. Corsi di cucina veg per appassionati e professionisti, eventi privati e aziendali, consulenze gastronomiche. Pane, dolci e proteine vegetali con gusto." />
+  <meta name="keywords" content="chef vegetariana, chef vegana, cucina vegetale Firenze, corsi di cucina vegana Firenze, corsi di cucina vegetale, consulenza gastronomica, eventi privati, eventi aziendali, catering vegetale, Enza De Iorio, Enza e basta, Firenze, Vesuvio" />
+  <meta name="author" content="Enza De Iorio — Enza e basta" />
+  <meta name="robots" content="index, follow, max-image-preview:large" />
+
+  <!-- Local SEO (Firenze, Toscana) -->
+  <meta name="geo.region" content="IT-52" />
+  <meta name="geo.placename" content="Firenze" />
+
+  <!-- Open Graph (usa URL assoluti per le condivisioni social) -->
+  <meta property="og:site_name" content="Enza e basta" />
+  <meta property="og:title" content="Enza e basta — Chef vegetale, corsi & eventi" />
+  <meta property="og:description" content="Chef vegetale dall'anima vesuviana: eventi, corsi e consulenze. Verdure con carattere, carboidrati venerati." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://enzaebasta.it/" />
+  <meta property="og:image" content="https://enzaebasta.it/images/hero-enza.jpg" />
+  <meta property="og:image:alt" content="La chef Enza con una ciotola di cibo vegetale" />
+  <meta property="og:locale" content="it_IT" />
+  <meta property="og:locale:alternate" content="en_US" />
+
+  <!-- Twitter / X -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Enza e basta — Chef vegetale, corsi & eventi" />
+  <meta name="twitter:description" content="Chef vegetale dall'anima vesuviana: eventi, corsi e consulenze." />
+  <meta name="twitter:image" content="https://enzaebasta.it/images/hero-enza.jpg" />
+
+  <meta name="theme-color" content="#7f1117" />
+  <link rel="canonical" href="https://enzaebasta.it/" />
+
+  <!-- Google Search Console: incolla qui il meta di verifica quando registri il sito,
+       poi togli il commento. Esempio:
+  <meta name="google-site-verification" content="IL-TUO-CODICE-QUI" />
+  -->
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%2322162b'/%3E%3Ctext x='16' y='24' font-size='22' font-family='Arial,sans-serif' font-weight='bold' text-anchor='middle' fill='%23f8c630'%3Ee%3C/text%3E%3C/svg%3E" />
+
+  <!-- Fonts: self-hosted (vedi fonts/). I file .woff2 si scaricano con
+       fonts/download-fonts.sh — le @font-face sono già in css/style.css.
+       Fallback di sistema attivo se i file non sono presenti. -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Climate+Crisis:YEAR@1979&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css" />
+
+  <!-- Structured data for SEO -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "@id": "https://enzaebasta.it/#business",
+    "name": "Enza e basta",
+    "url": "https://enzaebasta.it/",
+    "founder": { "@type": "Person", "name": "Enza De Iorio", "jobTitle": "Chef" },
+    "description": "Chef vegetale dall'anima vesuviana: eventi privati e aziendali, corsi di cucina e consulenze gastronomiche.",
+    "image": "https://enzaebasta.it/images/hero-enza.jpg",
+    "email": "ciao@enzaebasta.it",
+    "address": { "@type": "PostalAddress", "addressLocality": "Firenze", "addressRegion": "Toscana", "addressCountry": "IT" },
+    "areaServed": { "@type": "Country", "name": "Italia" },
+    "knowsLanguage": ["it", "en"],
+    "sameAs": [
+      "https://www.instagram.com/enza_ebbasta/",
+      "https://www.google.com/maps/search/?api=1&query=Firenze%2C%20Toscana%2C%20Italia"
+    ],
+    "servesCuisine": ["Vegetale", "Plant-based", "Italiana"],
+    "priceRange": "€€",
+    "hasOfferCatalog": {
+      "@type": "OfferCatalog",
+      "name": "Servizi",
+      "itemListElement": [
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Corsi & Consulenze", "description": "Corsi di cucina vegetale, menu engineering e consulenze per locali e brand." } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Eventi Privati", "description": "Cene, feste e ricorrenze su misura con menu vegetale e servizio." } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Eventi Aziendali", "description": "Show cooking, catering vegetale e team building per aziende." } }
+      ]
+    }
+  }
+  </script>
+</head>
+
+<body data-lang="it">
+
+  <!-- ====== SKIP LINK ====== -->
+  <a class="skip-link" href="#hero" data-it="Vai al contenuto" data-en="Skip to content">Vai al contenuto</a>
+
+  <!-- ====== HAMBURGER (shows when menu closed) ====== -->
+  <button id="menuOpen" class="hamburger" aria-label="Apri il menu" aria-controls="sideMenu" aria-expanded="true">
+    <span></span><span></span><span></span>
+  </button>
+
+  <!-- ====== SIDE MENU ====== -->
+  <nav id="sideMenu" class="side-menu" aria-label="Menu principale">
+    <button id="menuClose" class="menu-close" aria-label="Chiudi il menu">
+      <svg viewBox="0 0 24 24" width="26" height="26" aria-hidden="true"><path d="M5 5l14 14M19 5L5 19" stroke="currentColor" stroke-width="3" stroke-linecap="round"/></svg>
+    </button>
+
+    <a href="#hero" class="side-brand" data-scroll>Enza<span>e basta</span></a>
+
+    <ul class="side-links">
+      <li>
+        <a href="#chi-sono" data-scroll>
+          <span class="ico" style="--ico:var(--saffron)" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="22" height="22"><path d="M12 12a4 4 0 100-8 4 4 0 000 8zm-7 8a7 7 0 0114 0" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>
+          </span>
+          <span data-it="Chi Sono" data-en="About Me">Chi Sono</span>
+        </a>
+      </li>
+      <li>
+        <a href="#servizi" data-scroll>
+          <span class="ico" style="--ico:var(--rose)" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="22" height="22"><path d="M6 3v8a3 3 0 006 0V3M9 3v18M18 3c-1.5 1.5-2 4-2 7s.5 4 2 4v7" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+          <span data-it="Progetti / Servizi" data-en="Projects / Services">Progetti / Servizi</span>
+        </a>
+      </li>
+      <li>
+        <a href="#biografia" data-scroll>
+          <span class="ico" style="--ico:var(--grape)" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="22" height="22"><path d="M5 4h11l3 3v13H5zM9 4v16M8 9h7M8 13h7" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+          <span data-it="Biografia" data-en="Biography">Biografia</span>
+        </a>
+      </li>
+      <li>
+        <a href="#corsi" data-scroll>
+          <span class="ico" style="--ico:var(--rose)" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="22" height="22"><path d="M6 13c-1.7 0-3-1.3-3-3 0-1.4 1-2.6 2.3-2.9A3.5 3.5 0 0112 5a3.5 3.5 0 016.7 2.1C20 7.4 21 8.6 21 10c0 1.7-1.3 3-3 3M6 13v6h12v-6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+          <span data-it="Corsi" data-en="Classes">Corsi</span>
+        </a>
+      </li>
+      <li>
+        <a href="#contatti" data-scroll>
+          <span class="ico" style="--ico:var(--violet)" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="22" height="22"><path d="M4 6h16v12H4zM4 7l8 6 8-6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+          <span data-it="Contatti" data-en="Contact">Contatti</span>
+        </a>
+      </li>
+    </ul>
+
+    <div class="side-foot">
+      <div class="side-socials" aria-label="Link social">
+        <a href="https://www.instagram.com/enza_ebbasta/" target="_blank" rel="noopener" aria-label="Instagram @enza_ebbasta">
+          <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
+            <rect x="4" y="4" width="16" height="16" rx="5" fill="none" stroke="currentColor" stroke-width="2.2"/>
+            <circle cx="12" cy="12" r="3.2" fill="none" stroke="currentColor" stroke-width="2.2"/>
+            <circle cx="17" cy="7" r="1.2" fill="currentColor"/>
+          </svg>
+          <span>@enza_ebbasta</span>
+        </a>
+        <a href="https://www.google.com/maps/search/?api=1&query=Firenze%2C%20Toscana%2C%20Italia" target="_blank" rel="noopener" aria-label="Google Maps: Firenze, Toscana">
+          <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
+            <path d="M12 21s7-5.6 7-12a7 7 0 10-14 0c0 6.4 7 12 7 12z" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"/>
+            <circle cx="12" cy="9" r="2.4" fill="none" stroke="currentColor" stroke-width="2.2"/>
+          </svg>
+          <span data-it="Firenze" data-en="Florence">Firenze</span>
+        </a>
+      </div>
+    </div>
+  </nav>
+  <div id="menuScrim" class="menu-scrim" hidden></div>
+
+  <!-- ====== LANGUAGE TOGGLE ====== -->
+  <div class="lang-toggle" role="group" aria-label="Lingua / Language">
+    <button data-set-lang="it" class="is-active" aria-pressed="true">IT</button>
+    <span aria-hidden="true">/</span>
+    <button data-set-lang="en" aria-pressed="false">EN</button>
+  </div>
+
+  <!-- ====== MAIN ====== -->
+  <main class="content">
+
+    <!-- ===== HERO ===== -->
+    <section id="hero" class="hero">
+      <div class="hero-inner">
+        <div class="hero-text">
+          <p class="kicker" data-it="Chef vegetale · Corsi · Consulenze · Eventi" data-en="Plant-based chef · Classes · Consulting · Events">Chef vegetale · Corsi · Consulenze · Eventi</p>
+          <h1 class="title-stroke">Enza<br><em>e basta</em></h1>
+          <p class="hero-lead"
+             data-it="Cucino verdure e venero i carboidrati. Anima vesuviana in movimento: porto in tavola vegetali con carattere — anche per chi “la verdura no”. Corsi, consulenze ed eventi. Ebbasta."
+             data-en="I cook vegetables and worship carbs. A Vesuvian soul on the move: I bring bold, characterful plants to the table — even for the “I don't do veg” crowd. Classes, consulting and events. And that's that.">
+            Cucino verdure e venero i carboidrati. Anima vesuviana in movimento: porto in tavola vegetali con carattere — anche per chi “la verdura no”. Corsi, consulenze ed eventi. Ebbasta.
+          </p>
+          <a href="#contatti" data-scroll class="btn btn-dark"
+             data-it="Scrivimi →" data-en="Get in touch →">Scrivimi →</a>
+        </div>
+
+        <div class="hero-photo">
+          <span class="photo-ring" aria-hidden="true"></span>
+          <div class="organic-frame">
+            <img src="images/hero-enza.jpg" alt="La chef Enza sorride mentre tiene tra le mani una ciotola di cibo" width="1000" height="1067" />
+          </div>
+          <span class="sticker" aria-hidden="true" data-it="ciao!" data-en="hi!">ciao!</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== CHI SONO ===== -->
+    <section id="chi-sono" class="chi-sono">
+      <div class="section-grid reverse">
+        <div class="chi-photo">
+          <div class="organic-frame frame-alt">
+            <img src="images/food-1.jpg" alt="Un piatto vegetale firmato Enza, tenuto tra le mani" loading="lazy" />
+          </div>
+        </div>
+        <div class="chi-text">
+          <p class="eyebrow" data-it="01 — Chi Sono" data-en="01 — About Me">01 — Chi Sono</p>
+          <h2 class="section-title" data-it="Chi Sono" data-en="About Me">Chi Sono</h2>
+          <p data-it="Ciao! Sono Enza De Iorio, cuoca specializzata in cucina vegetariana e vegana. Dopo essermi formata in giro per l'Italia in alcuni tra i migliori ristoranti di cucina vegetale, ho scelto Firenze per tenere corsi di cucina veg per appassionatə e professionistə."
+             data-en="Hi! I'm Enza De Iorio, a chef specialised in vegetarian and vegan cooking. After training around Italy in some of the best plant-based restaurants, I chose Florence to teach veg cooking classes for enthusiasts and professionals.">
+            Ciao! Sono Enza De Iorio, cuoca specializzata in cucina vegetariana e vegana. Dopo essermi formata in giro per l'Italia in alcuni tra i migliori ristoranti di cucina vegetale, ho scelto Firenze per tenere corsi di cucina veg per appassionatə e professionistə.
+          </p>
+
+          <button type="button" class="read-more" aria-expanded="false" aria-controls="chiMore"
+                  data-it="Espandi ↓" data-en="Read more ↓"
+                  data-it-close="Riduci ↑" data-en-close="Show less ↑">Espandi ↓</button>
+
+          <div class="more-content" id="chiMore" hidden>
+            <p data-it="Sono nata e cresciuta alle pendici del Vesuvio, in provincia di Napoli, dove mi sono laureata in Relazioni Internazionali e Diplomatiche. Sono diventata vegetariana in adolescenza e, durante gli studi — lavorando come tantə studentə — mi sono innamorata della cucina, decidendo di farne il mio mestiere."
+               data-en="I was born and raised on the slopes of Vesuvius, near Naples, where I earned a degree in International and Diplomatic Relations. I became vegetarian as a teenager and, during my studies — working like many students do — I fell in love with cooking and decided to make it my craft.">
+              Sono nata e cresciuta alle pendici del Vesuvio, in provincia di Napoli, dove mi sono laureata in Relazioni Internazionali e Diplomatiche. Sono diventata vegetariana in adolescenza e, durante gli studi — lavorando come tantə studentə — mi sono innamorata della cucina, decidendo di farne il mio mestiere.
+            </p>
+            <p data-it="Da sempre affascinata dal pane, dai dolci da forno e dai carboidrati in ogni loro forma, ho approfondito il mondo dei panificati sempre in chiave vegetale, divertendomi a trasformare torte e biscotti tradizionali in versione vegana."
+               data-en="Always fascinated by bread, baked goods and carbs in all their forms, I dived deep into baking — always in a plant-based key — having fun turning traditional cakes and biscuits vegan.">
+              Da sempre affascinata dal pane, dai dolci da forno e dai carboidrati in ogni loro forma, ho approfondito il mondo dei panificati sempre in chiave vegetale, divertendomi a trasformare torte e biscotti tradizionali in versione vegana.
+            </p>
+          </div>
+
+          <a href="#biografia" data-scroll class="btn btn-dark chi-cta"
+             data-it="Scopri il mio percorso →" data-en="Discover my journey →">Scopri il mio percorso →</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== SERVIZI ===== -->
+    <section id="servizi" class="servizi">
+      <header class="servizi-head">
+        <p class="eyebrow light" data-it="02 — Progetti / Servizi" data-en="02 — Projects / Services">02 — Progetti / Servizi</p>
+        <h2 class="section-title light" data-it="Cosa Faccio" data-en="What I Do">Cosa Faccio</h2>
+        <p class="servizi-sub"
+           data-it="Scegli come portarmi in cucina. Al resto penso io."
+           data-en="Pick how to bring me into your kitchen. I'll handle the rest.">
+          Scegli come portarmi in cucina. Al resto penso io.
+        </p>
+      </header>
+
+      <div class="cards">
+        <!-- Corsi & Consulenze -->
+        <article class="card">
+          <div class="card-img">
+            <img src="images/serv-consulenze.jpg" alt="Pane dolce appena sfornato, frutto di consulenza e ricette" loading="lazy" />
+            <span class="badge" style="--badge:var(--saffron)" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="20" height="20"><path d="M6 3h9l3 3v15H6zM9 8h6M9 12h6M9 16h4" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+          </div>
+          <div class="card-body">
+            <h3 data-it="Corsi &amp; Consulenze" data-en="Classes &amp; Consulting">Corsi &amp; Consulenze</h3>
+            <p data-it="Ti insegno i vegetali: corsi di cucina, menu engineering e consulenze per locali e brand. Imparare facendo, ebbasta."
+               data-en="I teach you vegetables: cooking classes, menu engineering and consulting for venues and brands. Learning by doing — and that's that.">
+              Ti insegno i vegetali: corsi di cucina, menu engineering e consulenze per locali e brand. Imparare facendo, ebbasta.
+            </p>
+            <div class="card-ctas">
+              <a href="#contatti" data-scroll class="card-cta" data-it="Prenota una consulenza →" data-en="Book a consultation →">Prenota una consulenza →</a>
+              <a href="https://www.instagram.com/enza_ebbasta/" target="_blank" rel="noopener" class="card-cta card-cta--alt" data-it="Calendario Corsi ↗" data-en="Class Calendar ↗">Calendario Corsi ↗</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Eventi Privati -->
+        <article class="card">
+          <div class="card-img">
+            <img src="images/serv-domicilio.jpg" alt="Enza che cucina per un evento privato" loading="lazy" />
+            <span class="badge" style="--badge:var(--saffron)" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="20" height="20"><path d="M12 21s-7-4.6-7-10a4 4 0 017-2.6A4 4 0 0119 11c0 5.4-7 10-7 10z" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"/></svg>
+            </span>
+          </div>
+          <div class="card-body">
+            <h3 data-it="Eventi Privati" data-en="Private Events">Eventi Privati</h3>
+            <p data-it="Cene, feste e ricorrenze cucite su di te. Menu vegetale (o quasi) su misura, gusto che fa festa, servizio incluso."
+               data-en="Dinners, parties and celebrations tailored to you. A bespoke plant-forward menu, flavour that parties, service included.">
+              Cene, feste e ricorrenze cucite su di te. Menu vegetale (o quasi) su misura, gusto che fa festa, servizio incluso.
+            </p>
+            <div class="card-ctas">
+              <a href="#contatti" data-scroll class="card-cta" data-it="Richiedi un preventivo →" data-en="Request a quote →">Richiedi un preventivo →</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Eventi Aziendali -->
+        <article class="card">
+          <div class="card-img">
+            <img src="images/serv-aziendali.jpg" alt="Persone a un evento aziendale di cucina condivisa" loading="lazy" />
+            <span class="badge" style="--badge:var(--rose)" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="20" height="20"><path d="M8 10a3 3 0 100-4 3 3 0 000 4zm8 0a3 3 0 100-4 3 3 0 000 4zM3 20c0-3 2.5-5 5-5s5 2 5 5m1-5c2.2.2 5 1.8 5 5" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+          </div>
+          <div class="card-body">
+            <h3 data-it="Eventi Aziendali" data-en="Corporate Events">Eventi Aziendali</h3>
+            <p data-it="Show cooking, catering vegetale e team building che si mangiano. Energia e gusto per il tuo team, zero noia."
+               data-en="Show cooking, plant-based catering and team building you can actually eat. Energy and flavour for your team, zero boredom.">
+              Show cooking, catering vegetale e team building che si mangiano. Energia e gusto per il tuo team, zero noia.
+            </p>
+            <div class="card-ctas">
+              <a href="#contatti" data-scroll class="card-cta" data-it="Parliamo del tuo team →" data-en="Let's talk team →">Parliamo del tuo team →</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Chef a Domicilio — NASCOSTO temporaneamente (in attesa dell'ATECO dal commercialista).
+             Per riattivarlo, rimuovi i marcatori di commento qui sotto. -->
+        <!--
+        <article class="card">
+          <div class="card-img">
+            <img src="images/serv-privati.jpg" alt="Tavola imbandita di piatti preparati a domicilio" loading="lazy" />
+            <span class="badge" style="--badge:var(--grape)" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="20" height="20"><path d="M3 11l9-7 9 7M5 10v10h14V10" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+          </div>
+          <div class="card-body">
+            <h3 data-it="Chef a Domicilio" data-en="Chef at Home">Chef a Domicilio</h3>
+            <p data-it="Porto orto e fornelli a casa tua: spesa, preparazione, servizio e cucina pulita. Tu pensa solo a goderti la serata."
+               data-en="I bring the garden and the stove to your home: shopping, prep, service and a clean kitchen. You just enjoy the evening.">
+              Porto orto e fornelli a casa tua: spesa, preparazione, servizio e cucina pulita. Tu pensa solo a goderti la serata.
+            </p>
+            <div class="card-ctas">
+              <a href="#contatti" data-scroll class="card-cta" data-it="Prenota a casa tua →" data-en="Book for your home →">Prenota a casa tua →</a>
+            </div>
+          </div>
+        </article>
+        -->
+
+      </div>
+    </section>
+
+    <!-- ===== BIOGRAFIA ===== -->
+    <section id="biografia" class="biografia">
+      <div class="bio-head">
+        <p class="eyebrow light" data-it="03 — Biografia" data-en="03 — Biography">03 — Biografia</p>
+        <h2 class="section-title light" data-it="Il Percorso" data-en="The Journey">Il Percorso</h2>
+      </div>
+
+      <div class="bio-grid">
+        <div class="bio-photo">
+          <div class="organic-frame frame-blob">
+            <img src="images/bio.jpg" alt="Ritratto in bianco e nero di Enza mentre cucina" loading="lazy" />
+          </div>
+        </div>
+
+        <ol class="timeline">
+          <li>
+            <span class="year" data-it="Le origini" data-en="The roots">Le origini</span>
+            <div>
+              <h3 data-it="Sotto il Vesuvio" data-en="Under Vesuvius">Sotto il Vesuvio</h3>
+              <p data-it="Nata e cresciuta in provincia di Napoli, alle pendici del Vesuvio. Mi laureo in Relazioni Internazionali e Diplomatiche e divento vegetariana già in adolescenza."
+                 data-en="Born and raised near Naples, on the slopes of Vesuvius. I graduate in International and Diplomatic Relations and turn vegetarian as a teenager.">
+                Nata e cresciuta in provincia di Napoli, alle pendici del Vesuvio. Mi laureo in Relazioni Internazionali e Diplomatiche e divento vegetariana già in adolescenza.
+              </p>
+            </div>
+          </li>
+          <li>
+            <span class="year" data-it="La svolta" data-en="The turn">La svolta</span>
+            <div>
+              <h3 data-it="Imparare sul campo" data-en="Learning on the job">Imparare sul campo</h3>
+              <p data-it="Durante gli studi mi innamoro della cucina. Per imparare davvero il mestiere lascio la mia città: le prime esperienze sono a Roma."
+                 data-en="During my studies I fall for cooking. To truly learn the craft I leave my city — my first experiences are in Rome.">
+                Durante gli studi mi innamoro della cucina. Per imparare davvero il mestiere lascio la mia città: le prime esperienze sono a Roma.
+              </p>
+            </div>
+          </li>
+          <li>
+            <span class="year" data-it="Milano" data-en="Milan">Milano</span>
+            <div>
+              <h3 data-it="Joia" data-en="Joia">Joia</h3>
+              <p data-it="Formazione rigorosa al ristorante “Joia”, punto di riferimento dell'alta cucina vegetale."
+                 data-en="Rigorous training at “Joia”, a landmark of fine plant-based dining.">
+                Formazione rigorosa al ristorante “Joia”, punto di riferimento dell'alta cucina vegetale.
+              </p>
+            </div>
+          </li>
+          <li>
+            <span class="year" data-it="Toscana &amp; Süd Tirol" data-en="Tuscany &amp; South Tyrol">Toscana &amp; Süd Tirol</span>
+            <div>
+              <h3 data-it="Maggese · La Vimea" data-en="Maggese · La Vimea">Maggese · La Vimea</h3>
+              <p data-it="Cresco al “Maggese” in Toscana e all'hotel interamente vegano “La Vimea” in Süd Tirol, tra stagioni al mare e tante realtà diverse."
+                 data-en="I grow at “Maggese” in Tuscany and at the fully vegan hotel “La Vimea” in South Tyrol, between seaside seasons and many different kitchens.">
+                Cresco al “Maggese” in Toscana e all'hotel interamente vegano “La Vimea” in Süd Tirol, tra stagioni al mare e tante realtà diverse.
+              </p>
+            </div>
+          </li>
+          <li>
+            <span class="year" data-it="Prato" data-en="Prato">Prato</span>
+            <div>
+              <h3 data-it="Il pane" data-en="Bread">Il pane</h3>
+              <p data-it="Al “Forno Mangiapane” affino le basi della panificazione: pane e dolci da forno, in chiave vegana. Un alimento antico che mi riempie di meraviglia."
+                 data-en="At “Forno Mangiapane” I refine my baking foundations: bread and pastries, in a vegan key. An ancient food that still fills me with wonder.">
+                Al “Forno Mangiapane” affino le basi della panificazione: pane e dolci da forno, in chiave vegana. Un alimento antico che mi riempie di meraviglia.
+              </p>
+            </div>
+          </li>
+          <li>
+            <span class="year" data-it="Firenze · 2025" data-en="Florence · 2025">Firenze · 2025</span>
+            <div>
+              <h3 data-it="I corsi veg" data-en="The veg classes">I corsi veg</h3>
+              <p data-it="Mi stabilisco a Firenze e lancio i miei corsi di cucina vegetale. Tante idee da far fiorire — ebbasta."
+                 data-en="I settle in Florence and launch my plant-based cooking classes. So many ideas to bloom — and that's that.">
+                Mi stabilisco a Firenze e lancio i miei corsi di cucina vegetale. Tante idee da far fiorire — ebbasta.
+              </p>
+            </div>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- ===== CORSI ===== -->
+    <section id="corsi" class="corsi">
+      <div class="corsi-grid">
+        <div class="corsi-photo">
+          <div class="organic-frame frame-alt">
+            <img src="images/serv-aziendali.jpg" alt="Enza durante un corso di cucina con i partecipanti" loading="lazy" />
+          </div>
+        </div>
+        <div class="corsi-text">
+          <p class="eyebrow" data-it="Corsi di cucina" data-en="Cooking classes">Corsi di cucina</p>
+          <h2 class="section-title" data-it="Impara con me" data-en="Learn with me">Impara con me</h2>
+          <p class="corsi-lead"
+             data-it="Dal 2025, a Firenze, restituisco qualcosa della mia esperienza: corsi di cucina vegetale che rispecchiano la mia visione — curiosità, passione, professionalità e sostenibilità, umana e delle materie prime."
+             data-en="Since 2025, in Florence, I give back something of my experience: plant-based cooking classes that reflect my vision — curiosity, passion, professionalism and sustainability, both human and in the ingredients.">
+            Dal 2025, a Firenze, restituisco qualcosa della mia esperienza: corsi di cucina vegetale che rispecchiano la mia visione — curiosità, passione, professionalità e sostenibilità, umana e delle materie prime.
+          </p>
+          <p data-it="Un luogo fisico dove far andare le mani e il cuore, conoscere persone nuove e condividere ricette (e battute): convivialità vera, offline. Approccio rigoroso ma adattabile, preciso ma popolare, giocoso."
+             data-en="A real place to put your hands and heart to work, meet new people and share recipes (and jokes): true, offline conviviality. My approach: rigorous but adaptable, precise but down-to-earth, playful.">
+            Un luogo fisico dove far andare le mani e il cuore, conoscere persone nuove e condividere ricette (e battute): convivialità vera, offline. Approccio rigoroso ma adattabile, preciso ma popolare, giocoso.
+          </p>
+
+          <button type="button" class="read-more" aria-expanded="false" aria-controls="corsiMore"
+                  data-it="Espandi ↓" data-en="Read more ↓"
+                  data-it-close="Riduci ↑" data-en-close="Show less ↑">Espandi ↓</button>
+
+          <div class="more-content" id="corsiMore" hidden>
+            <p data-it="Dalla pasta fresca vegana ai dolci, passando per le proteine vegetali, la colazione da preparare insieme o gli approfondimenti sull'alimentazione veg nello sport — affiancata da una nutrizionista — nelle lezioni riverso tutta la cura per ciò che mi appassiona. Ho tantissime idee e non vedo l'ora di farle fiorire!"
+               data-en="From fresh vegan pasta to desserts, through plant proteins, breakfast made together, and deep-dives on veg nutrition in sport — alongside a nutritionist — into every lesson I pour all my care for what I love. I have so many ideas and can't wait to make them bloom!">
+              Dalla pasta fresca vegana ai dolci, passando per le proteine vegetali, la colazione da preparare insieme o gli approfondimenti sull'alimentazione veg nello sport — affiancata da una nutrizionista — nelle lezioni riverso tutta la cura per ciò che mi appassiona. Ho tantissime idee e non vedo l'ora di farle fiorire!
+            </p>
+          </div>
+
+          <div class="corsi-ctas">
+            <a href="https://www.instagram.com/enza_ebbasta/" target="_blank" rel="noopener" class="btn btn-pink"
+               data-it="Calendario Corsi ↗" data-en="Class Calendar ↗">Calendario Corsi ↗</a>
+            <a href="#contatti" data-scroll class="btn btn-dark"
+               data-it="Scrivimi per info →" data-en="Message me for info →">Scrivimi per info →</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== CONTATTI ===== -->
+    <section id="contatti" class="contatti">
+      <div class="contatti-grid">
+        <div class="contatti-info">
+          <p class="eyebrow" data-it="04 — Contatti" data-en="04 — Contact">04 — Contatti</p>
+          <h2 class="section-title" data-it="Parliamone" data-en="Let's Talk">Parliamone</h2>
+          <p class="contatti-lead"
+             data-it="Hai un evento, un'idea o solo fame di qualcosa di buono? Scrivimi, rispondo a tutti."
+             data-en="Got an event, an idea, or just a craving for something good? Write to me — I reply to everyone.">
+            Hai un evento, un'idea o solo fame di qualcosa di buono? Scrivimi, rispondo a tutti.
+          </p>
+
+          <ul class="contact-list">
+            <li>
+              <span class="ci" style="--ico:var(--rose)" aria-hidden="true">@</span>
+              <a href="mailto:ciao@enzaebasta.it">ciao@enzaebasta.it</a>
+            </li>
+            <li>
+              <span class="ci" style="--ico:var(--saffron)" aria-hidden="true">
+                <svg viewBox="0 0 24 24" width="21" height="21">
+                  <path d="M12 21s7-5.6 7-12a7 7 0 10-14 0c0 6.4 7 12 7 12z" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"/>
+                  <circle cx="12" cy="9" r="2.4" fill="none" stroke="currentColor" stroke-width="2.2"/>
+                </svg>
+              </span>
+              <a href="https://www.google.com/maps/search/?api=1&query=Firenze%2C%20Toscana%2C%20Italia" target="_blank" rel="noopener"
+                 data-it="Firenze · Toscana · disponibile in trasferta per eventi" data-en="Florence · Tuscany · available to travel for events">Firenze · Toscana · disponibile in trasferta per eventi</a>
+            </li>
+          </ul>
+
+          <div class="socials">
+            <a href="https://www.instagram.com/enza_ebbasta/" target="_blank" rel="noopener" aria-label="Instagram @enza_ebbasta">
+              <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
+                <rect x="4" y="4" width="16" height="16" rx="5" fill="none" stroke="currentColor" stroke-width="2.2"/>
+                <circle cx="12" cy="12" r="3.2" fill="none" stroke="currentColor" stroke-width="2.2"/>
+                <circle cx="17" cy="7" r="1.2" fill="currentColor"/>
+              </svg>
+              <span>Instagram</span>
+            </a>
+            <a href="https://www.google.com/maps/search/?api=1&query=Firenze%2C%20Toscana%2C%20Italia" target="_blank" rel="noopener" aria-label="Google Maps: Firenze, Toscana">
+              <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
+                <path d="M12 21s7-5.6 7-12a7 7 0 10-14 0c0 6.4 7 12 7 12z" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"/>
+                <circle cx="12" cy="9" r="2.4" fill="none" stroke="currentColor" stroke-width="2.2"/>
+              </svg>
+              <span>Google Maps</span>
+            </a>
+          </div>
+          <p class="glyph-check" aria-label="Verifica rendering carattere schwa">ə</p>
+        </div>
+
+        <form class="contact-form" id="contactForm" novalidate>
+          <div class="field">
+            <label for="nome" data-it="Nome e Cognome" data-en="Full Name">Nome e Cognome</label>
+            <input type="text" id="nome" name="nome" required autocomplete="name"
+                   data-it-ph="Es. Mario Rossi" data-en-ph="e.g. John Smith" placeholder="Es. Mario Rossi" />
+          </div>
+          <div class="field">
+            <label for="email" data-it="Email" data-en="Email">Email</label>
+            <input type="email" id="email" name="email" required autocomplete="email"
+                   data-it-ph="tu@email.it" data-en-ph="you@email.com" placeholder="tu@email.it" />
+          </div>
+          <div class="field">
+            <label for="telefono" data-it="Telefono" data-en="Phone">Telefono</label>
+            <input type="tel" id="telefono" name="telefono" autocomplete="tel"
+                   data-it-ph="+39 ..." data-en-ph="+39 ..." placeholder="+39 ..." />
+          </div>
+          <div class="field">
+            <label for="oggetto" data-it="Oggetto" data-en="Subject">Oggetto</label>
+            <input type="text" id="oggetto" name="oggetto" required
+                   data-it-ph="Di cosa parliamo?" data-en-ph="What's it about?" placeholder="Di cosa parliamo?" />
+          </div>
+          <div class="field field-full">
+            <label for="messaggio" data-it="Messaggio" data-en="Message">Messaggio</label>
+            <textarea id="messaggio" name="messaggio" rows="4" required
+                      data-it-ph="Raccontami tutto..." data-en-ph="Tell me everything..." placeholder="Raccontami tutto..."></textarea>
+          </div>
+          <button type="submit" class="btn btn-pink" data-it="Invia →" data-en="Send →">Invia →</button>
+
+          <p class="form-success" id="formSuccess" role="status" hidden
+             data-it="Grazie! Messaggio ricevuto — ti rispondo prestissimo. 🌶️"
+             data-en="Thanks! Message received — I'll get back to you very soon. 🌶️">
+            Grazie! Messaggio ricevuto — ti rispondo prestissimo. 🌶️
+          </p>
+        </form>
+      </div>
+
+      <footer class="footer">
+        <span>© <span id="year"></span> Enza e basta</span>
+        <span class="foot-squiggle" aria-hidden="true">～ ✦ ～</span>
+        <span data-it="Fatto a mano, con fame." data-en="Handmade, with hunger.">Fatto a mano, con fame.</span>
+      </footer>
+    </section>
+
+  </main>
+
+  <script src="js/script.js"></script>
+</body>
+</html>

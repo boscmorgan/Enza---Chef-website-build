@@ -10,3 +10,10 @@ Thumbs.db
 
 # Node (in caso si aggiunga un build step in futuro)
 node_modules/
+
+# design-sync (component-library -> claude.ai/design)
+.ds-sync/
+ds-bundle/
+.design-sync/.cache/
+.design-sync/learnings/
+.design-sync/node_modules

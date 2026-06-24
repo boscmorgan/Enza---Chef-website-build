@@ -1,0 +1,12 @@
+{
+  "pkg": "@enza/ui",
+  "globalName": "EnzaUI",
+  "shape": "package",
+  "projectId": "e97f7e21-4088-4ae0-90fe-7da9028c4e2e",
+  "buildCmd": "npm --prefix design-system run build",
+  "cssEntry": "dist/styles.css",
+  "readmeHeader": ".design-sync/conventions.md",
+  "overrides": {
+    "SideMenu": { "cardMode": "single", "viewport": "340x660" }
+  }
+}

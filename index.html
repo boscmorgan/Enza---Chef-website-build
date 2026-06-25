@@ -44,9 +44,6 @@
   <!-- Fonts: self-hosted (vedi fonts/). I file .woff2 si scaricano con
        fonts/download-fonts.sh — le @font-face sono già in css/style.css.
        Fallback di sistema attivo se i file non sono presenti. -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Climate+Crisis:YEAR@1979&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css" />
 
   <!-- Structured data for SEO -->
@@ -89,7 +86,7 @@
   <a class="skip-link" href="#hero" data-it="Vai al contenuto" data-en="Skip to content">Vai al contenuto</a>
 
   <!-- ====== HAMBURGER (shows when menu closed) ====== -->
-  <button id="menuOpen" class="hamburger" aria-label="Apri il menu" aria-controls="sideMenu" aria-expanded="true">
+  <button id="menuOpen" class="hamburger" aria-label="Apri il menu" aria-controls="sideMenu" aria-expanded="false">
     <span></span><span></span><span></span>
   </button>
 
@@ -181,7 +178,9 @@
       <div class="hero-inner">
         <div class="hero-text">
           <p class="kicker" data-it="Chef vegetale · Corsi · Consulenze · Eventi" data-en="Plant-based chef · Classes · Consulting · Events">Chef vegetale · Corsi · Consulenze · Eventi</p>
-          <h1 class="title-stroke">Enza<br><em>e basta</em></h1>
+          <h1 class="hero-logo-title">
+            <img src="images/enza-logo.png" alt="Enza e basta" width="3721" height="1750" />
+          </h1>
           <p class="hero-lead"
              data-it="Cucino verdure e venero i carboidrati. Anima vesuviana in movimento: porto in tavola vegetali con carattere — anche per chi “la verdura no”. Corsi, consulenze ed eventi. Ebbasta."
              data-en="I cook vegetables and worship carbs. A Vesuvian soul on the move: I bring bold, characterful plants to the table — even for the “I don't do veg” crowd. Classes, consulting and events. And that's that.">

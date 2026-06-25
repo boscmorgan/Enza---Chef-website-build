@@ -40,10 +40,9 @@
     if (e.key === 'Escape' && body.classList.contains('menu-open')) closeMenu();
   });
 
-  // Initial state: open on desktop, closed on mobile
+  // Initial state: closed, matching the full-width hero design.
   function initMenu() {
-    if (DESKTOP.matches) openMenu();
-    else closeMenu();
+    closeMenu();
   }
   initMenu();
 
@@ -177,6 +176,64 @@
       }
     });
   });
+
+  /* ---------- BIOGRAFIA timeline active dot on scroll ---------- */
+  var timelineItems = Array.prototype.slice.call(document.querySelectorAll('.timeline li'));
+  if (timelineItems.length) {
+    var timelineTick = false;
+
+    function activateTimelineItem(item) {
+      timelineItems.forEach(function (li) {
+        li.classList.toggle('is-active', li === item);
+      });
+    }
+
+    function updateActiveTimelineOnScroll() {
+      var targetY = window.innerHeight * 0.42;
+      var current = timelineItems[0];
+      var currentDistance = Infinity;
+
+      timelineItems.forEach(function (item) {
+        var rect = item.getBoundingClientRect();
+        var markerY = rect.top + 14;
+        var distance = Math.abs(markerY - targetY);
+        if (distance < currentDistance) {
+          current = item;
+          currentDistance = distance;
+        }
+      });
+
+      activateTimelineItem(current);
+    }
+
+    function requestTimelineUpdate() {
+      if (timelineTick) return;
+      timelineTick = true;
+      requestAnimationFrame(function () {
+        updateActiveTimelineOnScroll();
+        timelineTick = false;
+      });
+    }
+
+    activateTimelineItem(timelineItems[0]);
+    window.addEventListener('scroll', requestTimelineUpdate, { passive: true });
+    window.addEventListener('resize', requestTimelineUpdate);
+    requestTimelineUpdate();
+
+    if ('IntersectionObserver' in window && !reduceMotion.matches) {
+      var timelineObserver = new IntersectionObserver(function (entries) {
+        if (entries.some(function (entry) { return entry.isIntersecting; })) {
+          requestTimelineUpdate();
+        }
+      }, {
+        root: null,
+        rootMargin: '-32% 0px -52% 0px',
+        threshold: [0, 0.25, 0.5, 0.75, 1]
+      });
+
+      timelineItems.forEach(function (item) { timelineObserver.observe(item); });
+    }
+  }
 
   /* ---------- DEMO CONTACT FORM ---------- */
   var form = document.getElementById('contactForm');

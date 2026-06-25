@@ -517,11 +517,7 @@ body.menu-closed .hamburger{display:flex;}
   filter:saturate(.78) contrast(.95);
 }
 .badge{
-  position:absolute;bottom:-21px;right:18px;z-index:3;
-  width:46px;height:46px;border-radius:50%;
-  background:var(--badge);border:3px solid var(--violet);color:var(--violet);
-  display:grid;place-items:center;
-  box-shadow:none;
+  display:none;
 }
 .card-body{
   position:relative;z-index:2;

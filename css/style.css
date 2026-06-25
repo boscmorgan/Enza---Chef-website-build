@@ -61,6 +61,8 @@
    ========================================================= */
 
 :root{
+  color-scheme:only light;
+
   --violet:#7f1117;
   --amethyst:#b51f24;
   --grape:#d8cfc3;
@@ -87,7 +89,11 @@
 }
 
 *{box-sizing:border-box;}
-html{scroll-behavior:smooth;scroll-padding-top:88px;}
+html{
+  scroll-behavior:smooth;
+  scroll-padding-top:88px;
+  background:var(--paper);
+}
 body{
   margin:0;
   font-family:var(--sans);
@@ -97,6 +103,7 @@ body{
   line-height:1.6;
   overflow-x:hidden;
 }
+input,textarea,select,button{color-scheme:only light;}
 img{max-width:100%;display:block;}
 a{color:inherit;}
 
@@ -483,31 +490,27 @@ body.menu-closed .hamburger{display:flex;}
 }
 .card{
   position:relative;
-  background:var(--amethyst);color:var(--violet);
+  background:transparent;color:var(--violet);
   border:0;border-radius:0;overflow:visible;
   display:flex;flex-direction:column;
-  padding:26px;
+  padding:0;
   min-height:100%;
   box-shadow:none;
   transition:transform .2s, box-shadow .2s;
 }
 .card::before{
-  content:"";position:absolute;inset:26px 26px auto 26px;
-  height:52%;
-  background:var(--violet);
-  border:4px solid rgba(127,17,23,.92);
-  box-shadow:5px 5px 0 rgba(127,17,23,.72);
-  border-radius:8px 8px 0 0;
+  content:none;
 }
 .card:hover{transform:translateY(-2px);}
 .card-img{
   position:relative;z-index:1;
   aspect-ratio:1/1;overflow:hidden;
   display:grid;place-items:center;
-  background:var(--violet);
+  background:var(--paper);
   border:4px solid var(--violet);
   border-bottom:0;
   border-radius:8px 8px 0 0;
+  box-shadow:5px 5px 0 rgba(127,17,23,.72);
 }
 .card-img::after{
   content:none;
@@ -747,8 +750,6 @@ body.menu-closed .hamburger{display:flex;}
   .chi-sono,.servizi,.biografia,.corsi,.contatti{padding-top:96px;}
   .chi-text{padding-left:24px;}
   .cards{grid-template-columns:1fr;max-width:390px;}
-  .card{padding:18px;}
-  .card::before{inset:18px 18px auto 18px;}
   .card-img{aspect-ratio:4/3;}
   .card-body{padding:26px 18px 20px;}
   .timeline li{padding-left:44px;}

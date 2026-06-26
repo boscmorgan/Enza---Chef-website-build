@@ -72,7 +72,7 @@
       "@type": "OfferCatalog",
       "name": "Servizi",
       "itemListElement": [
-        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Corsi & Consulenze", "description": "Corsi di cucina vegetale, menu engineering e consulenze per locali e brand." } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Corsi & Consulenze", "description": "Corsi pratici e consulenze per locali e brand che vogliono menu vegetali." } },
         { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Eventi Privati", "description": "Cene, feste e ricorrenze su misura con menu vegetale e servizio." } },
         { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Eventi Aziendali", "description": "Show cooking, catering vegetale e team building per aziende." } }
       ]
@@ -97,7 +97,15 @@
       <svg viewBox="0 0 24 24" width="26" height="26" aria-hidden="true"><path d="M5 5l14 14M19 5L5 19" stroke="currentColor" stroke-width="3" stroke-linecap="round"/></svg>
     </button>
 
-    <a href="#hero" class="side-brand" data-scroll>Enza<span>e basta</span></a>
+    <a href="#hero" class="side-brand" data-scroll aria-label="Enza e basta">
+      <img src="images/enza-logo.png" alt="Enza e basta" width="3721" height="1750" />
+    </a>
+
+    <div class="side-lang-toggle" role="group" aria-label="Lingua / Language">
+      <button data-set-lang="it" class="is-active" aria-pressed="true">IT</button>
+      <span aria-hidden="true">/</span>
+      <button data-set-lang="en" aria-pressed="false">EN</button>
+    </div>
 
     <ul class="side-links">
       <li>
@@ -178,14 +186,14 @@
     <section id="hero" class="hero">
       <div class="hero-inner">
         <div class="hero-text">
-          <p class="kicker" data-it="Chef vegetale · Corsi · Consulenze · Eventi" data-en="Plant-based chef · Classes · Consulting · Events">Chef vegetale · Corsi · Consulenze · Eventi</p>
+          <p class="kicker" data-it="Cucina vegetale • Corsi • Consulenze • Eventi" data-en="Plant-based chef · Classes · Consulting · Events">Cucina vegetale • Corsi • Consulenze • Eventi</p>
           <h1 class="hero-logo-title">
             <img src="images/enza-logo.png" alt="Enza e basta" width="3721" height="1750" />
           </h1>
           <p class="hero-lead"
-             data-it="Cucino verdure e venero i carboidrati. Anima vesuviana in movimento: porto in tavola vegetali con carattere — anche per chi “la verdura no”. Corsi, consulenze ed eventi. Ebbasta."
+             data-it="Sono un'anima vesuviana in movimento, venero i carboidrati e porto in tavola piatti vegetali con un bel carattere. Il mio obiettivo? Far ricredere anche chi dice “la verdura no”. Ci vediamo in cucina per corsi, consulenze ed eventi. Ebbasta."
              data-en="I cook vegetables and worship carbs. A Vesuvian soul on the move: I bring bold, characterful plants to the table — even for the “I don't do veg” crowd. Classes, consulting and events. And that's that.">
-            Cucino verdure e venero i carboidrati. Anima vesuviana in movimento: porto in tavola vegetali con carattere — anche per chi “la verdura no”. Corsi, consulenze ed eventi. Ebbasta.
+            Sono un'anima vesuviana in movimento, venero i carboidrati e porto in tavola piatti vegetali con un bel carattere. Il mio obiettivo? Far ricredere anche chi dice “la verdura no”. Ci vediamo in cucina per corsi, consulenze ed eventi. Ebbasta.
           </p>
           <a href="#contatti" data-scroll class="btn btn-dark"
              data-it="Scrivimi →" data-en="Get in touch →">Scrivimi →</a>
@@ -261,9 +269,9 @@
           </div>
           <div class="card-body">
             <h3 data-it="Corsi &amp; Consulenze" data-en="Classes &amp; Consulting">Corsi &amp; Consulenze</h3>
-            <p data-it="Ti insegno i vegetali: corsi di cucina, menu engineering e consulenze per locali e brand. Imparare facendo, ebbasta."
-               data-en="I teach you vegetables: cooking classes, menu engineering and consulting for venues and brands. Learning by doing — and that's that.">
-              Ti insegno i vegetali: corsi di cucina, menu engineering e consulenze per locali e brand. Imparare facendo, ebbasta.
+            <p data-it="Ti aiuto a dare una svolta green al tuo progetto. Faccio consulenza per locali e brand che vogliono menu vegetali che spaccano, e tengo corsi pratici dove si impara sporcandosi le mani. Ebbasta."
+               data-en="I help give your project a greener direction. I consult for venues and brands that want bold plant-based menus, and I run hands-on classes where you learn by getting stuck in. And that's that.">
+              Ti aiuto a dare una svolta green al tuo progetto. Faccio consulenza per locali e brand che vogliono menu vegetali che spaccano, e tengo corsi pratici dove si impara sporcandosi le mani. Ebbasta.
             </p>
             <div class="card-ctas">
               <a href="#contatti" data-scroll class="card-cta" data-it="Prenota una consulenza →" data-en="Book a consultation →">Prenota una consulenza →</a>
@@ -282,9 +290,9 @@
           </div>
           <div class="card-body">
             <h3 data-it="Eventi Privati" data-en="Private Events">Eventi Privati</h3>
-            <p data-it="Cene, feste e ricorrenze cucite su di te. Menu vegetale (o quasi) su misura, gusto che fa festa, servizio incluso."
-               data-en="Dinners, parties and celebrations tailored to you. A bespoke plant-forward menu, flavour that parties, service included.">
-              Cene, feste e ricorrenze cucite su di te. Menu vegetale (o quasi) su misura, gusto che fa festa, servizio incluso.
+            <p data-it="Che sia una cena intima, una festa o un'occasione speciale, costruisco un menu vegetale su misura per te e per i tuoi ospiti. Tu rilassati, alla spesa e ai fornelli ci penso io."
+               data-en="Whether it's an intimate dinner, a party or a special occasion, I build a plant-based menu around you and your guests. You relax; I'll handle the shopping and the stove.">
+              Che sia una cena intima, una festa o un'occasione speciale, costruisco un menu vegetale su misura per te e per i tuoi ospiti. Tu rilassati, alla spesa e ai fornelli ci penso io.
             </p>
             <div class="card-ctas">
               <a href="#contatti" data-scroll class="card-cta" data-it="Richiedi un preventivo →" data-en="Request a quote →">Richiedi un preventivo →</a>
@@ -302,9 +310,9 @@
           </div>
           <div class="card-body">
             <h3 data-it="Eventi Aziendali" data-en="Corporate Events">Eventi Aziendali</h3>
-            <p data-it="Show cooking, catering vegetale e team building che si mangiano. Energia e gusto per il tuo team, zero noia."
-               data-en="Show cooking, plant-based catering and team building you can actually eat. Energy and flavour for your team, zero boredom.">
-              Show cooking, catering vegetale e team building che si mangiano. Energia e gusto per il tuo team, zero noia.
+            <p data-it="Show cooking, catering e team building originali per aziende che vogliono unire la squadra davanti a un buon piatto. Energia, ritmo e zero noia."
+               data-en="Show cooking, catering and original team building for companies that want to bring people together around a good plate. Energy, rhythm and zero boredom.">
+              Show cooking, catering e team building originali per aziende che vogliono unire la squadra davanti a un buon piatto. Energia, ritmo e zero noia.
             </p>
             <div class="card-ctas">
               <a href="#contatti" data-scroll class="card-cta" data-it="Parliamo del tuo team →" data-en="Let's talk team →">Parliamo del tuo team →</a>
@@ -429,13 +437,13 @@
           <p class="eyebrow" data-it="Corsi di cucina" data-en="Cooking classes">Corsi di cucina</p>
           <h2 class="section-title" data-it="Impara con me" data-en="Learn with me">Impara con me</h2>
           <p class="corsi-lead"
-             data-it="Dal 2025, a Firenze, restituisco qualcosa della mia esperienza: corsi di cucina vegetale che rispecchiano la mia visione — curiosità, passione, professionalità e sostenibilità, umana e delle materie prime."
+             data-it="Dal 2025 ho aperto la mia scuola a Firenze per condividere tutto quello che ho imparato lungo la strada. I miei corsi sono esattamente come me: curiosi, professionali, attenti alla materia prima, ma senza fronzoli."
              data-en="Since 2025, in Florence, I give back something of my experience: plant-based cooking classes that reflect my vision — curiosity, passion, professionalism and sustainability, both human and in the ingredients.">
-            Dal 2025, a Firenze, restituisco qualcosa della mia esperienza: corsi di cucina vegetale che rispecchiano la mia visione — curiosità, passione, professionalità e sostenibilità, umana e delle materie prime.
+            Dal 2025 ho aperto la mia scuola a Firenze per condividere tutto quello che ho imparato lungo la strada. I miei corsi sono esattamente come me: curiosi, professionali, attenti alla materia prima, ma senza fronzoli.
           </p>
-          <p data-it="Un luogo fisico dove far andare le mani e il cuore, conoscere persone nuove e condividere ricette (e battute): convivialità vera, offline. Approccio rigoroso ma adattabile, preciso ma popolare, giocoso."
+          <p data-it="È uno spazio offline per far andare le mani, fare due chiacchiere, scambiarsi ricette e divertirsi. L'approccio è serio quando serve (la tecnica conta!), ma l'atmosfera è leggera, accessibile e decisamente pop."
              data-en="A real place to put your hands and heart to work, meet new people and share recipes (and jokes): true, offline conviviality. My approach: rigorous but adaptable, precise but down-to-earth, playful.">
-            Un luogo fisico dove far andare le mani e il cuore, conoscere persone nuove e condividere ricette (e battute): convivialità vera, offline. Approccio rigoroso ma adattabile, preciso ma popolare, giocoso.
+            È uno spazio offline per far andare le mani, fare due chiacchiere, scambiarsi ricette e divertirsi. L'approccio è serio quando serve (la tecnica conta!), ma l'atmosfera è leggera, accessibile e decisamente pop.
           </p>
 
           <button type="button" class="read-more" aria-expanded="false" aria-controls="corsiMore"
@@ -443,9 +451,9 @@
                   data-it-close="Riduci ↑" data-en-close="Show less ↑">Espandi ↓</button>
 
           <div class="more-content" id="corsiMore" hidden>
-            <p data-it="Dalla pasta fresca vegana ai dolci, passando per le proteine vegetali, la colazione da preparare insieme o gli approfondimenti sull'alimentazione veg nello sport — affiancata da una nutrizionista — nelle lezioni riverso tutta la cura per ciò che mi appassiona. Ho tantissime idee e non vedo l'ora di farle fiorire!"
+            <p data-it="Prepariamo insieme di tutto: dalla pasta fresca vegana ai dolci da colazione, fino a lezioni mirate sulle proteine vegetali o sull'alimentazione veg per lo sport (in cui mi faccio affiancare da una nutrizionista). Ci metto tutta la cura e la passione che ho. Le idee sono tante, non ti resta che scegliere la tua lezione."
                data-en="From fresh vegan pasta to desserts, through plant proteins, breakfast made together, and deep-dives on veg nutrition in sport — alongside a nutritionist — into every lesson I pour all my care for what I love. I have so many ideas and can't wait to make them bloom!">
-              Dalla pasta fresca vegana ai dolci, passando per le proteine vegetali, la colazione da preparare insieme o gli approfondimenti sull'alimentazione veg nello sport — affiancata da una nutrizionista — nelle lezioni riverso tutta la cura per ciò che mi appassiona. Ho tantissime idee e non vedo l'ora di farle fiorire!
+              Prepariamo insieme di tutto: dalla pasta fresca vegana ai dolci da colazione, fino a lezioni mirate sulle proteine vegetali o sull'alimentazione veg per lo sport (in cui mi faccio affiancare da una nutrizionista). Ci metto tutta la cura e la passione che ho. Le idee sono tante, non ti resta che scegliere la tua lezione.
             </p>
           </div>
 
@@ -466,9 +474,9 @@
           <p class="eyebrow" data-it="04 — Contatti" data-en="04 — Contact">04 — Contatti</p>
           <h2 class="section-title" data-it="Parliamone" data-en="Let's Talk">Parliamone</h2>
           <p class="contatti-lead"
-             data-it="Hai un evento, un'idea o solo fame di qualcosa di buono? Scrivimi, rispondo a tutti."
+             data-it="Hai in mente un evento, un progetto da sviluppare o hai semplicemente voglia di mangiare bene? Scrivimi due righe, rispondo sempre."
              data-en="Got an event, an idea, or just a craving for something good? Write to me — I reply to everyone.">
-            Hai un evento, un'idea o solo fame di qualcosa di buono? Scrivimi, rispondo a tutti.
+            Hai in mente un evento, un progetto da sviluppare o hai semplicemente voglia di mangiare bene? Scrivimi due righe, rispondo sempre.
           </p>
 
           <ul class="contact-list">

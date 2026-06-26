@@ -65,7 +65,7 @@
   /* ---------- LANGUAGE TOGGLE ---------- */
   var langButtons = document.querySelectorAll('[data-set-lang]');
 
-  var jiggleEls = '.btn, .tag-row li, .kicker, .sticker, .lang-toggle, .servizi-sub';
+  var jiggleEls = '.btn, .tag-row li, .kicker, .sticker, .lang-toggle, .side-lang-toggle, .servizi-sub';
 
   function jiggle() {
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;

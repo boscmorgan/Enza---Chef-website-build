@@ -3,7 +3,7 @@
    - side menu open/close (+ hamburger)
    - smooth anchor scroll
    - IT / EN language toggle
-   - demo contact form with success message
+   - contact form mailto composer
    ========================================================= */
 (function () {
   'use strict';
@@ -235,9 +235,36 @@
     }
   }
 
-  /* ---------- DEMO CONTACT FORM ---------- */
+  /* ---------- CONTACT FORM MAILTO ---------- */
   var form = document.getElementById('contactForm');
   var success = document.getElementById('formSuccess');
+  var mailFallback = document.getElementById('mailFallback');
+  var mailFallbackText = document.getElementById('mailFallbackText');
+  var copyMailFallback = document.getElementById('copyMailFallback');
+  var lastFallbackMessage = '';
+
+  function formValue(name) {
+    var field = form.elements[name];
+    return field ? field.value.trim() : '';
+  }
+
+  function buildMailBody(data) {
+    return [
+      'Nome: ' + data.name,
+      'Email: ' + data.email,
+      'Telefono: ' + (data.phone || '-'),
+      '',
+      'Oggetto: ' + data.subject,
+      '',
+      'Messaggio:',
+      data.message,
+      '',
+      '---',
+      'Inviato dal modulo contatti di enzaebasta.it',
+      'Pagina: ' + window.location.href,
+      'Lingua: ' + data.lang.toUpperCase()
+    ].join('\n');
+  }
 
   form.addEventListener('submit', function (e) {
     e.preventDefault();
@@ -245,14 +272,60 @@
       form.reportValidity();
       return;
     }
+
+    var data = {
+      name: formValue('nome'),
+      email: formValue('email'),
+      phone: formValue('telefono'),
+      subject: formValue('oggetto'),
+      message: formValue('messaggio'),
+      lang: body.getAttribute('data-lang') || 'it'
+    };
+
+    var mailSubject = 'Richiesta dal sito: ' + data.subject;
+    var mailBody = buildMailBody(data);
+    lastFallbackMessage = 'A: ciao@enzaebasta.it\n'
+      + 'Oggetto: ' + mailSubject + '\n\n'
+      + mailBody;
+    var mailto = 'mailto:ciao@enzaebasta.it'
+      + '?subject=' + encodeURIComponent(mailSubject)
+      + '&body=' + encodeURIComponent(mailBody);
+
+    mailFallbackText.value = lastFallbackMessage;
+    mailFallback.hidden = false;
+
+    window.location.href = mailto;
     success.hidden = false;
-    form.querySelectorAll('input, textarea, button').forEach(function (el) {
-      if (el.type !== 'submit' && el.tagName !== 'BUTTON') el.value = '';
-    });
-    success.scrollIntoView({ behavior: 'smooth', block: 'center' });
-    // hide again after a while
+    mailFallback.scrollIntoView({ behavior: 'smooth', block: 'center' });
     clearTimeout(form._t);
     form._t = setTimeout(function () { success.hidden = true; }, 8000);
+  });
+
+  copyMailFallback.addEventListener('click', function () {
+    function markCopied() {
+      var lang = body.getAttribute('data-lang') || 'it';
+      var defaultLabel = copyMailFallback.getAttribute('data-' + lang) || 'Copia messaggio';
+      copyMailFallback.textContent = lang === 'en' ? 'Copied' : 'Copiato';
+      mailFallbackText.blur();
+      if (window.getSelection) window.getSelection().removeAllRanges();
+      clearTimeout(copyMailFallback._t);
+      copyMailFallback._t = setTimeout(function () {
+        copyMailFallback.textContent = defaultLabel;
+      }, 1800);
+    }
+
+    if (navigator.clipboard && window.isSecureContext) {
+      navigator.clipboard.writeText(lastFallbackMessage).then(markCopied, function () {
+        mailFallbackText.select();
+        document.execCommand('copy');
+        markCopied();
+      });
+      return;
+    }
+
+    mailFallbackText.select();
+    document.execCommand('copy');
+    markCopied();
   });
 
   /* ---------- shrink floating UI on scroll (mobile) ---------- */

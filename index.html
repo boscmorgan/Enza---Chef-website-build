@@ -98,7 +98,7 @@
     </button>
 
     <a href="#hero" class="side-brand" data-scroll aria-label="Enza e basta">
-      <img src="images/enza-logo.png" alt="Enza e basta" width="3721" height="1750" />
+      <img src="images/enza-e-basta_cream_shadow.webp" alt="Enza e basta" width="3476" height="1450" />
     </a>
 
     <div class="side-lang-toggle" role="group" aria-label="Lingua / Language">
@@ -188,7 +188,7 @@
         <div class="hero-text">
           <p class="kicker" data-it="Cucina vegetale • Corsi • Consulenze • Eventi" data-en="Plant-based chef · Classes · Consulting · Events">Cucina vegetale • Corsi • Consulenze • Eventi</p>
           <h1 class="hero-logo-title">
-            <img src="images/enza-logo.png" alt="Enza e basta" width="3721" height="1750" />
+            <img src="images/enza-e-basta_red.webp" alt="Enza e basta" width="3476" height="1450" />
           </h1>
           <p class="hero-lead"
              data-it="Sono un'anima vesuviana in movimento, venero i carboidrati e porto in tavola piatti vegetali con un bel carattere. Il mio obiettivo? Far ricredere anche chi dice “la verdura no”. Ci vediamo in cucina per corsi, consulenze ed eventi. Ebbasta."
@@ -275,7 +275,7 @@
             </p>
             <div class="card-ctas">
               <a href="#contatti" data-scroll class="card-cta" data-it="Prenota una consulenza →" data-en="Book a consultation →">Prenota una consulenza →</a>
-              <a href="https://www.instagram.com/enza_ebbasta/" target="_blank" rel="noopener" class="card-cta card-cta--alt" data-it="Calendario Corsi ↗" data-en="Class Calendar ↗">Calendario Corsi ↗</a>
+              <a href="https://www.instagram.com/enza_ebbasta/" target="_blank" rel="noopener" class="card-cta card-cta--alt" data-it="Prossimi Corsi ↗" data-en="Class Calendar ↗">Prossimi Corsi ↗</a>
             </div>
           </div>
         </article>
@@ -459,7 +459,7 @@
 
           <div class="corsi-ctas">
             <a href="https://www.instagram.com/enza_ebbasta/" target="_blank" rel="noopener" class="btn btn-pink"
-               data-it="Calendario Corsi ↗" data-en="Class Calendar ↗">Calendario Corsi ↗</a>
+               data-it="Prossimi Corsi ↗" data-en="Class Calendar ↗">Prossimi Corsi ↗</a>
             <a href="#contatti" data-scroll class="btn btn-dark"
                data-it="Scrivimi per info →" data-en="Message me for info →">Scrivimi per info →</a>
           </div>
@@ -505,13 +505,6 @@
               </svg>
               <span>Instagram</span>
             </a>
-            <a href="https://www.google.com/maps/search/?api=1&query=Firenze%2C%20Toscana%2C%20Italia" target="_blank" rel="noopener" aria-label="Google Maps: Firenze, Toscana">
-              <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
-                <path d="M12 21s7-5.6 7-12a7 7 0 10-14 0c0 6.4 7 12 7 12z" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"/>
-                <circle cx="12" cy="9" r="2.4" fill="none" stroke="currentColor" stroke-width="2.2"/>
-              </svg>
-              <span>Google Maps</span>
-            </a>
           </div>
           <p class="glyph-check" aria-label="Verifica rendering carattere schwa">ə</p>
         </div>
@@ -545,17 +538,39 @@
           <button type="submit" class="btn btn-pink" data-it="Invia →" data-en="Send →">Invia →</button>
 
           <p class="form-success" id="formSuccess" role="status" hidden
-             data-it="Grazie! Messaggio ricevuto — ti rispondo prestissimo. 🌶️"
-             data-en="Thanks! Message received — I'll get back to you very soon. 🌶️">
-            Grazie! Messaggio ricevuto — ti rispondo prestissimo. 🌶️
+             data-it="Si sta aprendo la tua app email con il messaggio già pronto."
+             data-en="Your email app is opening with the message already prepared.">
+            Si sta aprendo la tua app email con il messaggio già pronto.
           </p>
+
+          <div class="mail-fallback" id="mailFallback" hidden>
+            <p class="mail-fallback-title"
+               data-it="Se non si apre l'app email"
+               data-en="If your email app does not open">Se non si apre l'app email</p>
+            <p class="mail-fallback-help"
+               data-it="Copia il messaggio e invialo manualmente a"
+               data-en="Copy the message and send it manually to">Copia il messaggio e invialo manualmente a</p>
+            <a href="mailto:ciao@enzaebasta.it">ciao@enzaebasta.it</a>
+            <label for="mailFallbackText"
+                   data-it="Messaggio pronto da copiare"
+                   data-en="Prepared message to copy">Messaggio pronto da copiare</label>
+            <textarea id="mailFallbackText" rows="8" readonly></textarea>
+            <button type="button" class="btn btn-pink mail-copy" id="copyMailFallback"
+                    data-it="Copia messaggio"
+                    data-en="Copy message">Copia messaggio</button>
+          </div>
         </form>
       </div>
 
       <footer class="footer">
         <span>© <span id="year"></span> Enza e basta</span>
         <span class="foot-squiggle" aria-hidden="true">～ ✦ ～</span>
-        <span data-it="Fatto a mano, con fame." data-en="Handmade, with hunger.">Fatto a mano, con fame.</span>
+        <span class="footer-note">
+          <span data-it="Fatto a mano, con fame." data-en="Handmade, with hunger.">Fatto a mano, con fame.</span>
+          <span class="site-credit">
+            Crediti Sito - <a href="https://www.soundniccolo.com" target="_blank" rel="noopener">Sound Niccolò Studio</a>
+          </span>
+        </span>
       </footer>
     </section>
 

@@ -9,7 +9,7 @@ Punk-editorial poster style, fully responsive, no build step — plain HTML/CSS/
 .
 ├── index.html          # tutta la pagina (sezioni + contenuti bilingue)
 ├── css/style.css       # stile completo (palette, layout, responsive)
-├── js/script.js        # menu, scroll, toggle lingua, form demo
+├── js/script.js        # menu, scroll, toggle lingua, form mailto
 ├── images/             # foto ottimizzate per il web
 ├── source-photos/      # foto originali ad alta risoluzione (non servite)
 └── fonts/README.md     # come passare ai font self-hosted
@@ -37,10 +37,10 @@ Poi **committa i `.woff2`** (servono anche online). Dettagli in `fonts/README.md
 Senza i file parte un fallback di sistema, quindi il sito resta sempre leggibile.
 
 ## Form contatti
-È **solo dimostrativo**: non invia email, mostra un messaggio di successo.
-Per renderlo funzionante collega un servizio (es. Formspree, Getform) o un endpoint:
-nel `<form>` aggiungi `action="..."` e `method="post"` e rimuovi/aggiorna il blocco
-demo in `js/script.js`.
+Il form usa un `mailto:` generato lato client: valida i campi, apre l'app email
+dell'utente e precompila destinatario, oggetto e corpo del messaggio. Non richiede
+backend, SMTP o servizi esterni. Se il dispositivo non ha un client email configurato,
+il sito mostra anche un fallback con destinatario e messaggio già pronti da copiare.
 
 ## Social e mappe
 I link Instagram e Google Maps sono presenti nel menu laterale e nella sezione Contatti,

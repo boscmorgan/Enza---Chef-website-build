@@ -530,10 +530,16 @@ body.menu-open .lang-toggle{
 .servizi-sub{max-width:46ch;margin:10px 0 0;font-size:1.15rem;color:var(--rose-tint);}
 
 .cards{
-  max-width:1180px;margin:0 auto;
-  display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:28px;
+  max-width:800px;margin:0 auto;
+  display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:32px;
   align-items:stretch;
 }
+.servizi-corsi-cta{
+  max-width:800px;margin:52px auto 0;
+  display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:14px 20px;
+  text-align:center;
+}
+.servizi-corsi-cta p{margin:0;font-size:1.15rem;font-weight:600;color:var(--rose-tint);}
 .card{
   position:relative;
   background:transparent;color:var(--violet);

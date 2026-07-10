@@ -22,27 +22,8 @@ collections:
           - { label: "Foto Chi Sono", name: "chi_sono_image", widget: "image" }
           - { label: "Foto Corsi", name: "corsi_image", widget: "image" }
 
-  - name: "blog"
-    label: "Blog"
-    files:
-      - name: "posts"
-        label: "Articoli"
-        file: "content/blog.json"
-        fields:
-          - name: "posts"
-            label: "Articoli"
-            widget: "list"
-            summary: "{{title_it}}"
-            fields:
-              - { label: "Titolo (IT)", name: "title_it", widget: "string" }
-              - { label: "Titolo (EN)", name: "title_en", widget: "string" }
-              - { label: "Data", name: "date", widget: "datetime" }
-              - { label: "Testo (IT)", name: "body_it", widget: "text" }
-              - { label: "Testo (EN)", name: "body_en", widget: "text" }
-              - { label: "Foto", name: "image", widget: "image", required: false }
-
   - name: "courses"
-    label: "Corsi"
+    label: "Corsi Passati"
     files:
       - name: "list"
         label: "Elenco corsi"

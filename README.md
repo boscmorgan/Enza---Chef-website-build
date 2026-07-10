@@ -67,16 +67,16 @@ git commit -m "Enza e basta — sito"
 Su Vercel: **Framework Preset = Other**, nessun build command, output = root.
 Il sito è statico, quindi va online così com'è.
 
-## Admin / CMS (pubblicare Blog, Corsi, foto)
+## Admin / CMS (pubblicare Corsi Passati e foto)
 
-Enza può pubblicare articoli del blog, corsi e alcune foto senza toccare il codice,
+Enza può pubblicare i corsi passati e alcune foto senza toccare il codice,
 tramite un piccolo pannello all'indirizzo **`/admin`** (es. `https://enzaebasta.it/admin`).
 Ogni salvataggio nel pannello crea un commit su GitHub e Vercel ripubblica il sito
 in automatico — nessun database, nessun hosting extra.
 
 **Come funziona:**
 - Backend: [Sveltia CMS](https://github.com/sveltia/sveltia-cms) (gratuito, open source), configurato in `admin/config.yml`.
-- Contenuti: `content/site.json` (foto hero/chi-sono/corsi), `content/blog.json` (articoli), `content/courses.json` (corsi). Il sito li legge via `js/content.js` e li inserisce nelle sezioni **Blog** (nuova, resta nascosta finché non c'è almeno un articolo) e **Corsi** (le card dei singoli corsi appaiono sotto il testo esistente).
+- Contenuti: `content/site.json` (foto hero/chi-sono/corsi), `content/courses.json` (corsi passati). Il sito li legge via `js/content.js` e inserisce le card nella sezione **Corsi Passati** (sfondo rosso, sotto la sezione Corsi esistente): un carosello con 3 card visibili e frecce prev/next, che restano nascoste quando ci sono 3 corsi o meno. La sezione intera resta nascosta finché non c'è almeno un corso.
 - Immagini caricate dal pannello finiscono in `images/uploads/` e vengono committate nel repo.
 - Login: un solo account GitHub condiviso, che deve avere accesso in scrittura a questo repo.
 

@@ -133,14 +133,6 @@
         </a>
       </li>
       <li>
-        <a href="#blog" data-scroll>
-          <span class="ico" style="--ico:var(--grape)" aria-hidden="true">
-            <svg viewBox="0 0 24 24" width="22" height="22"><path d="M5 4h14v16H5z M8 9h8M8 13h8M8 17h5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </span>
-          <span data-it="Blog" data-en="Blog">Blog</span>
-        </a>
-      </li>
-      <li>
         <a href="#biografia" data-scroll>
           <span class="ico" style="--ico:var(--grape)" aria-hidden="true">
             <svg viewBox="0 0 24 24" width="22" height="22"><path d="M5 4h11l3 3v13H5zM9 4v16M8 9h7M8 13h7" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -258,8 +250,26 @@
           </div>
         </div>
       </div>
+    </section>
 
-      <div class="cards" id="corsiCards" hidden></div>
+    <!-- ===== CORSI PASSATI ===== -->
+    <section id="corsi-passati" class="corsi-passati" hidden>
+      <header class="servizi-head">
+        <p class="eyebrow light" data-it="Corsi Passati" data-en="Past Classes">Corsi Passati</p>
+        <h2 class="section-title light" data-it="Cosa Abbiamo Fatto" data-en="What We've Done">Cosa Abbiamo Fatto</h2>
+      </header>
+
+      <div class="carousel">
+        <button type="button" class="carousel-arrow carousel-prev" id="corsiPrev"
+                data-it-label="Corsi precedenti" data-en-label="Previous classes" aria-label="Corsi precedenti">
+          <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M15 5l-7 7 7 7" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <div class="carousel-track" id="corsiCarousel"></div>
+        <button type="button" class="carousel-arrow carousel-next" id="corsiNext"
+                data-it-label="Corsi successivi" data-en-label="Next classes" aria-label="Corsi successivi">
+          <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M9 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+      </div>
     </section>
 
     <!-- ===== CHI SONO ===== -->
@@ -378,20 +388,10 @@
       </div>
     </section>
 
-    <!-- ===== BLOG ===== -->
-    <section id="blog" class="servizi" hidden>
-      <header class="servizi-head">
-        <p class="eyebrow light" data-it="03 — Blog" data-en="03 — Blog">03 — Blog</p>
-        <h2 class="section-title light" data-it="Ultimi Articoli" data-en="Latest Posts">Ultimi Articoli</h2>
-      </header>
-
-      <div class="cards" id="blogCards"></div>
-    </section>
-
     <!-- ===== BIOGRAFIA ===== -->
     <section id="biografia" class="biografia">
       <div class="bio-head">
-        <p class="eyebrow light" data-it="04 — Biografia" data-en="04 — Biography">04 — Biografia</p>
+        <p class="eyebrow light" data-it="03 — Biografia" data-en="03 — Biography">03 — Biografia</p>
         <h2 class="section-title light" data-it="Il Percorso" data-en="The Journey">Il Percorso</h2>
       </div>
 
@@ -471,7 +471,7 @@
     <section id="contatti" class="contatti">
       <div class="contatti-grid">
         <div class="contatti-info">
-          <p class="eyebrow" data-it="05 — Contatti" data-en="05 — Contact">05 — Contatti</p>
+          <p class="eyebrow" data-it="04 — Contatti" data-en="04 — Contact">04 — Contatti</p>
           <h2 class="section-title" data-it="Parliamone" data-en="Let's Talk">Parliamone</h2>
           <p class="contatti-lead"
              data-it="Hai in mente un evento, un progetto da sviluppare o hai semplicemente voglia di mangiare bene? Scrivimi due righe, rispondo sempre."

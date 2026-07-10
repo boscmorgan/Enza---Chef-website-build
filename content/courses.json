@@ -8,6 +8,24 @@
       "schedule": "Sabato 10:00",
       "price": "€45",
       "image": "images/serv-aziendali.jpg"
+    },
+    {
+      "title_it": "Pane e lievitati",
+      "title_en": "Bread & baking",
+      "description_it": "Corso di esempio: le basi della panificazione vegetale.",
+      "description_en": "Placeholder class: the basics of plant-based bread making.",
+      "schedule": "Domenica 10:00",
+      "price": "€45",
+      "image": "images/food-1.jpg"
+    },
+    {
+      "title_it": "Dolci da colazione",
+      "title_en": "Breakfast bakes",
+      "description_it": "Corso di esempio: dolci vegani per la colazione.",
+      "description_en": "Placeholder class: vegan breakfast bakes.",
+      "schedule": "Sabato 15:00",
+      "price": "€40",
+      "image": "images/bio.jpg"
     }
   ]
 }

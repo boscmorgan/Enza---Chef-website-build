@@ -1,8 +1,8 @@
 /* =========================================================
    ENZA E BASTA — CMS content loader
-   Fetches content/site.json, content/blog.json, content/courses.json
-   (edited via /admin) and renders them into the page. Falls back to
-   the static markup already in index.html if a fetch fails.
+   Fetches content/site.json and content/courses.json (edited via
+   /admin) and renders them into the page. Falls back to the static
+   markup already in index.html if a fetch fails.
    ========================================================= */
 (function () {
   'use strict';
@@ -28,7 +28,7 @@
       .catch(function () { return null; });
   }
 
-  var state = { site: null, blog: null, courses: null };
+  var state = { site: null, courses: null };
 
   function renderSite() {
     var s = state.site;
@@ -56,40 +56,64 @@
       '</article>';
   }
 
-  function renderBlog() {
-    var section = document.getElementById('blog');
-    var wrap = document.getElementById('blogCards');
-    if (!section || !wrap) return;
-    var posts = (state.blog && state.blog.posts) || [];
-    if (!posts.length) { section.hidden = true; return; }
+  var prevBtn = document.getElementById('corsiPrev');
+  var nextBtn = document.getElementById('corsiNext');
+  var track = document.getElementById('corsiCarousel');
 
-    wrap.innerHTML = posts.map(function (p) {
-      return cardHtml(pick(p, 'title'), pick(p, 'body'), p.image);
-    }).join('');
-    section.hidden = false;
+  function updateArrows() {
+    if (!track || !prevBtn || !nextBtn) return;
+    var maxScroll = track.scrollWidth - track.clientWidth;
+    prevBtn.disabled = track.scrollLeft <= 4;
+    nextBtn.disabled = track.scrollLeft >= maxScroll - 4;
+  }
+
+  function scrollByOneCard(direction) {
+    if (!track) return;
+    var card = track.querySelector('.card');
+    var step = card ? card.getBoundingClientRect().width + 24 : track.clientWidth;
+    track.scrollBy({ left: direction * step, behavior: 'smooth' });
   }
 
   function renderCourses() {
-    var wrap = document.getElementById('corsiCards');
-    if (!wrap) return;
+    var section = document.getElementById('corsi-passati');
+    if (!section || !track) return;
     var courses = (state.courses && state.courses.courses) || [];
-    if (!courses.length) { wrap.hidden = true; return; }
+    if (!courses.length) { section.hidden = true; return; }
 
-    wrap.innerHTML = courses.map(function (c) {
+    track.innerHTML = courses.map(function (c) {
       var meta = [c.schedule, c.price].filter(Boolean).join(' · ');
       return cardHtml(pick(c, 'title'), pick(c, 'description'), c.image, meta);
     }).join('');
-    wrap.hidden = false;
+
+    section.hidden = false;
+    var needsArrows = courses.length > 3;
+    if (prevBtn) prevBtn.hidden = !needsArrows;
+    if (nextBtn) nextBtn.hidden = !needsArrows;
+    track.scrollLeft = 0;
+    updateArrows();
   }
 
+  if (prevBtn) prevBtn.addEventListener('click', function () { scrollByOneCard(-1); });
+  if (nextBtn) nextBtn.addEventListener('click', function () { scrollByOneCard(1); });
+  if (track) track.addEventListener('scroll', updateArrows, { passive: true });
+
   fetchJson('content/site.json').then(function (d) { state.site = d; renderSite(); });
-  fetchJson('content/blog.json').then(function (d) { state.blog = d; renderBlog(); });
   fetchJson('content/courses.json').then(function (d) { state.courses = d; renderCourses(); });
+
+  function applyArrowLabels() {
+    var lang = currentLang();
+    [prevBtn, nextBtn].forEach(function (btn) {
+      if (!btn) return;
+      var label = btn.getAttribute('data-' + lang + '-label');
+      if (label) btn.setAttribute('aria-label', label);
+    });
+  }
 
   document.querySelectorAll('[data-set-lang]').forEach(function (btn) {
     btn.addEventListener('click', function () {
-      renderBlog();
       renderCourses();
+      applyArrowLabels();
     });
   });
+  applyArrowLabels();
 })();

@@ -1,3 +1,12 @@
 {
-  "posts": []
+  "posts": [
+    {
+      "title_it": "Benvenuti nel blog di Enza e basta",
+      "title_en": "Welcome to the Enza e basta blog",
+      "date": "2026-07-10T00:00:00.000Z",
+      "body_it": "Da qui pubblicherò aggiornamenti su corsi, eventi e novità dalla cucina. Questo è un articolo di esempio: sostituiscilo con il primo vero post dal pannello /admin.",
+      "body_en": "This is where I'll share updates on classes, events and news from the kitchen. This is a placeholder post — replace it with your first real one from the /admin panel.",
+      "image": "images/food-1.jpg"
+    }
+  ]
 }

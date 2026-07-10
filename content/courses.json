@@ -1,3 +1,13 @@
 {
-  "courses": []
+  "courses": [
+    {
+      "title_it": "Pasta fresca vegana",
+      "title_en": "Vegan fresh pasta",
+      "description_it": "Corso di esempio: impariamo a fare la pasta fresca in casa, senza uova. Sostituisci questa scheda con il tuo primo corso vero dal pannello /admin.",
+      "description_en": "Placeholder class: learn to make egg-free fresh pasta at home. Replace this card with your first real class from the /admin panel.",
+      "schedule": "Sabato 10:00",
+      "price": "€45",
+      "image": "images/serv-aziendali.jpg"
+    }
+  ]
 }

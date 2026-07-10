@@ -192,33 +192,26 @@
     var all = ((state.courses && state.courses.courses) || []).slice();
     if (!all.length) { section.hidden = true; return; }
 
-    all.sort(function (a, b) { return new Date(a.date) - new Date(b.date); });
     var now = new Date();
-    var firstUpcomingIdx = all.findIndex(function (c) { return new Date(c.date) >= now; });
+    var upcoming = all.filter(function (c) { return new Date(c.date) >= now; })
+      .sort(function (a, b) { return new Date(a.date) - new Date(b.date); });
+    var past = all.filter(function (c) { return new Date(c.date) < now; })
+      .sort(function (a, b) { return new Date(b.date) - new Date(a.date); });
+    var ordered = upcoming.concat(past);
 
     var preservedScrollLeft = hasSetInitialView ? track.scrollLeft : null;
 
-    track.innerHTML = all.map(tileHtml).join('');
+    track.innerHTML = ordered.map(tileHtml).join('');
     section.hidden = false;
 
-    var needsArrows = all.length > 3;
+    var needsArrows = ordered.length > 3;
     if (prevBtn) prevBtn.hidden = !needsArrows;
     if (nextBtn) nextBtn.hidden = !needsArrows;
 
-    if (preservedScrollLeft !== null) {
-      track.scrollLeft = preservedScrollLeft;
-    } else {
-      // Focus the 3 cards nearest "now": the most recent past class plus the
-      // next two upcoming ones (falls back sensibly if there's no past/future).
-      var windowStart = firstUpcomingIdx === -1 ? Math.max(all.length - 3, 0) : Math.max(firstUpcomingIdx - 1, 0);
-      var startTile = track.children[windowStart];
-      if (startTile) {
-        var trackRect = track.getBoundingClientRect();
-        var tileRect = startTile.getBoundingClientRect();
-        track.scrollLeft = track.scrollLeft + (tileRect.left - trackRect.left);
-      }
-      hasSetInitialView = true;
-    }
+    // Upcoming classes (soonest first) sit at the far left by construction,
+    // so the default view is simply the start of the track.
+    track.scrollLeft = preservedScrollLeft !== null ? preservedScrollLeft : 0;
+    hasSetInitialView = true;
     updateArrows();
   }
 

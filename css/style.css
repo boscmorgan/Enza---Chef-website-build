@@ -534,12 +534,6 @@ body.menu-open .lang-toggle{
   display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:32px;
   align-items:stretch;
 }
-.servizi-corsi-cta{
-  max-width:800px;margin:52px auto 0;
-  display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:14px 20px;
-  text-align:center;
-}
-.servizi-corsi-cta p{margin:0;font-size:1.15rem;font-weight:600;color:var(--rose-tint);}
 .card{
   position:relative;
   background:transparent;color:var(--violet);

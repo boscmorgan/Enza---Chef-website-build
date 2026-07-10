@@ -284,10 +284,10 @@
 
     var mailSubject = 'Richiesta dal sito: ' + data.subject;
     var mailBody = buildMailBody(data);
-    lastFallbackMessage = 'A: ciao@enzaebasta.it\n'
+    lastFallbackMessage = 'A: enza.deiorio@mail.com\n'
       + 'Oggetto: ' + mailSubject + '\n\n'
       + mailBody;
-    var mailto = 'mailto:ciao@enzaebasta.it'
+    var mailto = 'mailto:enza.deiorio@mail.com'
       + '?subject=' + encodeURIComponent(mailSubject)
       + '&body=' + encodeURIComponent(mailBody);
 

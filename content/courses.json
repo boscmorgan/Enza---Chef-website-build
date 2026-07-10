@@ -1,63 +1,63 @@
 {
   "courses": [
     {
+      "title_it": "Cena a 4 mani vegetale",
+      "title_en": "Four-hands plant-based dinner",
+      "date": "2026-02-20T19:00:00.000Z",
+      "location": "Firenze centro",
+      "description_it": "Corso di esempio già svolto: una serata di show cooking in collaborazione con un altro chef.",
+      "description_en": "Placeholder past class: a show-cooking evening in collaboration with another chef.",
+      "price": "€60",
+      "image": "images/food-1.jpg"
+    },
+    {
+      "title_it": "Laboratorio di pane a km0",
+      "title_en": "Local-grain bread workshop",
+      "date": "2026-03-14T10:00:00.000Z",
+      "location": "Laboratorio Enza, Firenze",
+      "description_it": "Corso di esempio già svolto: un laboratorio dedicato al pane con farine di piccoli produttori toscani.",
+      "description_en": "Placeholder past class: a workshop on bread made with flours from small Tuscan producers.",
+      "price": "€45",
+      "image": "images/hero-enza.jpg"
+    },
+    {
+      "title_it": "Corso di Pasqua",
+      "title_en": "Easter class",
+      "date": "2026-04-05T10:00:00.000Z",
+      "location": "Laboratorio Enza, Firenze",
+      "description_it": "Corso di esempio già svolto: il menu vegetale di Pasqua, dai primi ai dolci.",
+      "description_en": "Placeholder past class: a full plant-based Easter menu, from starters to dessert.",
+      "price": "€50",
+      "image": "images/bio.jpg"
+    },
+    {
       "title_it": "Pasta fresca vegana",
       "title_en": "Vegan fresh pasta",
-      "type": "upcoming",
+      "date": "2026-07-18T10:00:00.000Z",
+      "location": "Laboratorio Enza, Firenze",
       "description_it": "Corso di esempio: impariamo a fare la pasta fresca in casa, senza uova. Sostituisci questa scheda con il tuo primo corso vero dal pannello /admin.",
       "description_en": "Placeholder class: learn to make egg-free fresh pasta at home. Replace this card with your first real class from the /admin panel.",
-      "schedule": "Sabato 10:00",
       "price": "€45",
       "image": "images/serv-aziendali.jpg"
     },
     {
       "title_it": "Pane e lievitati",
       "title_en": "Bread & baking",
-      "type": "upcoming",
+      "date": "2026-07-26T10:00:00.000Z",
+      "location": "Laboratorio Enza, Firenze",
       "description_it": "Corso di esempio: le basi della panificazione vegetale.",
       "description_en": "Placeholder class: the basics of plant-based bread making.",
-      "schedule": "Domenica 10:00",
       "price": "€45",
       "image": "images/food-1.jpg"
     },
     {
       "title_it": "Dolci da colazione",
       "title_en": "Breakfast bakes",
-      "type": "upcoming",
+      "date": "2026-08-08T15:00:00.000Z",
+      "location": "Laboratorio Enza, Firenze",
       "description_it": "Corso di esempio: dolci vegani per la colazione.",
       "description_en": "Placeholder class: vegan breakfast bakes.",
-      "schedule": "Sabato 15:00",
       "price": "€40",
-      "image": "images/bio.jpg"
-    },
-    {
-      "title_it": "Laboratorio di pane a km0",
-      "title_en": "Local-grain bread workshop",
-      "type": "past",
-      "description_it": "Corso di esempio già svolto: un laboratorio dedicato al pane con farine di piccoli produttori toscani.",
-      "description_en": "Placeholder past class: a workshop on bread made with flours from small Tuscan producers.",
-      "schedule": "Marzo 2026",
-      "price": "€45",
-      "image": "images/hero-enza.jpg"
-    },
-    {
-      "title_it": "Cena a 4 mani vegetale",
-      "title_en": "Four-hands plant-based dinner",
-      "type": "past",
-      "description_it": "Corso di esempio già svolto: una serata di show cooking in collaborazione con un altro chef.",
-      "description_en": "Placeholder past class: a show-cooking evening in collaboration with another chef.",
-      "schedule": "Febbraio 2026",
-      "price": "€60",
-      "image": "images/food-1.jpg"
-    },
-    {
-      "title_it": "Corso di Pasqua",
-      "title_en": "Easter class",
-      "type": "past",
-      "description_it": "Corso di esempio già svolto: il menu vegetale di Pasqua, dai primi ai dolci.",
-      "description_en": "Placeholder past class: a full plant-based Easter menu, from starters to dessert.",
-      "schedule": "Aprile 2026",
-      "price": "€50",
       "image": "images/bio.jpg"
     }
   ]

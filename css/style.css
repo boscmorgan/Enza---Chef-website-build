@@ -727,13 +727,6 @@ body.menu-open .lang-toggle{
   background:var(--amethyst);
   color:#fff;padding:96px 6vw 108px;
 }
-.corsi-group{max-width:1120px;margin:0 auto 56px;}
-.corsi-group:last-of-type{margin-bottom:0;}
-.corsi-group-title{
-  font-family:var(--display);text-transform:uppercase;
-  font-size:1.35rem;letter-spacing:.02em;
-  margin:0 0 20px;color:var(--saffron);
-}
 .carousel{
   position:relative;
   max-width:1120px;margin:0 auto;
@@ -781,6 +774,15 @@ body.menu-open .lang-toggle{
   transform:rotate(4deg);
   box-shadow:2px 2px 0 var(--violet);
 }
+.corso-tile-ribbon{
+  position:absolute;top:12px;left:-6px;z-index:2;
+  font-family:var(--display);font-size:.72rem;letter-spacing:.04em;text-transform:uppercase;
+  background:var(--violet);color:var(--saffron);
+  padding:4px 12px;
+  transform:rotate(-4deg);
+  box-shadow:2px 2px 0 rgba(0,0,0,.35);
+}
+.corso-tile--past img{filter:saturate(.4) contrast(1) grayscale(.3);}
 .corso-tile-body{
   position:absolute;left:0;right:0;bottom:0;z-index:2;
   padding:18px 18px 20px;color:#fff;
@@ -794,6 +796,11 @@ body.menu-open .lang-toggle{
   margin:0;font-size:.92rem;line-height:1.35;color:var(--rose-tint);
   display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;
 }
+.corso-tile-meta{
+  display:flex;align-items:center;gap:5px;
+  margin:8px 0 0;font-size:.82rem;color:var(--saffron);opacity:.9;
+}
+.corso-tile-meta svg{flex:0 0 auto;}
 .carousel-arrow{
   flex:0 0 auto;
   display:grid;place-items:center;
@@ -828,8 +835,13 @@ body.menu-open .lang-toggle{
 .corso-modal-body{padding:24px 26px 28px;}
 .corso-modal-body h3{
   font-family:var(--display);text-transform:uppercase;
-  font-size:1.6rem;line-height:1.05;margin:0 0 14px;color:var(--violet);
+  font-size:1.6rem;line-height:1.05;margin:0 0 8px;color:var(--violet);
 }
+.corso-modal-meta{
+  display:flex;align-items:center;gap:6px;flex-wrap:wrap;
+  margin:0 0 14px;font-size:.94rem;font-weight:600;color:var(--rose);
+}
+.corso-modal-meta:empty{display:none;margin:0;}
 .corso-modal-body p{margin:0;font-size:1.02rem;line-height:1.55;}
 .corso-modal-close{
   position:absolute;top:12px;right:12px;z-index:2;
@@ -942,14 +954,14 @@ body.modal-open{overflow:hidden;}
 .newsletter{
   position:relative;overflow:hidden;
   background:var(--violet);color:var(--saffron);
-  padding:88px 6vw;text-align:center;
+  padding:56px 6vw;text-align:center;
 }
 .newsletter-inner{max-width:640px;margin:0 auto;}
 .newsletter-text .eyebrow{justify-content:center;}
-.newsletter-text .section-title{margin-bottom:.2em;}
+.newsletter-text .section-title{margin-bottom:.15em;}
 .newsletter-lead{
-  margin:0 auto 34px;max-width:46ch;
-  font-size:1.15rem;color:var(--rose-tint);
+  margin:0 auto 22px;max-width:46ch;
+  font-size:1.05rem;color:var(--rose-tint);
 }
 #mc_embed_shell{width:100%;}
 .newsletter-form-row{
@@ -998,7 +1010,7 @@ body.modal-open{overflow:hidden;}
   .bio-photo .organic-frame{position:relative;top:auto;}
   .servizi-head{margin-bottom:34px;}
   .chi-sono,.servizi,.corsi-calendario,.biografia,.corsi,.contatti{padding-top:96px;}
-  .newsletter{padding:76px 6vw;}
+  .newsletter{padding:52px 6vw;}
   .chi-text{padding-left:24px;}
   .cards{grid-template-columns:1fr;max-width:390px;}
   .card-img{aspect-ratio:3/4;}
@@ -1033,8 +1045,8 @@ body.modal-open{overflow:hidden;}
   .kicker{font-size:.72rem;line-height:1.45;}
   .sticker{left:-14px;bottom:64px;width:72px;height:72px;font-size:1.08rem;border-width:2px;box-shadow:3px 3px 0 var(--violet);}
   .chi-sono,.servizi,.corsi-calendario,.biografia,.corsi,.contatti{padding-top:88px;padding-bottom:76px;}
-  .newsletter{padding:64px 5vw;}
-  .newsletter-lead{font-size:1.02rem;margin-bottom:26px;}
+  .newsletter{padding:44px 5vw;}
+  .newsletter-lead{font-size:.98rem;margin-bottom:20px;}
   .newsletter-form-row{flex-direction:column;}
   .newsletter-form-row .btn{width:100%;}
   .section-grid{gap:28px;}
@@ -1049,7 +1061,6 @@ body.modal-open{overflow:hidden;}
   .carousel-track{gap:16px;}
   .corso-tile{flex-basis:100%;transform:none;}
   .carousel-track .corso-tile:nth-child(even){transform:none;}
-  .corsi-group{margin-bottom:40px;}
   .corso-modal-panel{max-height:92vh;}
   .corso-modal-body{padding:20px 20px 24px;}
   .card-body h3{font-size:1.28rem;}

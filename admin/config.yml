@@ -32,19 +32,13 @@ collections:
           - name: "courses"
             label: "Corsi"
             widget: "list"
-            summary: "{{title_it}} ({{type}})"
+            summary: "{{title_it}} — {{date}}"
             fields:
               - { label: "Titolo (IT)", name: "title_it", widget: "string" }
               - { label: "Titolo (EN)", name: "title_en", widget: "string" }
-              - label: "Tipo"
-                name: "type"
-                widget: "select"
-                default: "upcoming"
-                options:
-                  - { label: "Prossimo", value: "upcoming" }
-                  - { label: "Passato", value: "past" }
+              - { label: "Data e ora", name: "date", widget: "datetime", hint: "Determina se il corso appare come prossimo o passato." }
+              - { label: "Luogo", name: "location", widget: "string", required: false }
               - { label: "Descrizione (IT)", name: "description_it", widget: "text" }
               - { label: "Descrizione (EN)", name: "description_en", widget: "text" }
-              - { label: "Data / Orario", name: "schedule", widget: "string", required: false }
               - { label: "Prezzo", name: "price", widget: "string", required: false }
               - { label: "Foto", name: "image", widget: "image", required: false }

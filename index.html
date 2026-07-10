@@ -259,36 +259,23 @@
       <header class="servizi-head">
         <p class="eyebrow light" data-it="Calendario" data-en="Calendar">Calendario</p>
         <h2 class="section-title light" data-it="Corsi" data-en="Classes">Corsi</h2>
+        <p class="servizi-sub"
+           data-it="I corsi in ordine cronologico: scorri o usa le frecce per vedere quelli passati."
+           data-en="Classes in chronological order: scroll or use the arrows to see past ones.">
+          I corsi in ordine cronologico: scorri o usa le frecce per vedere quelli passati.
+        </p>
       </header>
 
-      <div class="corsi-group" id="corsiUpcomingGroup" hidden>
-        <h3 class="corsi-group-title" data-it="Prossimi Corsi" data-en="Upcoming Classes">Prossimi Corsi</h3>
-        <div class="carousel">
-          <button type="button" class="carousel-arrow carousel-prev" id="corsiUpcomingPrev"
-                  data-it-label="Corsi precedenti" data-en-label="Previous classes" aria-label="Corsi precedenti">
-            <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M15 5l-7 7 7 7" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </button>
-          <div class="carousel-track" id="corsiUpcomingCarousel"></div>
-          <button type="button" class="carousel-arrow carousel-next" id="corsiUpcomingNext"
-                  data-it-label="Corsi successivi" data-en-label="Next classes" aria-label="Corsi successivi">
-            <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M9 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </button>
-        </div>
-      </div>
-
-      <div class="corsi-group" id="corsiPastGroup" hidden>
-        <h3 class="corsi-group-title" data-it="Corsi Passati" data-en="Past Classes">Corsi Passati</h3>
-        <div class="carousel">
-          <button type="button" class="carousel-arrow carousel-prev" id="corsiPastPrev"
-                  data-it-label="Corsi precedenti" data-en-label="Previous classes" aria-label="Corsi precedenti">
-            <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M15 5l-7 7 7 7" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </button>
-          <div class="carousel-track" id="corsiPastCarousel"></div>
-          <button type="button" class="carousel-arrow carousel-next" id="corsiPastNext"
-                  data-it-label="Corsi successivi" data-en-label="Next classes" aria-label="Corsi successivi">
-            <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M9 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </button>
-        </div>
+      <div class="carousel">
+        <button type="button" class="carousel-arrow carousel-prev" id="corsiPrev"
+                data-it-label="Corsi precedenti" data-en-label="Previous classes" aria-label="Corsi precedenti">
+          <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M15 5l-7 7 7 7" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <div class="carousel-track" id="corsiCarousel"></div>
+        <button type="button" class="carousel-arrow carousel-next" id="corsiNext"
+                data-it-label="Corsi successivi" data-en-label="Next classes" aria-label="Corsi successivi">
+          <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M9 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
       </div>
 
       <div class="corso-modal" id="corsoModal" hidden>
@@ -301,6 +288,7 @@
           <img id="corsoModalImg" alt="" />
           <div class="corso-modal-body">
             <h3 id="corsoModalTitle"></h3>
+            <p class="corso-modal-meta" id="corsoModalMeta"></p>
             <p id="corsoModalDesc"></p>
           </div>
         </div>

@@ -28,6 +28,30 @@
       .catch(function () { return null; });
   }
 
+  function locale() {
+    return currentLang() === 'en' ? 'en-GB' : 'it-IT';
+  }
+
+  function shortDate(dateStr) {
+    var d = new Date(dateStr);
+    if (isNaN(d)) return '';
+    return new Intl.DateTimeFormat(locale(), { day: 'numeric', month: 'short' }).format(d);
+  }
+
+  function longDate(dateStr) {
+    var d = new Date(dateStr);
+    if (isNaN(d)) return '';
+    return new Intl.DateTimeFormat(locale(), {
+      day: 'numeric', month: 'long', year: 'numeric', hour: '2-digit', minute: '2-digit'
+    }).format(d);
+  }
+
+  function pinSvg() {
+    return '<svg viewBox="0 0 24 24" width="13" height="13" aria-hidden="true">' +
+      '<path d="M12 21s7-5.6 7-12a7 7 0 10-14 0c0 6.4 7 12 7 12z" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round"/>' +
+      '<circle cx="12" cy="9" r="2.2" fill="none" stroke="currentColor" stroke-width="2.4"/></svg>';
+  }
+
   var state = { site: null, courses: null };
 
   function renderSite() {
@@ -50,6 +74,7 @@
   var modal = document.getElementById('corsoModal');
   var modalImg = document.getElementById('corsoModalImg');
   var modalTitle = document.getElementById('corsoModalTitle');
+  var modalMeta = document.getElementById('corsoModalMeta');
   var modalDesc = document.getElementById('corsoModalDesc');
   var modalClose = document.getElementById('corsoModalClose');
   var modalBackdrop = document.getElementById('corsoModalBackdrop');
@@ -59,6 +84,11 @@
     if (!modal) return;
     modalTitle.textContent = data.title || '';
     modalDesc.textContent = data.desc || '';
+    var metaParts = [];
+    if (data.date) metaParts.push(longDate(data.date));
+    if (data.location) metaParts.push(data.location);
+    if (data.price) metaParts.push(data.price);
+    modalMeta.textContent = metaParts.join(' · ');
     if (data.image) {
       modalImg.src = data.image;
       modalImg.alt = data.title || '';
@@ -85,21 +115,41 @@
     if (e.key === 'Escape') closeModal();
   });
 
-  function tileHtml(title, text, image) {
-    var img = image
-      ? '<img src="' + escapeHtml(image) + '" alt="' + escapeHtml(title) + '" loading="lazy" />'
-      : '';
-    return img;
+  /* ---------- carousel ---------- */
+  var track = document.getElementById('corsiCarousel');
+  var prevBtn = document.getElementById('corsiPrev');
+  var nextBtn = document.getElementById('corsiNext');
+  var hasSetInitialView = false;
+
+  function updateArrows() {
+    if (!track || !prevBtn || !nextBtn) return;
+    var maxScroll = track.scrollWidth - track.clientWidth;
+    prevBtn.disabled = track.scrollLeft <= 4;
+    nextBtn.disabled = track.scrollLeft >= maxScroll - 4;
   }
 
-  function bindTileInteractions(track) {
+  function scrollByOneTile(direction) {
+    if (!track) return;
+    var tile = track.querySelector('.corso-tile');
+    var step = tile ? tile.getBoundingClientRect().width + 24 : track.clientWidth;
+    track.scrollBy({ left: direction * step, behavior: 'smooth' });
+  }
+
+  if (prevBtn) prevBtn.addEventListener('click', function () { scrollByOneTile(-1); });
+  if (nextBtn) nextBtn.addEventListener('click', function () { scrollByOneTile(1); });
+
+  if (track) {
+    track.addEventListener('scroll', updateArrows, { passive: true });
     track.addEventListener('click', function (e) {
       var tile = e.target.closest('.corso-tile');
       if (!tile) return;
       openModal({
         title: tile.getAttribute('data-full-title'),
         desc: tile.getAttribute('data-full-desc'),
-        image: tile.getAttribute('data-full-image')
+        image: tile.getAttribute('data-full-image'),
+        date: tile.getAttribute('data-full-date'),
+        location: tile.getAttribute('data-full-location'),
+        price: tile.getAttribute('data-full-price')
       });
     });
     track.addEventListener('keydown', function (e) {
@@ -111,79 +161,65 @@
     });
   }
 
-  /* ---------- carousel (shared by "prossimi" and "passati") ---------- */
-  function makeCarousel(trackId, prevId, nextId) {
-    var track = document.getElementById(trackId);
-    var prevBtn = document.getElementById(prevId);
-    var nextBtn = document.getElementById(nextId);
-    if (!track) return null;
-
-    function updateArrows() {
-      if (!prevBtn || !nextBtn) return;
-      var maxScroll = track.scrollWidth - track.clientWidth;
-      prevBtn.disabled = track.scrollLeft <= 4;
-      nextBtn.disabled = track.scrollLeft >= maxScroll - 4;
-    }
-
-    function scrollByOneTile(direction) {
-      var tile = track.querySelector('.corso-tile');
-      var step = tile ? tile.getBoundingClientRect().width + 24 : track.clientWidth;
-      track.scrollBy({ left: direction * step, behavior: 'smooth' });
-    }
-
-    if (prevBtn) prevBtn.addEventListener('click', function () { scrollByOneTile(-1); });
-    if (nextBtn) nextBtn.addEventListener('click', function () { scrollByOneTile(1); });
-    track.addEventListener('scroll', updateArrows, { passive: true });
-    bindTileInteractions(track);
-
-    return {
-      render: function (list) {
-        track.innerHTML = list.map(function (c) {
-          var title = pick(c, 'title');
-          var desc = pick(c, 'description');
-          var meta = [c.schedule, c.price].filter(Boolean).join(' · ');
-          var tag = meta ? '<span class="corso-tile-tag">' + escapeHtml(meta) + '</span>' : '';
-          return '<article class="corso-tile" tabindex="0" role="button" aria-haspopup="dialog" ' +
-            'data-full-title="' + escapeHtml(title) + '" data-full-desc="' + escapeHtml(desc) + '" data-full-image="' + escapeHtml(c.image || '') + '">' +
-            tileHtml(title, desc, c.image) +
-            '<div class="corso-tile-scrim"></div>' + tag +
-            '<div class="corso-tile-body"><h3>' + escapeHtml(title) + '</h3><p>' + escapeHtml(desc) + '</p></div>' +
-            '</article>';
-        }).join('');
-
-        var needsArrows = list.length > 3;
-        if (prevBtn) prevBtn.hidden = !needsArrows;
-        if (nextBtn) nextBtn.hidden = !needsArrows;
-        track.scrollLeft = 0;
-        updateArrows();
-      },
-      prevBtn: prevBtn,
-      nextBtn: nextBtn
-    };
+  function tileHtml(c) {
+    var title = pick(c, 'title');
+    var desc = pick(c, 'description');
+    var isPast = new Date(c.date) < new Date();
+    var img = c.image
+      ? '<img src="' + escapeHtml(c.image) + '" alt="' + escapeHtml(title) + '" loading="lazy" />'
+      : '';
+    var tag = shortDate(c.date)
+      ? '<span class="corso-tile-tag">' + escapeHtml(shortDate(c.date)) + '</span>'
+      : '';
+    var ribbon = isPast
+      ? '<span class="corso-tile-ribbon">' + (currentLang() === 'en' ? 'Past' : 'Passato') + '</span>'
+      : '';
+    var metaLine = c.location
+      ? '<p class="corso-tile-meta">' + pinSvg() + '<span>' + escapeHtml(c.location) + '</span></p>'
+      : '';
+    return '<article class="corso-tile' + (isPast ? ' corso-tile--past' : '') + '" tabindex="0" role="button" aria-haspopup="dialog" ' +
+      'data-full-title="' + escapeHtml(title) + '" data-full-desc="' + escapeHtml(desc) + '" ' +
+      'data-full-image="' + escapeHtml(c.image || '') + '" data-full-date="' + escapeHtml(c.date || '') + '" ' +
+      'data-full-location="' + escapeHtml(c.location || '') + '" data-full-price="' + escapeHtml(c.price || '') + '">' +
+      img + '<div class="corso-tile-scrim"></div>' + ribbon + tag +
+      '<div class="corso-tile-body"><h3>' + escapeHtml(title) + '</h3><p>' + escapeHtml(desc) + '</p>' + metaLine + '</div>' +
+      '</article>';
   }
-
-  var upcomingCarousel = makeCarousel('corsiUpcomingCarousel', 'corsiUpcomingPrev', 'corsiUpcomingNext');
-  var pastCarousel = makeCarousel('corsiPastCarousel', 'corsiPastPrev', 'corsiPastNext');
-  var upcomingGroup = document.getElementById('corsiUpcomingGroup');
-  var pastGroup = document.getElementById('corsiPastGroup');
 
   function renderCourses() {
     var section = document.getElementById('corsi-calendario');
-    if (!section) return;
-    var all = (state.courses && state.courses.courses) || [];
-    var upcoming = all.filter(function (c) { return c.type !== 'past'; });
-    var past = all.filter(function (c) { return c.type === 'past'; });
+    if (!section || !track) return;
+    var all = ((state.courses && state.courses.courses) || []).slice();
+    if (!all.length) { section.hidden = true; return; }
 
-    if (upcomingCarousel && upcomingGroup) {
-      if (upcoming.length) { upcomingCarousel.render(upcoming); upcomingGroup.hidden = false; }
-      else { upcomingGroup.hidden = true; }
-    }
-    if (pastCarousel && pastGroup) {
-      if (past.length) { pastCarousel.render(past); pastGroup.hidden = false; }
-      else { pastGroup.hidden = true; }
-    }
+    all.sort(function (a, b) { return new Date(a.date) - new Date(b.date); });
+    var now = new Date();
+    var firstUpcomingIdx = all.findIndex(function (c) { return new Date(c.date) >= now; });
 
-    section.hidden = !(upcoming.length || past.length);
+    var preservedScrollLeft = hasSetInitialView ? track.scrollLeft : null;
+
+    track.innerHTML = all.map(tileHtml).join('');
+    section.hidden = false;
+
+    var needsArrows = all.length > 3;
+    if (prevBtn) prevBtn.hidden = !needsArrows;
+    if (nextBtn) nextBtn.hidden = !needsArrows;
+
+    if (preservedScrollLeft !== null) {
+      track.scrollLeft = preservedScrollLeft;
+    } else {
+      // Focus the 3 cards nearest "now": the most recent past class plus the
+      // next two upcoming ones (falls back sensibly if there's no past/future).
+      var windowStart = firstUpcomingIdx === -1 ? Math.max(all.length - 3, 0) : Math.max(firstUpcomingIdx - 1, 0);
+      var startTile = track.children[windowStart];
+      if (startTile) {
+        var trackRect = track.getBoundingClientRect();
+        var tileRect = startTile.getBoundingClientRect();
+        track.scrollLeft = track.scrollLeft + (tileRect.left - trackRect.left);
+      }
+      hasSetInitialView = true;
+    }
+    updateArrows();
   }
 
   fetchJson('content/site.json').then(function (d) { state.site = d; renderSite(); });

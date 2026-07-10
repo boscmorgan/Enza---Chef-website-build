@@ -46,13 +46,15 @@
     });
   }
 
-  function cardHtml(title, text, image, metaLine) {
+  function tileHtml(title, text, image, metaLine) {
     var img = image
-      ? '<div class="card-img"><img src="' + escapeHtml(image) + '" alt="' + escapeHtml(title) + '" loading="lazy" /></div>'
+      ? '<img src="' + escapeHtml(image) + '" alt="' + escapeHtml(title) + '" loading="lazy" />'
       : '';
-    var meta = metaLine ? '<p>' + escapeHtml(metaLine) + '</p>' : '';
-    return '<article class="card">' + img +
-      '<div class="card-body"><h3>' + escapeHtml(title) + '</h3><p>' + escapeHtml(text) + '</p>' + meta + '</div>' +
+    var tag = metaLine ? '<span class="corso-tile-tag">' + escapeHtml(metaLine) + '</span>' : '';
+    var desc = text ? '<p>' + escapeHtml(text) + '</p>' : '';
+    return '<article class="corso-tile">' + img +
+      '<div class="corso-tile-scrim"></div>' + tag +
+      '<div class="corso-tile-body"><h3>' + escapeHtml(title) + '</h3>' + desc + '</div>' +
       '</article>';
   }
 
@@ -69,8 +71,8 @@
 
   function scrollByOneCard(direction) {
     if (!track) return;
-    var card = track.querySelector('.card');
-    var step = card ? card.getBoundingClientRect().width + 24 : track.clientWidth;
+    var tile = track.querySelector('.corso-tile');
+    var step = tile ? tile.getBoundingClientRect().width + 24 : track.clientWidth;
     track.scrollBy({ left: direction * step, behavior: 'smooth' });
   }
 
@@ -82,7 +84,7 @@
 
     track.innerHTML = courses.map(function (c) {
       var meta = [c.schedule, c.price].filter(Boolean).join(' · ');
-      return cardHtml(pick(c, 'title'), pick(c, 'description'), c.image, meta);
+      return tileHtml(pick(c, 'title'), pick(c, 'description'), c.image, meta);
     }).join('');
 
     section.hidden = false;

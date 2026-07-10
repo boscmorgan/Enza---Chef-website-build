@@ -1,0 +1,62 @@
+backend:
+  name: github
+  repo: boscmorgan/Enza---Chef-website-build
+  branch: main
+  # IMPORTANT: update this to the real deployed origin (custom domain once live,
+  # or the *.vercel.app URL in the meantime) — see README.md "Admin / CMS" section.
+  base_url: https://enzaebasta.it
+  auth_endpoint: api/auth
+
+media_folder: "images/uploads"
+public_folder: "/images/uploads"
+
+collections:
+  - name: "site"
+    label: "Foto del sito"
+    files:
+      - name: "settings"
+        label: "Foto principali"
+        file: "content/site.json"
+        fields:
+          - { label: "Foto Hero (home)", name: "hero_image", widget: "image" }
+          - { label: "Foto Chi Sono", name: "chi_sono_image", widget: "image" }
+          - { label: "Foto Corsi", name: "corsi_image", widget: "image" }
+
+  - name: "blog"
+    label: "Blog"
+    files:
+      - name: "posts"
+        label: "Articoli"
+        file: "content/blog.json"
+        fields:
+          - name: "posts"
+            label: "Articoli"
+            widget: "list"
+            summary: "{{title_it}}"
+            fields:
+              - { label: "Titolo (IT)", name: "title_it", widget: "string" }
+              - { label: "Titolo (EN)", name: "title_en", widget: "string" }
+              - { label: "Data", name: "date", widget: "datetime" }
+              - { label: "Testo (IT)", name: "body_it", widget: "text" }
+              - { label: "Testo (EN)", name: "body_en", widget: "text" }
+              - { label: "Foto", name: "image", widget: "image", required: false }
+
+  - name: "courses"
+    label: "Corsi"
+    files:
+      - name: "list"
+        label: "Elenco corsi"
+        file: "content/courses.json"
+        fields:
+          - name: "courses"
+            label: "Corsi"
+            widget: "list"
+            summary: "{{title_it}}"
+            fields:
+              - { label: "Titolo (IT)", name: "title_it", widget: "string" }
+              - { label: "Titolo (EN)", name: "title_en", widget: "string" }
+              - { label: "Descrizione (IT)", name: "description_it", widget: "text" }
+              - { label: "Descrizione (EN)", name: "description_en", widget: "text" }
+              - { label: "Data / Orario", name: "schedule", widget: "string", required: false }
+              - { label: "Prezzo", name: "price", widget: "string", required: false }
+              - { label: "Foto", name: "image", widget: "image", required: false }

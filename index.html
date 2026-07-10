@@ -133,6 +133,14 @@
         </a>
       </li>
       <li>
+        <a href="#blog" data-scroll>
+          <span class="ico" style="--ico:var(--grape)" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="22" height="22"><path d="M5 4h14v16H5z M8 9h8M8 13h8M8 17h5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+          <span data-it="Blog" data-en="Blog">Blog</span>
+        </a>
+      </li>
+      <li>
         <a href="#biografia" data-scroll>
           <span class="ico" style="--ico:var(--grape)" aria-hidden="true">
             <svg viewBox="0 0 24 24" width="22" height="22"><path d="M5 4h11l3 3v13H5zM9 4v16M8 9h7M8 13h7" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -203,7 +211,7 @@
         <div class="hero-photo">
           <span class="photo-ring" aria-hidden="true"></span>
           <div class="organic-frame">
-            <img src="images/hero-enza.jpg" alt="La chef Enza sorride mentre tiene tra le mani una ciotola di cibo" width="1000" height="1067" />
+            <img id="heroPhotoImg" src="images/hero-enza.jpg" alt="La chef Enza sorride mentre tiene tra le mani una ciotola di cibo" width="1000" height="1067" />
           </div>
           <span class="sticker" aria-hidden="true" data-it="ciao!" data-en="hi!">ciao!</span>
         </div>
@@ -215,7 +223,7 @@
       <div class="corsi-grid">
         <div class="corsi-photo">
           <div class="organic-frame frame-alt">
-            <img src="images/serv-aziendali.jpg" alt="Enza durante un corso di cucina con i partecipanti" loading="lazy" />
+            <img id="corsiPhotoImg" src="images/serv-aziendali.jpg" alt="Enza durante un corso di cucina con i partecipanti" loading="lazy" />
           </div>
         </div>
         <div class="corsi-text">
@@ -250,6 +258,8 @@
           </div>
         </div>
       </div>
+
+      <div class="cards" id="corsiCards" hidden></div>
     </section>
 
     <!-- ===== CHI SONO ===== -->
@@ -257,7 +267,7 @@
       <div class="section-grid reverse">
         <div class="chi-photo">
           <div class="organic-frame frame-alt">
-            <img src="images/food-1.jpg" alt="Un piatto vegetale firmato Enza, tenuto tra le mani" loading="lazy" />
+            <img id="chiSonoPhotoImg" src="images/food-1.jpg" alt="Un piatto vegetale firmato Enza, tenuto tra le mani" loading="lazy" />
           </div>
         </div>
         <div class="chi-text">
@@ -368,10 +378,20 @@
       </div>
     </section>
 
+    <!-- ===== BLOG ===== -->
+    <section id="blog" class="servizi" hidden>
+      <header class="servizi-head">
+        <p class="eyebrow light" data-it="03 — Blog" data-en="03 — Blog">03 — Blog</p>
+        <h2 class="section-title light" data-it="Ultimi Articoli" data-en="Latest Posts">Ultimi Articoli</h2>
+      </header>
+
+      <div class="cards" id="blogCards"></div>
+    </section>
+
     <!-- ===== BIOGRAFIA ===== -->
     <section id="biografia" class="biografia">
       <div class="bio-head">
-        <p class="eyebrow light" data-it="03 — Biografia" data-en="03 — Biography">03 — Biografia</p>
+        <p class="eyebrow light" data-it="04 — Biografia" data-en="04 — Biography">04 — Biografia</p>
         <h2 class="section-title light" data-it="Il Percorso" data-en="The Journey">Il Percorso</h2>
       </div>
 
@@ -451,7 +471,7 @@
     <section id="contatti" class="contatti">
       <div class="contatti-grid">
         <div class="contatti-info">
-          <p class="eyebrow" data-it="04 — Contatti" data-en="04 — Contact">04 — Contatti</p>
+          <p class="eyebrow" data-it="05 — Contatti" data-en="05 — Contact">05 — Contatti</p>
           <h2 class="section-title" data-it="Parliamone" data-en="Let's Talk">Parliamone</h2>
           <p class="contatti-lead"
              data-it="Hai in mente un evento, un progetto da sviluppare o hai semplicemente voglia di mangiare bene? Scrivimi due righe, rispondo sempre."
@@ -557,5 +577,6 @@
   </main>
 
   <script src="js/script.js"></script>
+  <script src="js/content.js"></script>
 </body>
 </html>

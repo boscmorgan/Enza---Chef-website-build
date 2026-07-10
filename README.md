@@ -67,6 +67,33 @@ git commit -m "Enza e basta — sito"
 Su Vercel: **Framework Preset = Other**, nessun build command, output = root.
 Il sito è statico, quindi va online così com'è.
 
+## Admin / CMS (pubblicare Blog, Corsi, foto)
+
+Enza può pubblicare articoli del blog, corsi e alcune foto senza toccare il codice,
+tramite un piccolo pannello all'indirizzo **`/admin`** (es. `https://enzaebasta.it/admin`).
+Ogni salvataggio nel pannello crea un commit su GitHub e Vercel ripubblica il sito
+in automatico — nessun database, nessun hosting extra.
+
+**Come funziona:**
+- Backend: [Sveltia CMS](https://github.com/sveltia/sveltia-cms) (gratuito, open source), configurato in `admin/config.yml`.
+- Contenuti: `content/site.json` (foto hero/chi-sono/corsi), `content/blog.json` (articoli), `content/courses.json` (corsi). Il sito li legge via `js/content.js` e li inserisce nelle sezioni **Blog** (nuova, resta nascosta finché non c'è almeno un articolo) e **Corsi** (le card dei singoli corsi appaiono sotto il testo esistente).
+- Immagini caricate dal pannello finiscono in `images/uploads/` e vengono committate nel repo.
+- Login: un solo account GitHub condiviso, che deve avere accesso in scrittura a questo repo.
+
+**Setup una tantum (da fare voi, richiede accesso agli account GitHub/Vercel):**
+1. Su GitHub → **Settings → Developer settings → OAuth Apps → New OAuth App**:
+   - Homepage URL: l'URL del sito (dominio finale o `https://tuo-progetto.vercel.app`)
+   - Authorization callback URL: stessa origine + `/api/callback` (es. `https://enzaebasta.it/api/callback`)
+   - Copia **Client ID** e genera un **Client Secret**.
+2. Su Vercel → progetto → **Settings → Environment Variables**, aggiungi:
+   - `OAUTH_CLIENT_ID` = il Client ID
+   - `OAUTH_CLIENT_SECRET` = il Client Secret
+   Poi rifai il deploy.
+3. Apri `admin/config.yml` e aggiorna `base_url` con l'URL reale del sito (deve combaciare con l'Homepage URL sopra).
+4. Vai su `/admin`, accedi con l'account GitHub condiviso (deve essere collaboratore del repo) e pubblica.
+
+Nessun costo ricorrente: GitHub, Vercel (piano Hobby) e Sveltia CMS sono gratuiti.
+
 ## SEO
 
 Cosa è già impostato:

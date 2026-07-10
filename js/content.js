@@ -46,69 +46,159 @@
     });
   }
 
-  function tileHtml(title, text, image, metaLine) {
+  /* ---------- overlay (click on a tile) ---------- */
+  var modal = document.getElementById('corsoModal');
+  var modalImg = document.getElementById('corsoModalImg');
+  var modalTitle = document.getElementById('corsoModalTitle');
+  var modalDesc = document.getElementById('corsoModalDesc');
+  var modalClose = document.getElementById('corsoModalClose');
+  var modalBackdrop = document.getElementById('corsoModalBackdrop');
+  var lastFocused = null;
+
+  function openModal(data) {
+    if (!modal) return;
+    modalTitle.textContent = data.title || '';
+    modalDesc.textContent = data.desc || '';
+    if (data.image) {
+      modalImg.src = data.image;
+      modalImg.alt = data.title || '';
+      modalImg.hidden = false;
+    } else {
+      modalImg.hidden = true;
+    }
+    lastFocused = document.activeElement;
+    modal.hidden = false;
+    document.body.classList.add('modal-open');
+    modalClose.focus();
+  }
+
+  function closeModal() {
+    if (!modal || modal.hidden) return;
+    modal.hidden = true;
+    document.body.classList.remove('modal-open');
+    if (lastFocused && lastFocused.focus) lastFocused.focus();
+  }
+
+  if (modalClose) modalClose.addEventListener('click', closeModal);
+  if (modalBackdrop) modalBackdrop.addEventListener('click', closeModal);
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') closeModal();
+  });
+
+  function tileHtml(title, text, image) {
     var img = image
       ? '<img src="' + escapeHtml(image) + '" alt="' + escapeHtml(title) + '" loading="lazy" />'
       : '';
-    var tag = metaLine ? '<span class="corso-tile-tag">' + escapeHtml(metaLine) + '</span>' : '';
-    var desc = text ? '<p>' + escapeHtml(text) + '</p>' : '';
-    return '<article class="corso-tile">' + img +
-      '<div class="corso-tile-scrim"></div>' + tag +
-      '<div class="corso-tile-body"><h3>' + escapeHtml(title) + '</h3>' + desc + '</div>' +
-      '</article>';
+    return img;
   }
 
-  var prevBtn = document.getElementById('corsiPrev');
-  var nextBtn = document.getElementById('corsiNext');
-  var track = document.getElementById('corsiCarousel');
-
-  function updateArrows() {
-    if (!track || !prevBtn || !nextBtn) return;
-    var maxScroll = track.scrollWidth - track.clientWidth;
-    prevBtn.disabled = track.scrollLeft <= 4;
-    nextBtn.disabled = track.scrollLeft >= maxScroll - 4;
+  function bindTileInteractions(track) {
+    track.addEventListener('click', function (e) {
+      var tile = e.target.closest('.corso-tile');
+      if (!tile) return;
+      openModal({
+        title: tile.getAttribute('data-full-title'),
+        desc: tile.getAttribute('data-full-desc'),
+        image: tile.getAttribute('data-full-image')
+      });
+    });
+    track.addEventListener('keydown', function (e) {
+      if (e.key !== 'Enter' && e.key !== ' ') return;
+      var tile = e.target.closest('.corso-tile');
+      if (!tile) return;
+      e.preventDefault();
+      tile.click();
+    });
   }
 
-  function scrollByOneCard(direction) {
-    if (!track) return;
-    var tile = track.querySelector('.corso-tile');
-    var step = tile ? tile.getBoundingClientRect().width + 24 : track.clientWidth;
-    track.scrollBy({ left: direction * step, behavior: 'smooth' });
+  /* ---------- carousel (shared by "prossimi" and "passati") ---------- */
+  function makeCarousel(trackId, prevId, nextId) {
+    var track = document.getElementById(trackId);
+    var prevBtn = document.getElementById(prevId);
+    var nextBtn = document.getElementById(nextId);
+    if (!track) return null;
+
+    function updateArrows() {
+      if (!prevBtn || !nextBtn) return;
+      var maxScroll = track.scrollWidth - track.clientWidth;
+      prevBtn.disabled = track.scrollLeft <= 4;
+      nextBtn.disabled = track.scrollLeft >= maxScroll - 4;
+    }
+
+    function scrollByOneTile(direction) {
+      var tile = track.querySelector('.corso-tile');
+      var step = tile ? tile.getBoundingClientRect().width + 24 : track.clientWidth;
+      track.scrollBy({ left: direction * step, behavior: 'smooth' });
+    }
+
+    if (prevBtn) prevBtn.addEventListener('click', function () { scrollByOneTile(-1); });
+    if (nextBtn) nextBtn.addEventListener('click', function () { scrollByOneTile(1); });
+    track.addEventListener('scroll', updateArrows, { passive: true });
+    bindTileInteractions(track);
+
+    return {
+      render: function (list) {
+        track.innerHTML = list.map(function (c) {
+          var title = pick(c, 'title');
+          var desc = pick(c, 'description');
+          var meta = [c.schedule, c.price].filter(Boolean).join(' · ');
+          var tag = meta ? '<span class="corso-tile-tag">' + escapeHtml(meta) + '</span>' : '';
+          return '<article class="corso-tile" tabindex="0" role="button" aria-haspopup="dialog" ' +
+            'data-full-title="' + escapeHtml(title) + '" data-full-desc="' + escapeHtml(desc) + '" data-full-image="' + escapeHtml(c.image || '') + '">' +
+            tileHtml(title, desc, c.image) +
+            '<div class="corso-tile-scrim"></div>' + tag +
+            '<div class="corso-tile-body"><h3>' + escapeHtml(title) + '</h3><p>' + escapeHtml(desc) + '</p></div>' +
+            '</article>';
+        }).join('');
+
+        var needsArrows = list.length > 3;
+        if (prevBtn) prevBtn.hidden = !needsArrows;
+        if (nextBtn) nextBtn.hidden = !needsArrows;
+        track.scrollLeft = 0;
+        updateArrows();
+      },
+      prevBtn: prevBtn,
+      nextBtn: nextBtn
+    };
   }
+
+  var upcomingCarousel = makeCarousel('corsiUpcomingCarousel', 'corsiUpcomingPrev', 'corsiUpcomingNext');
+  var pastCarousel = makeCarousel('corsiPastCarousel', 'corsiPastPrev', 'corsiPastNext');
+  var upcomingGroup = document.getElementById('corsiUpcomingGroup');
+  var pastGroup = document.getElementById('corsiPastGroup');
 
   function renderCourses() {
-    var section = document.getElementById('corsi-passati');
-    if (!section || !track) return;
-    var courses = (state.courses && state.courses.courses) || [];
-    if (!courses.length) { section.hidden = true; return; }
+    var section = document.getElementById('corsi-calendario');
+    if (!section) return;
+    var all = (state.courses && state.courses.courses) || [];
+    var upcoming = all.filter(function (c) { return c.type !== 'past'; });
+    var past = all.filter(function (c) { return c.type === 'past'; });
 
-    track.innerHTML = courses.map(function (c) {
-      var meta = [c.schedule, c.price].filter(Boolean).join(' · ');
-      return tileHtml(pick(c, 'title'), pick(c, 'description'), c.image, meta);
-    }).join('');
+    if (upcomingCarousel && upcomingGroup) {
+      if (upcoming.length) { upcomingCarousel.render(upcoming); upcomingGroup.hidden = false; }
+      else { upcomingGroup.hidden = true; }
+    }
+    if (pastCarousel && pastGroup) {
+      if (past.length) { pastCarousel.render(past); pastGroup.hidden = false; }
+      else { pastGroup.hidden = true; }
+    }
 
-    section.hidden = false;
-    var needsArrows = courses.length > 3;
-    if (prevBtn) prevBtn.hidden = !needsArrows;
-    if (nextBtn) nextBtn.hidden = !needsArrows;
-    track.scrollLeft = 0;
-    updateArrows();
+    section.hidden = !(upcoming.length || past.length);
   }
-
-  if (prevBtn) prevBtn.addEventListener('click', function () { scrollByOneCard(-1); });
-  if (nextBtn) nextBtn.addEventListener('click', function () { scrollByOneCard(1); });
-  if (track) track.addEventListener('scroll', updateArrows, { passive: true });
 
   fetchJson('content/site.json').then(function (d) { state.site = d; renderSite(); });
   fetchJson('content/courses.json').then(function (d) { state.courses = d; renderCourses(); });
 
   function applyArrowLabels() {
     var lang = currentLang();
-    [prevBtn, nextBtn].forEach(function (btn) {
-      if (!btn) return;
+    document.querySelectorAll('.carousel-arrow').forEach(function (btn) {
       var label = btn.getAttribute('data-' + lang + '-label');
       if (label) btn.setAttribute('aria-label', label);
     });
+    if (modalClose) {
+      var closeLabel = modalClose.getAttribute('data-' + lang + '-label');
+      if (closeLabel) modalClose.setAttribute('aria-label', closeLabel);
+    }
   }
 
   document.querySelectorAll('[data-set-lang]').forEach(function (btn) {

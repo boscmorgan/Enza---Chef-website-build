@@ -23,7 +23,7 @@ collections:
           - { label: "Foto Corsi", name: "corsi_image", widget: "image" }
 
   - name: "courses"
-    label: "Corsi Passati"
+    label: "Corsi"
     files:
       - name: "list"
         label: "Elenco corsi"
@@ -32,10 +32,17 @@ collections:
           - name: "courses"
             label: "Corsi"
             widget: "list"
-            summary: "{{title_it}}"
+            summary: "{{title_it}} ({{type}})"
             fields:
               - { label: "Titolo (IT)", name: "title_it", widget: "string" }
               - { label: "Titolo (EN)", name: "title_en", widget: "string" }
+              - label: "Tipo"
+                name: "type"
+                widget: "select"
+                default: "upcoming"
+                options:
+                  - { label: "Prossimo", value: "upcoming" }
+                  - { label: "Passato", value: "past" }
               - { label: "Descrizione (IT)", name: "description_it", widget: "text" }
               - { label: "Descrizione (EN)", name: "description_en", widget: "text" }
               - { label: "Data / Orario", name: "schedule", widget: "string", required: false }

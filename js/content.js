@@ -35,14 +35,14 @@
   function shortDate(dateStr) {
     var d = new Date(dateStr);
     if (isNaN(d)) return '';
-    return new Intl.DateTimeFormat(locale(), { day: 'numeric', month: 'short' }).format(d);
+    return new Intl.DateTimeFormat(locale(), { day: 'numeric', month: 'short', timeZone: 'Europe/Rome' }).format(d);
   }
 
   function longDate(dateStr) {
     var d = new Date(dateStr);
     if (isNaN(d)) return '';
     return new Intl.DateTimeFormat(locale(), {
-      day: 'numeric', month: 'long', year: 'numeric', hour: '2-digit', minute: '2-digit'
+      day: 'numeric', month: 'long', year: 'numeric', hour: '2-digit', minute: '2-digit', timeZone: 'Europe/Rome'
     }).format(d);
   }
 

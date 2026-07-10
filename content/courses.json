@@ -1,64 +1,71 @@
 {
   "courses": [
     {
-      "title_it": "Cena a 4 mani vegetale",
-      "title_en": "Four-hands plant-based dinner",
-      "date": "2026-02-20T19:00:00.000Z",
-      "location": "Firenze centro",
-      "description_it": "Corso di esempio già svolto: una serata di show cooking in collaborazione con un altro chef.",
-      "description_en": "Placeholder past class: a show-cooking evening in collaboration with another chef.",
+      "title_it": "Colazione Insieme",
+      "title_en": "Breakfast Together",
+      "date": "2026-05-16T08:30:00.000Z",
+      "location": "Pasticceria Buonamici, Via dell'Orto 31r, Firenze",
+      "description_it": "Una colazione preparata insieme, tra ricette dolci e chiacchiere.",
+      "description_en": "A breakfast made together, with sweet recipes and good conversation.",
       "price": "€60",
-      "image": "images/food-1.jpg"
+      "image": "images/corso-colazione-insieme.jpg"
     },
     {
-      "title_it": "Laboratorio di pane a km0",
-      "title_en": "Local-grain bread workshop",
-      "date": "2026-03-14T10:00:00.000Z",
-      "location": "Laboratorio Enza, Firenze",
-      "description_it": "Corso di esempio già svolto: un laboratorio dedicato al pane con farine di piccoli produttori toscani.",
-      "description_en": "Placeholder past class: a workshop on bread made with flours from small Tuscan producers.",
-      "price": "€45",
-      "image": "images/hero-enza.jpg"
-    },
-    {
-      "title_it": "Corso di Pasqua",
-      "title_en": "Easter class",
-      "date": "2026-04-05T10:00:00.000Z",
-      "location": "Laboratorio Enza, Firenze",
-      "description_it": "Corso di esempio già svolto: il menu vegetale di Pasqua, dai primi ai dolci.",
-      "description_en": "Placeholder past class: a full plant-based Easter menu, from starters to dessert.",
+      "title_it": "Svezzamento e Tagli Sicuri",
+      "title_en": "Weaning & Safe Cuts",
+      "date": "2026-05-19T08:00:00.000Z",
+      "location": "Pasticceria Buonamici, Via dell'Orto 31r, Firenze",
+      "description_it": "Incontro pratico su svezzamento e tagli sicuri in cucina, con la dott.ssa nutrizionista Francesca Coppini.",
+      "description_en": "A hands-on session on weaning and safe kitchen cuts, with nutritionist Dr. Francesca Coppini.",
       "price": "€50",
-      "image": "images/bio.jpg"
+      "image": "images/corso-svezzamento-tagli.jpg"
     },
     {
-      "title_it": "Pasta fresca vegana",
-      "title_en": "Vegan fresh pasta",
-      "date": "2026-07-18T10:00:00.000Z",
-      "location": "Laboratorio Enza, Firenze",
-      "description_it": "Corso di esempio: impariamo a fare la pasta fresca in casa, senza uova. Sostituisci questa scheda con il tuo primo corso vero dal pannello /admin.",
-      "description_en": "Placeholder class: learn to make egg-free fresh pasta at home. Replace this card with your first real class from the /admin panel.",
-      "price": "€45",
-      "image": "images/serv-aziendali.jpg"
+      "title_it": "Frolle e Biscotti senza Latte né Uova",
+      "title_en": "Egg- & Dairy-Free Shortcrust & Biscuits",
+      "date": "2026-05-28T16:30:00.000Z",
+      "location": "Pasticceria Buonamici, Via dell'Orto 31r, Firenze",
+      "description_it": "Impariamo a preparare frolle e biscotti senza latte né uova.",
+      "description_en": "Learn to make shortcrust pastry and biscuits without milk or eggs.",
+      "price": "€60",
+      "image": "images/corso-frolle-biscotti.jpg"
     },
     {
-      "title_it": "Pane e lievitati",
-      "title_en": "Bread & baking",
-      "date": "2026-07-26T10:00:00.000Z",
-      "location": "Laboratorio Enza, Firenze",
-      "description_it": "Corso di esempio: le basi della panificazione vegetale.",
-      "description_en": "Placeholder class: the basics of plant-based bread making.",
-      "price": "€45",
-      "image": "images/food-1.jpg"
+      "title_it": "Alimentazione Veg per Sportivə",
+      "title_en": "Plant-Based Nutrition for Active People",
+      "date": "2026-06-09T16:30:00.000Z",
+      "location": "Pasticceria Buonamici, Via dell'Orto 31r, Firenze",
+      "description_it": "Alimentazione vegetale per sportivə e persone attive, con la dott.ssa nutrizionista Francesca Coppini.",
+      "description_en": "Plant-based nutrition for athletes and active people, with nutritionist Dr. Francesca Coppini.",
+      "price": "€55",
+      "image": "images/corso-alimentazione-sportivi.jpg"
     },
     {
-      "title_it": "Dolci da colazione",
-      "title_en": "Breakfast bakes",
-      "date": "2026-08-08T15:00:00.000Z",
-      "location": "Laboratorio Enza, Firenze",
-      "description_it": "Corso di esempio: dolci vegani per la colazione.",
-      "description_en": "Placeholder class: vegan breakfast bakes.",
-      "price": "€40",
-      "image": "images/bio.jpg"
+      "title_it": "Le Proteine Vegetali che Compri",
+      "title_en": "The Plant Proteins You Buy",
+      "date": "2026-07-09T16:30:00.000Z",
+      "location": "Pasticceria Buonamici, Via dell'Orto 31r, Firenze",
+      "description_it": "Valorizzare tofu e seitan: come sceglierli e cucinarli al meglio.",
+      "description_en": "Making the most of tofu and seitan: how to choose and cook them well.",
+      "image": "images/corso-proteine-vegetali.jpg"
+    },
+    {
+      "title_it": "\"Anto', fa caldo!\"",
+      "title_en": "\"Anto', it's hot!\"",
+      "date": "2026-07-23T16:30:00.000Z",
+      "location": "Pasticceria Buonamici, Via dell'Orto 31r, Firenze",
+      "description_it": "Cucina fresca e veloce per quando hai fame ma non hai voglia di cucinare.",
+      "description_en": "Fresh, quick cooking for when you're hungry but don't feel like cooking.",
+      "image": "images/corso-anto-fa-caldo.jpg"
+    },
+    {
+      "title_it": "Colazione Insieme (prima delle vacanze)",
+      "title_en": "Breakfast Together (Before the Break)",
+      "date": "2026-08-01T08:30:00.000Z",
+      "location": "Pasticceria Buonamici, Via dell'Orto 31r, Firenze",
+      "description_it": "Ci salutiamo prima delle vacanze con un'ultima colazione insieme.",
+      "description_en": "One last breakfast together before we say goodbye for the summer break.",
+      "image": "images/corso-colazione-vacanze.jpg"
     }
   ]
 }

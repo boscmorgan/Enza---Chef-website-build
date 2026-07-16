@@ -52,7 +52,47 @@
       '<circle cx="12" cy="9" r="2.2" fill="none" stroke="currentColor" stroke-width="2.4"/></svg>';
   }
 
-  var state = { site: null, courses: null };
+  var state = { site: null, courses: null, copy: null };
+
+  /* ---------- editable copy (content/copy.json) ----------
+     Each element tagged data-copy="section.key" gets its data-it /
+     data-en attributes replaced from the JSON, so the IT/EN toggle in
+     script.js keeps working on the updated strings. */
+  function applyCopy() {
+    var copy = state.copy;
+    if (!copy) return;
+    var lang = currentLang();
+    document.querySelectorAll('[data-copy]').forEach(function (el) {
+      var path = el.getAttribute('data-copy').split('.');
+      var section = copy[path[0]];
+      if (!section) return;
+      var it = section[path[1] + '_it'];
+      var en = section[path[1] + '_en'];
+      if (typeof it !== 'string' || typeof en !== 'string' || !it) return;
+      el.setAttribute('data-it', it);
+      el.setAttribute('data-en', en || it);
+      el.textContent = lang === 'en' && en ? en : it;
+    });
+    renderTimeline();
+  }
+
+  function renderTimeline() {
+    var ol = document.getElementById('bioTimeline');
+    var items = state.copy && state.copy.biografia && state.copy.biografia.timeline;
+    if (!ol || !items || !items.length) return;
+    var lang = currentLang();
+    ol.innerHTML = items.map(function (step) {
+      function span(tag, key, cls) {
+        var it = step[key + '_it'] || '';
+        var en = step[key + '_en'] || it;
+        return '<' + tag + (cls ? ' class="' + cls + '"' : '') +
+          ' data-it="' + escapeHtml(it) + '" data-en="' + escapeHtml(en) + '">' +
+          escapeHtml(lang === 'en' ? en : it) + '</' + tag + '>';
+      }
+      return '<li>' + span('span', 'year', 'year') +
+        '<div>' + span('h3', 'title') + span('p', 'text') + '</div></li>';
+    }).join('');
+  }
 
   function renderSite() {
     var s = state.site;
@@ -217,6 +257,7 @@
 
   fetchJson('content/site.json').then(function (d) { state.site = d; renderSite(); });
   fetchJson('content/courses.json').then(function (d) { state.courses = d; renderCourses(); });
+  fetchJson('content/copy.json').then(function (d) { state.copy = d; applyCopy(); });
 
   function applyArrowLabels() {
     var lang = currentLang();

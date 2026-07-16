@@ -1,0 +1,158 @@
+{
+  "hero": {
+    "kicker_it": "Corsi – Consulenze – Eventi – Cenette",
+    "kicker_en": "Classes – Consulting – Events – Dinners",
+    "lead_intro_it": "Di origini campane (anzi, vesuviane!) sono un'appassionata di cucina in perenne movimento.",
+    "lead_intro_en": "Campanian by origin (Vesuvian, to be precise!), I'm a food lover forever on the move.",
+    "lead_bold_it": "Cucino le verdure, venero i carboidrati",
+    "lead_bold_en": "I cook vegetables, I worship carbs",
+    "lead_rest_it": "non è soltanto il mio motto: è una visione ben precisa che fa dei prodotti della Terra e di alimenti antichi come pane, pasta e cereali il focus della mia cucina e della mia alimentazione.",
+    "lead_rest_en": "isn't just my motto: it's a clear vision that puts the products of the Earth and ancient foods like bread, pasta and grains at the heart of my cooking and my diet.",
+    "cta_it": "Scrivimi →",
+    "cta_en": "Get in touch →",
+    "sticker_it": "ciao!",
+    "sticker_en": "hi!"
+  },
+  "corsi": {
+    "eyebrow_it": "Corsi di cucina",
+    "eyebrow_en": "Cooking classes",
+    "title_it": "Impara con me",
+    "title_en": "Learn with me",
+    "lead_it": "Dal 2026 ho iniziato a tenere corsi di cucina a Firenze, per condividere ciò che ho imparato lungo la strada. Le mie lezioni sono esattamente come me: professionali, attente a ingredienti e materia prima ma anche curiose ed informali.",
+    "lead_en": "Since 2026 I've started teaching cooking classes in Florence, to share what I've learned along the way. My lessons are exactly like me: professional, attentive to ingredients and quality produce, but also curious and informal.",
+    "body_it": "È uno spazio offline per far andare le mani, fare due chiacchiere, scambiarsi ricette e divertirsi. L'approccio è serio quando serve (la tecnica conta!), ma quella che cerco di creare è un'atmosfera leggera, amichevole, utile per superare il timore dei coltelli e dei fornelli!",
+    "body_en": "It's an offline space to get your hands moving, have a chat, swap recipes and have fun. My approach is serious when it needs to be (technique matters!), but what I try to create is a light, friendly atmosphere — one that helps you get over the fear of knives and stoves!",
+    "more_it": "Prepariamo insieme di tutto: dalla pasta fresca vegana ai dolci da colazione, fino a lezioni mirate sulle proteine vegetali o sull'alimentazione veg per lo sport (in cui mi faccio affiancare da una nutrizionista). Ci metto tutta la cura e la passione che ho. Le idee sono tante, non ti resta che scegliere la tua lezione.",
+    "more_en": "From fresh vegan pasta to desserts, through plant proteins, breakfast made together, and deep-dives on veg nutrition in sport — alongside a nutritionist — into every lesson I pour all my care for what I love. I have so many ideas and can't wait to make them bloom!",
+    "cta_calendar_it": "Prossimi Corsi ↗",
+    "cta_calendar_en": "Class Calendar ↗",
+    "cta_contact_it": "Scrivimi per info →",
+    "cta_contact_en": "Message me for info →",
+    "cta_newsletter_it": "Iscriviti alla Newsletter ↓",
+    "cta_newsletter_en": "Join the Newsletter ↓"
+  },
+  "calendario": {
+    "eyebrow_it": "Calendario",
+    "eyebrow_en": "Calendar",
+    "title_it": "Corsi",
+    "title_en": "Classes",
+    "sub_it": "I corsi in ordine cronologico: scorri o usa le frecce per vedere quelli passati.",
+    "sub_en": "Classes in chronological order: scroll or use the arrows to see past ones."
+  },
+  "chi_sono": {
+    "eyebrow_it": "01 — Chi Sono",
+    "eyebrow_en": "01 — About Me",
+    "title_it": "Chi Sono",
+    "title_en": "About Me",
+    "intro_it": "Ciao! Sono Enza De Iorio, cuoca specializzata in cucina vegetariana e vegana. Dopo essermi formata in giro per l'Italia in alcuni tra i migliori ristoranti di cucina vegetale, ho scelto Firenze per tenere corsi di cucina veg per appassionatə e professionistə.",
+    "intro_en": "Hi! I'm Enza De Iorio, a chef specialised in vegetarian and vegan cooking. After training around Italy in some of the best plant-based restaurants, I chose Florence to teach veg cooking classes for enthusiasts and professionals.",
+    "more1_it": "Sono nata e cresciuta alle pendici del Vesuvio, in provincia di Napoli, dove mi sono laureata in Relazioni Internazionali e Diplomatiche. Sono diventata vegetariana in adolescenza e, durante gli studi — lavorando come tantə studentə — mi sono innamorata della cucina, decidendo di farne il mio mestiere.",
+    "more1_en": "I was born and raised on the slopes of Vesuvius, near Naples, where I earned a degree in International and Diplomatic Relations. I became vegetarian as a teenager and, during my studies — working like many students do — I fell in love with cooking and decided to make it my craft.",
+    "more2_it": "Da sempre affascinata dal pane, dai dolci da forno e dai carboidrati in ogni loro forma, ho approfondito il mondo dei panificati sempre in chiave vegetale, divertendomi a trasformare torte e biscotti tradizionali in versione vegana.",
+    "more2_en": "Always fascinated by bread, baked goods and carbs in all their forms, I dived deep into baking — always in a plant-based key — having fun turning traditional cakes and biscuits vegan.",
+    "cta_it": "Scopri il mio percorso →",
+    "cta_en": "Discover my journey →"
+  },
+  "servizi": {
+    "eyebrow_it": "02 — Altri Servizi",
+    "eyebrow_en": "02 — Other Services",
+    "title_it": "Altri Servizi",
+    "title_en": "Other Services",
+    "sub_it": "Scegli come portarmi in cucina. Al resto penso io.",
+    "sub_en": "Pick how to bring me into your kitchen. I'll handle the rest.",
+    "card1_title_it": "Eventi Privati",
+    "card1_title_en": "Private Events",
+    "card1_body_it": "Che sia una cena intima, una festa o un'occasione speciale, costruisco un menu vegetale su misura per te e per i tuoi ospiti. Tu rilassati, alla spesa e ai fornelli ci penso io.",
+    "card1_body_en": "Whether it's an intimate dinner, a party or a special occasion, I build a plant-based menu around you and your guests. You relax; I'll handle the shopping and the stove.",
+    "card1_cta_it": "Richiedi un preventivo →",
+    "card1_cta_en": "Request a quote →",
+    "card2_title_it": "Consulenze, Show Cooking e Team Building",
+    "card2_title_en": "Consulting, Show Cooking & Team Building",
+    "card2_body_it": "Vuoi ampliare la proposta green del tuo locale o del tuo brand e non sai da che parte cominciare? Con la mia esperienza posso aiutarti ad aggiornare il tuo menù adattando le ricette alla cucina e al budget che hai a disposizione. Per le aziende che vogliono unire la squadra davanti a un buon piatto posso ideare esperienze divertenti ed indimenticabili: tanto ritmo, zero noia.",
+    "card2_body_en": "Want to expand the green offering of your venue or brand and don't know where to start? With my experience I can help you update your menu, adapting the recipes to your kitchen and the budget you have available. For companies that want to bring the team together around a good plate, I can design fun, unforgettable experiences: plenty of rhythm, zero boredom.",
+    "card2_cta_it": "Prenota una consulenza →",
+    "card2_cta_en": "Book a consultation →"
+  },
+  "biografia": {
+    "eyebrow_it": "03 — Biografia",
+    "eyebrow_en": "03 — Biography",
+    "title_it": "Il Percorso",
+    "title_en": "The Journey",
+    "timeline": [
+      {
+        "year_it": "Le origini",
+        "year_en": "The roots",
+        "title_it": "Sotto il Vesuvio",
+        "title_en": "Under Vesuvius",
+        "text_it": "Nata e cresciuta in provincia di Napoli, alle pendici del Vesuvio. Mi laureo in Relazioni Internazionali e Diplomatiche e divento vegetariana già in adolescenza.",
+        "text_en": "Born and raised near Naples, on the slopes of Vesuvius. I graduate in International and Diplomatic Relations and turn vegetarian as a teenager."
+      },
+      {
+        "year_it": "La svolta",
+        "year_en": "The turn",
+        "title_it": "Imparare sul campo",
+        "title_en": "Learning on the job",
+        "text_it": "Durante gli studi mi innamoro della cucina. Per imparare davvero il mestiere lascio la mia città: le prime esperienze sono a Roma.",
+        "text_en": "During my studies I fall for cooking. To truly learn the craft I leave my city — my first experiences are in Rome."
+      },
+      {
+        "year_it": "Milano",
+        "year_en": "Milan",
+        "title_it": "Joia",
+        "title_en": "Joia",
+        "text_it": "Formazione rigorosa al ristorante “Joia”, punto di riferimento dell'alta cucina vegetale.",
+        "text_en": "Rigorous training at “Joia”, a landmark of fine plant-based dining."
+      },
+      {
+        "year_it": "Toscana & Süd Tirol",
+        "year_en": "Tuscany & South Tyrol",
+        "title_it": "Maggese · La Vimea",
+        "title_en": "Maggese · La Vimea",
+        "text_it": "Cresco al “Maggese” in Toscana e all'hotel interamente vegano “La Vimea” in Süd Tirol, tra stagioni al mare e tante realtà diverse.",
+        "text_en": "I grow at “Maggese” in Tuscany and at the fully vegan hotel “La Vimea” in South Tyrol, between seaside seasons and many different kitchens."
+      },
+      {
+        "year_it": "Prato",
+        "year_en": "Prato",
+        "title_it": "Il pane",
+        "title_en": "Bread",
+        "text_it": "Al “Forno Mangiapane” affino le basi della panificazione moderna e mi diverto a rivisitare dolci da forno in chiave vegana. Ma soprattutto cerco di approfondire un alimento antico che mi riempie di meraviglia: il pane.",
+        "text_en": "At “Forno Mangiapane” I refine the foundations of modern baking and have fun reinventing baked sweets in a vegan key. But above all I try to deepen my knowledge of an ancient food that fills me with wonder: bread."
+      },
+      {
+        "year_it": "Firenze · 2025",
+        "year_en": "Florence · 2025",
+        "title_it": "I corsi veg",
+        "title_en": "The veg classes",
+        "text_it": "Mi stabilisco a Firenze e lancio i miei corsi di cucina vegetale. Tante idee da far fiorire — ebbasta.",
+        "text_en": "I settle in Florence and launch my plant-based cooking classes. So many ideas to bloom — and that's that."
+      }
+    ]
+  },
+  "contatti": {
+    "eyebrow_it": "04 — Contatti",
+    "eyebrow_en": "04 — Contact",
+    "title_it": "Parliamone",
+    "title_en": "Let's Talk",
+    "lead_it": "Hai in mente un evento, un progetto da sviluppare o hai semplicemente voglia di mangiare bene? Scrivimi due righe, rispondo sempre.",
+    "lead_en": "Got an event, an idea, or just a craving for something good? Write to me — I reply to everyone.",
+    "location_it": "Firenze · Toscana · disponibile in trasferta per eventi",
+    "location_en": "Florence · Tuscany · available to travel for events"
+  },
+  "newsletter": {
+    "eyebrow_it": "Newsletter",
+    "eyebrow_en": "Newsletter",
+    "title_it": "Non perderti i prossimi corsi",
+    "title_en": "Don't miss the next classes",
+    "lead_it": "Iscriviti per ricevere in anteprima le date dei nuovi corsi di cucina, i posti disponibili e qualche idea in più dalla mia cucina.",
+    "lead_en": "Sign up to get the dates of new cooking classes first, open spots, and a few extra ideas from my kitchen.",
+    "button_it": "Iscrivi →",
+    "button_en": "Subscribe →",
+    "fineprint_it": "Niente spam, puoi disiscriverti quando vuoi.",
+    "fineprint_en": "No spam, unsubscribe any time."
+  },
+  "footer": {
+    "note_it": "La mia fame mi precede.",
+    "note_en": "My hunger precedes me."
+  }
+}

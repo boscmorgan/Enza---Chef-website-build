@@ -67,16 +67,20 @@ git commit -m "Enza e basta — sito"
 Su Vercel: **Framework Preset = Other**, nessun build command, output = root.
 Il sito è statico, quindi va online così com'è.
 
-## Admin / CMS (pubblicare Corsi Passati e foto)
+## Admin / CMS (testi, calendario corsi e foto)
 
-Enza può pubblicare i corsi passati e alcune foto senza toccare il codice,
-tramite un piccolo pannello all'indirizzo **`/admin`** (es. `https://enzaebasta.it/admin`).
-Ogni salvataggio nel pannello crea un commit su GitHub e Vercel ripubblica il sito
-in automatico — nessun database, nessun hosting extra.
+Enza può modificare i testi del sito, il calendario dei corsi (carosello) e alcune
+foto senza toccare il codice, tramite un piccolo pannello all'indirizzo **`/admin`**
+(es. `https://enzaebasta.it/admin`). Ogni salvataggio nel pannello crea un commit su
+GitHub e Vercel ripubblica il sito in automatico — nessun database, nessun hosting extra.
 
 **Come funziona:**
-- Backend: [Sveltia CMS](https://github.com/sveltia/sveltia-cms) (gratuito, open source), configurato in `admin/config.yml`.
-- Contenuti: `content/site.json` (foto hero/chi-sono/corsi), `content/courses.json` (corsi passati). Il sito li legge via `js/content.js` e inserisce le card nella sezione **Corsi Passati** (sfondo rosso, sotto la sezione Corsi esistente): un carosello con 3 card visibili e frecce prev/next, che restano nascoste quando ci sono 3 corsi o meno. La sezione intera resta nascosta finché non c'è almeno un corso.
+- Backend: [Sveltia CMS](https://github.com/sveltia/sveltia-cms) (gratuito, open source), configurato in `admin/config.yml`. Tre raccolte:
+  - **Corsi (calendario)** → `content/courses.json`: i corsi del carosello Calendario. La data decide se un corso appare come prossimo o passato; il carosello mostra prima i prossimi, poi i passati.
+  - **Testi del sito** → `content/copy.json`: tutti i testi editabili (IT + EN), raggruppati per sezione (Hero, Corsi, Calendario, Chi Sono, Altri Servizi, Biografia + tappe del percorso, Contatti, Newsletter, piè di pagina).
+  - **Foto del sito** → `content/site.json`: foto hero / chi-sono / corsi.
+- Il sito legge i JSON via `js/content.js`. Per i testi: ogni elemento editabile in `index.html` ha un attributo `data-copy="sezione.chiave"`; al caricamento gli attributi `data-it`/`data-en` vengono sovrascritti con i valori del JSON, così il toggle IT/EN continua a funzionare. La timeline della Biografia viene generata dal JSON (si possono aggiungere/togliere tappe dal pannello). Il markup statico resta come fallback se il fetch fallisce.
+- Per aggiungere un nuovo testo editabile: aggiungi la coppia `*_it`/`*_en` in `content/copy.json`, il campo in `admin/config.yml` e `data-copy="sezione.chiave"` sull'elemento in `index.html`.
 - Immagini caricate dal pannello finiscono in `images/uploads/` e vengono committate nel repo.
 - Login: un solo account GitHub condiviso, che deve avere accesso in scrittura a questo repo.
 

@@ -11,19 +11,8 @@ media_folder: "images/uploads"
 public_folder: "/images/uploads"
 
 collections:
-  - name: "site"
-    label: "Foto del sito"
-    files:
-      - name: "settings"
-        label: "Foto principali"
-        file: "content/site.json"
-        fields:
-          - { label: "Foto Hero (home)", name: "hero_image", widget: "image" }
-          - { label: "Foto Chi Sono", name: "chi_sono_image", widget: "image" }
-          - { label: "Foto Corsi", name: "corsi_image", widget: "image" }
-
   - name: "courses"
-    label: "Corsi"
+    label: "Corsi (calendario)"
     files:
       - name: "list"
         label: "Elenco corsi"
@@ -42,3 +31,174 @@ collections:
               - { label: "Descrizione (EN)", name: "description_en", widget: "text" }
               - { label: "Prezzo", name: "price", widget: "string", required: false }
               - { label: "Foto", name: "image", widget: "image", required: false }
+
+  - name: "copy"
+    label: "Testi del sito"
+    files:
+      - name: "copy"
+        label: "Tutti i testi (IT + EN)"
+        file: "content/copy.json"
+        fields:
+          - name: "hero"
+            label: "Apertura (Hero)"
+            widget: "object"
+            collapsed: true
+            fields:
+              - { label: "Sottotitolo in alto (IT)", name: "kicker_it", widget: "string" }
+              - { label: "Sottotitolo in alto (EN)", name: "kicker_en", widget: "string" }
+              - { label: "Presentazione — inizio (IT)", name: "lead_intro_it", widget: "text" }
+              - { label: "Presentazione — inizio (EN)", name: "lead_intro_en", widget: "text" }
+              - { label: "Presentazione — frase in grassetto (IT)", name: "lead_bold_it", widget: "string" }
+              - { label: "Presentazione — frase in grassetto (EN)", name: "lead_bold_en", widget: "string" }
+              - { label: "Presentazione — seguito (IT)", name: "lead_rest_it", widget: "text" }
+              - { label: "Presentazione — seguito (EN)", name: "lead_rest_en", widget: "text" }
+              - { label: "Bottone (IT)", name: "cta_it", widget: "string" }
+              - { label: "Bottone (EN)", name: "cta_en", widget: "string" }
+              - { label: "Adesivo sulla foto (IT)", name: "sticker_it", widget: "string" }
+              - { label: "Adesivo sulla foto (EN)", name: "sticker_en", widget: "string" }
+
+          - name: "corsi"
+            label: "Sezione Corsi"
+            widget: "object"
+            collapsed: true
+            fields:
+              - { label: "Occhiello (IT)", name: "eyebrow_it", widget: "string" }
+              - { label: "Occhiello (EN)", name: "eyebrow_en", widget: "string" }
+              - { label: "Titolo (IT)", name: "title_it", widget: "string" }
+              - { label: "Titolo (EN)", name: "title_en", widget: "string" }
+              - { label: "Primo paragrafo (IT)", name: "lead_it", widget: "text" }
+              - { label: "Primo paragrafo (EN)", name: "lead_en", widget: "text" }
+              - { label: "Secondo paragrafo (IT)", name: "body_it", widget: "text" }
+              - { label: "Secondo paragrafo (EN)", name: "body_en", widget: "text" }
+              - { label: "Testo espandibile (IT)", name: "more_it", widget: "text" }
+              - { label: "Testo espandibile (EN)", name: "more_en", widget: "text" }
+              - { label: "Bottone calendario (IT)", name: "cta_calendar_it", widget: "string" }
+              - { label: "Bottone calendario (EN)", name: "cta_calendar_en", widget: "string" }
+              - { label: "Bottone contatti (IT)", name: "cta_contact_it", widget: "string" }
+              - { label: "Bottone contatti (EN)", name: "cta_contact_en", widget: "string" }
+              - { label: "Bottone newsletter (IT)", name: "cta_newsletter_it", widget: "string" }
+              - { label: "Bottone newsletter (EN)", name: "cta_newsletter_en", widget: "string" }
+
+          - name: "calendario"
+            label: "Calendario corsi (intestazione)"
+            widget: "object"
+            collapsed: true
+            fields:
+              - { label: "Occhiello (IT)", name: "eyebrow_it", widget: "string" }
+              - { label: "Occhiello (EN)", name: "eyebrow_en", widget: "string" }
+              - { label: "Titolo (IT)", name: "title_it", widget: "string" }
+              - { label: "Titolo (EN)", name: "title_en", widget: "string" }
+              - { label: "Sottotitolo (IT)", name: "sub_it", widget: "text" }
+              - { label: "Sottotitolo (EN)", name: "sub_en", widget: "text" }
+
+          - name: "chi_sono"
+            label: "Chi Sono"
+            widget: "object"
+            collapsed: true
+            fields:
+              - { label: "Occhiello (IT)", name: "eyebrow_it", widget: "string" }
+              - { label: "Occhiello (EN)", name: "eyebrow_en", widget: "string" }
+              - { label: "Titolo (IT)", name: "title_it", widget: "string" }
+              - { label: "Titolo (EN)", name: "title_en", widget: "string" }
+              - { label: "Presentazione (IT)", name: "intro_it", widget: "text" }
+              - { label: "Presentazione (EN)", name: "intro_en", widget: "text" }
+              - { label: "Testo espandibile 1 (IT)", name: "more1_it", widget: "text" }
+              - { label: "Testo espandibile 1 (EN)", name: "more1_en", widget: "text" }
+              - { label: "Testo espandibile 2 (IT)", name: "more2_it", widget: "text" }
+              - { label: "Testo espandibile 2 (EN)", name: "more2_en", widget: "text" }
+              - { label: "Bottone (IT)", name: "cta_it", widget: "string" }
+              - { label: "Bottone (EN)", name: "cta_en", widget: "string" }
+
+          - name: "servizi"
+            label: "Altri Servizi"
+            widget: "object"
+            collapsed: true
+            fields:
+              - { label: "Occhiello (IT)", name: "eyebrow_it", widget: "string" }
+              - { label: "Occhiello (EN)", name: "eyebrow_en", widget: "string" }
+              - { label: "Titolo (IT)", name: "title_it", widget: "string" }
+              - { label: "Titolo (EN)", name: "title_en", widget: "string" }
+              - { label: "Sottotitolo (IT)", name: "sub_it", widget: "string" }
+              - { label: "Sottotitolo (EN)", name: "sub_en", widget: "string" }
+              - { label: "Card 1 — Titolo (IT)", name: "card1_title_it", widget: "string" }
+              - { label: "Card 1 — Titolo (EN)", name: "card1_title_en", widget: "string" }
+              - { label: "Card 1 — Testo (IT)", name: "card1_body_it", widget: "text" }
+              - { label: "Card 1 — Testo (EN)", name: "card1_body_en", widget: "text" }
+              - { label: "Card 1 — Bottone (IT)", name: "card1_cta_it", widget: "string" }
+              - { label: "Card 1 — Bottone (EN)", name: "card1_cta_en", widget: "string" }
+              - { label: "Card 2 — Titolo (IT)", name: "card2_title_it", widget: "string" }
+              - { label: "Card 2 — Titolo (EN)", name: "card2_title_en", widget: "string" }
+              - { label: "Card 2 — Testo (IT)", name: "card2_body_it", widget: "text" }
+              - { label: "Card 2 — Testo (EN)", name: "card2_body_en", widget: "text" }
+              - { label: "Card 2 — Bottone (IT)", name: "card2_cta_it", widget: "string" }
+              - { label: "Card 2 — Bottone (EN)", name: "card2_cta_en", widget: "string" }
+
+          - name: "biografia"
+            label: "Biografia"
+            widget: "object"
+            collapsed: true
+            fields:
+              - { label: "Occhiello (IT)", name: "eyebrow_it", widget: "string" }
+              - { label: "Occhiello (EN)", name: "eyebrow_en", widget: "string" }
+              - { label: "Titolo (IT)", name: "title_it", widget: "string" }
+              - { label: "Titolo (EN)", name: "title_en", widget: "string" }
+              - name: "timeline"
+                label: "Tappe del percorso"
+                widget: "list"
+                summary: "{{year_it}} — {{title_it}}"
+                fields:
+                  - { label: "Etichetta / anno (IT)", name: "year_it", widget: "string" }
+                  - { label: "Etichetta / anno (EN)", name: "year_en", widget: "string" }
+                  - { label: "Titolo (IT)", name: "title_it", widget: "string" }
+                  - { label: "Titolo (EN)", name: "title_en", widget: "string" }
+                  - { label: "Testo (IT)", name: "text_it", widget: "text" }
+                  - { label: "Testo (EN)", name: "text_en", widget: "text" }
+
+          - name: "contatti"
+            label: "Contatti"
+            widget: "object"
+            collapsed: true
+            fields:
+              - { label: "Occhiello (IT)", name: "eyebrow_it", widget: "string" }
+              - { label: "Occhiello (EN)", name: "eyebrow_en", widget: "string" }
+              - { label: "Titolo (IT)", name: "title_it", widget: "string" }
+              - { label: "Titolo (EN)", name: "title_en", widget: "string" }
+              - { label: "Testo introduttivo (IT)", name: "lead_it", widget: "text" }
+              - { label: "Testo introduttivo (EN)", name: "lead_en", widget: "text" }
+              - { label: "Riga località (IT)", name: "location_it", widget: "string" }
+              - { label: "Riga località (EN)", name: "location_en", widget: "string" }
+
+          - name: "newsletter"
+            label: "Newsletter"
+            widget: "object"
+            collapsed: true
+            fields:
+              - { label: "Occhiello (IT)", name: "eyebrow_it", widget: "string" }
+              - { label: "Occhiello (EN)", name: "eyebrow_en", widget: "string" }
+              - { label: "Titolo (IT)", name: "title_it", widget: "string" }
+              - { label: "Titolo (EN)", name: "title_en", widget: "string" }
+              - { label: "Testo (IT)", name: "lead_it", widget: "text" }
+              - { label: "Testo (EN)", name: "lead_en", widget: "text" }
+              - { label: "Bottone (IT)", name: "button_it", widget: "string" }
+              - { label: "Bottone (EN)", name: "button_en", widget: "string" }
+              - { label: "Nota finale (IT)", name: "fineprint_it", widget: "string" }
+              - { label: "Nota finale (EN)", name: "fineprint_en", widget: "string" }
+
+          - name: "footer"
+            label: "Piè di pagina"
+            widget: "object"
+            collapsed: true
+            fields:
+              - { label: "Frase finale (IT)", name: "note_it", widget: "string" }
+              - { label: "Frase finale (EN)", name: "note_en", widget: "string" }
+
+  - name: "site"
+    label: "Foto del sito"
+    files:
+      - name: "settings"
+        label: "Foto principali"
+        file: "content/site.json"
+        fields:
+          - { label: "Foto Hero (home)", name: "hero_image", widget: "image" }
+          - { label: "Foto Chi Sono", name: "chi_sono_image", widget: "image" }
+          - { label: "Foto Corsi", name: "corsi_image", widget: "image" }

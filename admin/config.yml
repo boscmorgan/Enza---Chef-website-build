@@ -4,7 +4,7 @@ backend:
   branch: main
   # IMPORTANT: update this to the real deployed origin (custom domain once live,
   # or the *.vercel.app URL in the meantime) — see README.md "Admin / CMS" section.
-  base_url: https://enzaebasta.it
+  base_url: https://www.enzaebasta.it
   auth_endpoint: api/auth
 
 media_folder: "images/uploads"

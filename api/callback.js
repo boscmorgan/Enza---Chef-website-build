@@ -36,22 +36,26 @@ module.exports = async (req, res) => {
     return;
   }
 
-  const payload = JSON.stringify({ token: data.access_token, provider: 'github' });
+  const payload = JSON.stringify({
+  token: data.access_token,
+  provider: 'github'
+});
 
-  res.setHeader('Content-Type', 'text/html; charset=utf-8');
-  res.end(`<!doctype html><html><body>
+res.setHeader('Content-Type', 'text/html; charset=utf-8');
+
+res.end(`<!doctype html>
+<html>
+<body>
 <script>
 (function () {
-  function receiveMessage(e) {
-    window.opener.postMessage(
-      'authorization:github:success:' + JSON.stringify(${payload}),
-      e.origin
-    );
-    window.removeEventListener('message', receiveMessage, false);
+  const message = 'authorization:github:success:${payload}';
+
+  if (window.opener) {
+    window.opener.postMessage(message, '*');
   }
-  window.addEventListener('message', receiveMessage, false);
-  window.opener.postMessage('authorizing:github', '*');
+
+  window.close();
 })();
 </script>
-</body></html>`);
-};
+</body>
+</html>`);

@@ -8,7 +8,7 @@ backend:
   auth_endpoint: api/auth
 
 media_folder: "images"
-public_folder: "/images"
+public_folder: "images"
 
 collections:
   - name: "courses"
@@ -92,6 +92,10 @@ collections:
               - { label: "Sottotitolo (EN)", name: "sub_en", widget: "text" }
               - { label: "Bottone contatti nella scheda corso (IT)", name: "cta_contact_it", widget: "string" }
               - { label: "Bottone contatti nella scheda corso (EN)", name: "cta_contact_en", widget: "string" }
+              - { label: "Messaggio se nessun corso in programma (IT)", name: "empty_it", widget: "text" }
+              - { label: "Messaggio se nessun corso in programma (EN)", name: "empty_en", widget: "text" }
+              - { label: "Bottone \"avvisami\" se nessun corso (IT)", name: "cta_notify_it", widget: "string" }
+              - { label: "Bottone \"avvisami\" se nessun corso (EN)", name: "cta_notify_en", widget: "string" }
 
           - name: "chi_sono"
             label: "Chi Sono"

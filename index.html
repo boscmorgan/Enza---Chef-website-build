@@ -268,7 +268,7 @@
       <header class="servizi-head">
         <p class="eyebrow light" data-copy="calendario.eyebrow" data-it="Calendario" data-en="Calendar">Calendario</p>
         <h2 class="section-title light" data-copy="calendario.title" data-it="Corsi" data-en="Classes">Corsi</h2>
-        <p class="servizi-sub" data-copy="calendario.sub"
+        <p class="servizi-sub" id="corsiSub" data-copy="calendario.sub"
            data-it="I corsi in ordine cronologico: scorri o usa le frecce per vedere quelli passati."
            data-en="Classes in chronological order: scroll or use the arrows to see past ones.">
           I corsi in ordine cronologico: scorri o usa le frecce per vedere quelli passati.
@@ -285,6 +285,16 @@
                 data-it-label="Corsi successivi" data-en-label="Next classes" aria-label="Corsi successivi">
           <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M9 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </button>
+      </div>
+
+      <div class="corsi-empty" id="corsiEmpty" hidden>
+        <p class="servizi-sub" data-copy="calendario.empty"
+           data-it="Al momento non ci sono corsi in programma."
+           data-en="There are no classes scheduled right now.">
+          Al momento non ci sono corsi in programma.
+        </p>
+        <a href="#contatti" data-scroll class="btn btn-pink" data-copy="calendario.cta_notify"
+           data-it="Scrivimi per essere avvisata →" data-en="Message me to be notified →">Scrivimi per essere avvisata →</a>
       </div>
 
       <div class="corso-modal" id="corsoModal" hidden>

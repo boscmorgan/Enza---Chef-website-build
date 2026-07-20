@@ -121,7 +121,9 @@
     if (!img || !photos || !photos.length) return;
     var choice = photos[Math.floor(Math.random() * photos.length)];
     img.src = choice.image;
-    if (choice.alt_it) img.alt = choice.alt_it;
+    if (choice.alt_en || choice.alt_it) {
+      img.alt = choice['alt_' + currentLang()] || choice.alt_it || img.alt || '';
+    }
   }
 
   function renderAlternatingPhoto(id, photos) {
@@ -143,25 +145,29 @@
 
   function openModal(data) {
     if (!modal) return;
-    modalTitle.textContent = data.title || '';
-    modalDesc.textContent = data.desc || '';
+    if (modalTitle) modalTitle.textContent = data.title || '';
+    if (modalDesc) modalDesc.textContent = data.desc || '';
     var metaParts = [];
     if (data.date) metaParts.push(longDate(data.date));
     if (data.location) metaParts.push(data.location);
     if (data.price) metaParts.push(data.price);
-    modalMeta.textContent = metaParts.join(' · ');
+    if (modalMeta) modalMeta.textContent = metaParts.join(' · ');
     if (modalCta) modalCta.hidden = !!data.isPast;
-    if (data.image) {
-      modalImg.src = data.image;
-      modalImg.alt = data.title || '';
-      modalImg.hidden = false;
-    } else {
-      modalImg.hidden = true;
+    if (modalImg) {
+      if (data.image) {
+        modalImg.src = data.image;
+        modalImg.alt = data.title || '';
+        modalImg.hidden = false;
+      } else {
+        modalImg.hidden = true;
+        modalImg.src = '';
+        modalImg.alt = '';
+      }
     }
     lastFocused = document.activeElement;
     modal.hidden = false;
     document.body.classList.add('modal-open');
-    modalClose.focus();
+    if (modalClose && modalClose.focus) modalClose.focus();
   }
 
   function closeModal() {
@@ -182,6 +188,9 @@
   var track = document.getElementById('corsiCarousel');
   var prevBtn = document.getElementById('corsiPrev');
   var nextBtn = document.getElementById('corsiNext');
+  var carousel = document.querySelector('#corsi-calendario .carousel');
+  var corsiEmpty = document.getElementById('corsiEmpty');
+  var corsiSub = document.getElementById('corsiSub');
   var hasSetInitialView = false;
 
   function updateArrows() {
@@ -254,7 +263,23 @@
     var section = document.getElementById('corsi-calendario');
     if (!section || !track) return;
     var all = ((state.courses && state.courses.courses) || []).slice();
-    if (!all.length) { section.hidden = true; return; }
+
+    // Always show the section (never a dead scroll target for CTAs that link
+    // to #corsi-calendario) — fall back to a friendly message when there's
+    // currently nothing to show, instead of hiding the whole section.
+    section.hidden = false;
+    if (!all.length) {
+      track.innerHTML = '';
+      if (carousel) carousel.hidden = true;
+      if (corsiSub) corsiSub.hidden = true;
+      if (corsiEmpty) corsiEmpty.hidden = false;
+      if (prevBtn) prevBtn.hidden = true;
+      if (nextBtn) nextBtn.hidden = true;
+      return;
+    }
+    if (carousel) carousel.hidden = false;
+    if (corsiSub) corsiSub.hidden = false;
+    if (corsiEmpty) corsiEmpty.hidden = true;
 
     var now = new Date();
     var upcoming = all.filter(function (c) { return new Date(c.date) >= now; })
@@ -266,7 +291,6 @@
     var preservedScrollLeft = hasSetInitialView ? track.scrollLeft : null;
 
     track.innerHTML = ordered.map(tileHtml).join('');
-    section.hidden = false;
 
     var needsArrows = ordered.length > 3;
     if (prevBtn) prevBtn.hidden = !needsArrows;

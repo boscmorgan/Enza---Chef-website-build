@@ -39,7 +39,11 @@
     "sub_it": "I corsi in ordine cronologico: scorri o usa le frecce per vedere quelli passati.",
     "sub_en": "Classes in chronological order: scroll or use the arrows to see past ones.",
     "cta_contact_it": "Scrivimi per prenotare →",
-    "cta_contact_en": "Message me to book →"
+    "cta_contact_en": "Message me to book →",
+    "empty_it": "Al momento non ci sono corsi in programma.",
+    "empty_en": "There are no classes scheduled right now.",
+    "cta_notify_it": "Scrivimi per essere avvisata →",
+    "cta_notify_en": "Message me to be notified →"
   },
   "chi_sono": {
     "eyebrow_it": "01 — Chi Sono",

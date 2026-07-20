@@ -20,21 +20,21 @@
   function openMenu() {
     body.classList.add('menu-open');
     body.classList.remove('menu-closed');
-    btnOpen.setAttribute('aria-expanded', 'true');
-    if (!DESKTOP.matches) {
+    if (btnOpen) btnOpen.setAttribute('aria-expanded', 'true');
+    if (scrim && !DESKTOP.matches) {
       scrim.hidden = false;
     }
   }
   function closeMenu() {
     body.classList.add('menu-closed');
     body.classList.remove('menu-open');
-    btnOpen.setAttribute('aria-expanded', 'false');
-    scrim.hidden = true;
+    if (btnOpen) btnOpen.setAttribute('aria-expanded', 'false');
+    if (scrim) scrim.hidden = true;
   }
 
-  btnOpen.addEventListener('click', openMenu);
-  btnClose.addEventListener('click', closeMenu);
-  scrim.addEventListener('click', closeMenu);
+  if (btnOpen) btnOpen.addEventListener('click', openMenu);
+  if (btnClose) btnClose.addEventListener('click', closeMenu);
+  if (scrim) scrim.addEventListener('click', closeMenu);
 
   document.addEventListener('keydown', function (e) {
     if (e.key === 'Escape' && body.classList.contains('menu-open')) closeMenu();
@@ -312,67 +312,75 @@
     ].join('\n');
   }
 
-  form.addEventListener('submit', function (e) {
-    e.preventDefault();
-    if (!form.checkValidity()) {
-      form.reportValidity();
-      return;
-    }
+  if (form) {
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      if (!form.checkValidity()) {
+        form.reportValidity();
+        return;
+      }
 
-    var data = {
-      name: formValue('nome'),
-      email: formValue('email'),
-      phone: formValue('telefono'),
-      subject: formValue('oggetto'),
-      message: formValue('messaggio'),
-      lang: body.getAttribute('data-lang') || 'it'
-    };
+      var data = {
+        name: formValue('nome'),
+        email: formValue('email'),
+        phone: formValue('telefono'),
+        subject: formValue('oggetto'),
+        message: formValue('messaggio'),
+        lang: body.getAttribute('data-lang') || 'it'
+      };
 
-    var mailSubject = 'Richiesta dal sito: ' + data.subject;
-    var mailBody = buildMailBody(data);
-    lastFallbackMessage = 'A: enza.deiorio@mail.com\n'
-      + 'Oggetto: ' + mailSubject + '\n\n'
-      + mailBody;
-    var mailto = 'mailto:enza.deiorio@mail.com'
-      + '?subject=' + encodeURIComponent(mailSubject)
-      + '&body=' + encodeURIComponent(mailBody);
+      var mailSubject = 'Richiesta dal sito: ' + data.subject;
+      var mailBody = buildMailBody(data);
+      lastFallbackMessage = 'A: enza.deiorio@mail.com\n'
+        + 'Oggetto: ' + mailSubject + '\n\n'
+        + mailBody;
+      var mailto = 'mailto:enza.deiorio@mail.com'
+        + '?subject=' + encodeURIComponent(mailSubject)
+        + '&body=' + encodeURIComponent(mailBody);
 
-    mailFallbackText.value = lastFallbackMessage;
-    mailFallback.hidden = false;
+      if (mailFallbackText) mailFallbackText.value = lastFallbackMessage;
+      if (mailFallback) mailFallback.hidden = false;
 
-    window.location.href = mailto;
-    success.hidden = false;
-    mailFallback.scrollIntoView({ behavior: 'smooth', block: 'center' });
-    clearTimeout(form._t);
-    form._t = setTimeout(function () { success.hidden = true; }, 8000);
-  });
+      window.location.href = mailto;
+      if (success) success.hidden = false;
+      if (mailFallback) mailFallback.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      clearTimeout(form._t);
+      form._t = setTimeout(function () { if (success) success.hidden = true; }, 8000);
+    });
+  }
 
-  copyMailFallback.addEventListener('click', function () {
-    function markCopied() {
-      var lang = body.getAttribute('data-lang') || 'it';
-      var defaultLabel = copyMailFallback.getAttribute('data-' + lang) || 'Copia messaggio';
-      copyMailFallback.textContent = lang === 'en' ? 'Copied' : 'Copiato';
-      mailFallbackText.blur();
-      if (window.getSelection) window.getSelection().removeAllRanges();
-      clearTimeout(copyMailFallback._t);
-      copyMailFallback._t = setTimeout(function () {
-        copyMailFallback.textContent = defaultLabel;
-      }, 1800);
-    }
+  if (copyMailFallback) {
+    copyMailFallback.addEventListener('click', function () {
+      function markCopied() {
+        var lang = body.getAttribute('data-lang') || 'it';
+        var defaultLabel = copyMailFallback.getAttribute('data-' + lang) || 'Copia messaggio';
+        copyMailFallback.textContent = lang === 'en' ? 'Copied' : 'Copiato';
+        if (mailFallbackText && mailFallbackText.blur) mailFallbackText.blur();
+        if (window.getSelection) window.getSelection().removeAllRanges();
+        clearTimeout(copyMailFallback._t);
+        copyMailFallback._t = setTimeout(function () {
+          copyMailFallback.textContent = defaultLabel;
+        }, 1800);
+      }
 
-    if (navigator.clipboard && window.isSecureContext) {
-      navigator.clipboard.writeText(lastFallbackMessage).then(markCopied, function () {
+      if (navigator.clipboard && window.isSecureContext) {
+        navigator.clipboard.writeText(lastFallbackMessage).then(markCopied, function () {
+          if (mailFallbackText) {
+            mailFallbackText.select();
+            document.execCommand('copy');
+          }
+          markCopied();
+        });
+        return;
+      }
+
+      if (mailFallbackText) {
         mailFallbackText.select();
         document.execCommand('copy');
-        markCopied();
-      });
-      return;
-    }
-
-    mailFallbackText.select();
-    document.execCommand('copy');
-    markCopied();
-  });
+      }
+      markCopied();
+    });
+  }
 
   /* ---------- copy email address ---------- */
   var copyEmailBtn = document.getElementById('copyEmailBtn');
@@ -394,20 +402,25 @@
         }, 1800);
       }
 
+      function fallbackCopy() {
+        var temp = document.createElement('textarea');
+        temp.value = email || '';
+        temp.style.position = 'fixed';
+        temp.style.opacity = '0';
+        temp.setAttribute('aria-hidden', 'true');
+        document.body.appendChild(temp);
+        temp.select();
+        document.execCommand('copy');
+        document.body.removeChild(temp);
+        markCopied();
+      }
+
       if (navigator.clipboard && window.isSecureContext) {
-        navigator.clipboard.writeText(email).then(markCopied);
+        navigator.clipboard.writeText(email).then(markCopied, fallbackCopy);
         return;
       }
 
-      var temp = document.createElement('textarea');
-      temp.value = email;
-      temp.style.position = 'fixed';
-      temp.style.opacity = '0';
-      document.body.appendChild(temp);
-      temp.select();
-      document.execCommand('copy');
-      document.body.removeChild(temp);
-      markCopied();
+      fallbackCopy();
     });
   }
 

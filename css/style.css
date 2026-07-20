@@ -732,6 +732,11 @@ body.menu-open .lang-toggle{
   max-width:1120px;margin:0 auto;
   display:flex;align-items:center;gap:16px;
 }
+.corsi-empty{
+  max-width:1120px;margin:0 auto;
+  display:flex;flex-direction:column;align-items:flex-start;gap:16px;
+}
+.corsi-empty[hidden]{display:none;}
 .carousel-track{
   flex:1;display:flex;gap:24px;
   overflow-x:auto;scroll-snap-type:x mandatory;scroll-behavior:smooth;

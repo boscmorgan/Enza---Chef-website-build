@@ -92,15 +92,16 @@
       return '<li>' + span('span', 'year', 'year') +
         '<div>' + span('h3', 'title') + span('p', 'text') + '</div></li>';
     }).join('');
+    if (window.ENZA_reinitTimeline) window.ENZA_reinitTimeline();
   }
 
   function renderSite() {
     var s = state.site;
     if (!s) return;
     var map = {
-      heroPhotoImg: s.hero_image,
       chiSonoPhotoImg: s.chi_sono_image,
-      corsiPhotoImg: s.corsi_image
+      corsiPhotoImg: s.corsi_image,
+      biografiaPhotoImg: s.biografia_image
     };
     Object.keys(map).forEach(function (id) {
       var src = map[id];
@@ -108,6 +109,25 @@
       var img = document.getElementById(id);
       if (img) img.src = src;
     });
+
+    renderHeroPhoto(s.hero_photos);
+    renderAlternatingPhoto('domicilioPhotoImg', s.domicilio_photos);
+    renderAlternatingPhoto('aziendaliPhotoImg', s.aziendali_photos);
+  }
+
+  /* ---------- photos that alternate on each page load, list managed in the CMS ---------- */
+  function renderHeroPhoto(photos) {
+    var img = document.getElementById('heroPhotoImg');
+    if (!img || !photos || !photos.length) return;
+    var choice = photos[Math.floor(Math.random() * photos.length)];
+    img.src = choice.image;
+    if (choice.alt_it) img.alt = choice.alt_it;
+  }
+
+  function renderAlternatingPhoto(id, photos) {
+    var img = document.getElementById(id);
+    if (!img || !photos || !photos.length) return;
+    img.src = photos[Math.floor(Math.random() * photos.length)];
   }
 
   /* ---------- overlay (click on a tile) ---------- */
@@ -118,6 +138,7 @@
   var modalDesc = document.getElementById('corsoModalDesc');
   var modalClose = document.getElementById('corsoModalClose');
   var modalBackdrop = document.getElementById('corsoModalBackdrop');
+  var modalCta = document.getElementById('corsoModalCta');
   var lastFocused = null;
 
   function openModal(data) {
@@ -129,6 +150,7 @@
     if (data.location) metaParts.push(data.location);
     if (data.price) metaParts.push(data.price);
     modalMeta.textContent = metaParts.join(' · ');
+    if (modalCta) modalCta.hidden = !!data.isPast;
     if (data.image) {
       modalImg.src = data.image;
       modalImg.alt = data.title || '';
@@ -151,6 +173,7 @@
 
   if (modalClose) modalClose.addEventListener('click', closeModal);
   if (modalBackdrop) modalBackdrop.addEventListener('click', closeModal);
+  if (modalCta) modalCta.addEventListener('click', closeModal);
   document.addEventListener('keydown', function (e) {
     if (e.key === 'Escape') closeModal();
   });
@@ -189,7 +212,8 @@
         image: tile.getAttribute('data-full-image'),
         date: tile.getAttribute('data-full-date'),
         location: tile.getAttribute('data-full-location'),
-        price: tile.getAttribute('data-full-price')
+        price: tile.getAttribute('data-full-price'),
+        isPast: tile.classList.contains('corso-tile--past')
       });
     });
     track.addEventListener('keydown', function (e) {

@@ -17,7 +17,9 @@ module.exports = async (req, res) => {
   }
 
   try {
-    const redirectUri = 'https://www.enzaebasta.it/api/callback';
+    const host = req.headers['x-forwarded-host'] || req.headers.host;
+    const proto = req.headers['x-forwarded-proto'] || 'https';
+    const redirectUri = `${proto}://${host}/api/callback`;
 
     const tokenRes = await fetch(
       'https://github.com/login/oauth/access_token',

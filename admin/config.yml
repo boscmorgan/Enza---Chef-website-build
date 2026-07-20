@@ -7,8 +7,8 @@ backend:
   base_url: https://www.enzaebasta.it
   auth_endpoint: api/auth
 
-media_folder: "images/uploads"
-public_folder: "/images/uploads"
+media_folder: "images"
+public_folder: "/images"
 
 collections:
   - name: "courses"
@@ -90,6 +90,8 @@ collections:
               - { label: "Titolo (EN)", name: "title_en", widget: "string" }
               - { label: "Sottotitolo (IT)", name: "sub_it", widget: "text" }
               - { label: "Sottotitolo (EN)", name: "sub_en", widget: "text" }
+              - { label: "Bottone contatti nella scheda corso (IT)", name: "cta_contact_it", widget: "string" }
+              - { label: "Bottone contatti nella scheda corso (EN)", name: "cta_contact_en", widget: "string" }
 
           - name: "chi_sono"
             label: "Chi Sono"
@@ -199,6 +201,21 @@ collections:
         label: "Foto principali"
         file: "content/site.json"
         fields:
-          - { label: "Foto Hero (home)", name: "hero_image", widget: "image" }
           - { label: "Foto Chi Sono", name: "chi_sono_image", widget: "image" }
           - { label: "Foto Corsi", name: "corsi_image", widget: "image" }
+          - { label: "Foto Biografia", name: "biografia_image", widget: "image" }
+          - name: "hero_photos"
+            label: "Foto Apertura (Hero) — alternano a ogni caricamento"
+            widget: "list"
+            summary: "{{fields.alt_it}}"
+            fields:
+              - { label: "Foto", name: "image", widget: "image" }
+              - { label: "Descrizione (per non vedenti)", name: "alt_it", widget: "string" }
+          - name: "domicilio_photos"
+            label: "Foto Eventi Privati — alternano a ogni caricamento"
+            widget: "list"
+            field: { label: "Foto", name: "image", widget: "image" }
+          - name: "aziendali_photos"
+            label: "Foto Consulenze/Aziendali — alternano a ogni caricamento"
+            widget: "list"
+            field: { label: "Foto", name: "image", widget: "image" }

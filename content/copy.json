@@ -24,8 +24,8 @@
     "body_en": "It's an offline space to get your hands moving, have a chat, swap recipes and have fun. My approach is serious when it needs to be (technique matters!), but what I try to create is a light, friendly atmosphere — one that helps you get over the fear of knives and stoves!",
     "more_it": "Prepariamo insieme di tutto: dalla pasta fresca vegana ai dolci da colazione, fino a lezioni mirate sulle proteine vegetali o sull'alimentazione veg per lo sport (in cui mi faccio affiancare da una nutrizionista). Ci metto tutta la cura e la passione che ho. Le idee sono tante, non ti resta che scegliere la tua lezione.",
     "more_en": "From fresh vegan pasta to desserts, through plant proteins, breakfast made together, and deep-dives on veg nutrition in sport — alongside a nutritionist — into every lesson I pour all my care for what I love. I have so many ideas and can't wait to make them bloom!",
-    "cta_calendar_it": "Prossimi Corsi ↗",
-    "cta_calendar_en": "Class Calendar ↗",
+    "cta_calendar_it": "Prossimi Corsi ↓",
+    "cta_calendar_en": "Class Calendar ↓",
     "cta_contact_it": "Scrivimi per info →",
     "cta_contact_en": "Message me for info →",
     "cta_newsletter_it": "Iscriviti alla Newsletter ↓",
@@ -37,7 +37,9 @@
     "title_it": "Corsi",
     "title_en": "Classes",
     "sub_it": "I corsi in ordine cronologico: scorri o usa le frecce per vedere quelli passati.",
-    "sub_en": "Classes in chronological order: scroll or use the arrows to see past ones."
+    "sub_en": "Classes in chronological order: scroll or use the arrows to see past ones.",
+    "cta_contact_it": "Scrivimi per prenotare →",
+    "cta_contact_en": "Message me to book →"
   },
   "chi_sono": {
     "eyebrow_it": "01 — Chi Sono",

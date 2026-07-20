@@ -97,6 +97,15 @@
       if (val !== null) el.setAttribute('placeholder', val);
     });
 
+    // aria-label / title (for icon-only controls that keep their markup)
+    document.querySelectorAll('[data-it-label][data-en-label]').forEach(function (el) {
+      var val = el.getAttribute('data-' + lang + '-label');
+      if (val !== null) {
+        el.setAttribute('aria-label', val);
+        el.setAttribute('title', val);
+      }
+    });
+
     // expand/collapse buttons keep the right label for their current state
     document.querySelectorAll('.read-more').forEach(function (b) {
       var open = b.getAttribute('aria-expanded') === 'true';
@@ -177,51 +186,64 @@
     });
   });
 
-  /* ---------- BIOGRAFIA timeline active dot on scroll ---------- */
-  var timelineItems = Array.prototype.slice.call(document.querySelectorAll('.timeline li'));
-  if (timelineItems.length) {
-    var timelineTick = false;
+  /* ---------- BIOGRAFIA timeline active dot on scroll ----------
+     The <li> list is rebuilt by content.js once content/copy.json
+     loads, so items are re-queried live (never cached) and the
+     IntersectionObserver is rebuilt via initTimelineScroll(), which
+     content.js calls again after it re-renders the list. */
+  var timelineTick = false;
+  var timelineObserver = null;
 
-    function activateTimelineItem(item) {
-      timelineItems.forEach(function (li) {
-        li.classList.toggle('is-active', li === item);
-      });
-    }
+  function getTimelineItems() {
+    return Array.prototype.slice.call(document.querySelectorAll('.timeline li'));
+  }
 
-    function updateActiveTimelineOnScroll() {
-      var targetY = window.innerHeight * 0.42;
-      var current = timelineItems[0];
-      var currentDistance = Infinity;
+  function activateTimelineItem(item) {
+    getTimelineItems().forEach(function (li) {
+      li.classList.toggle('is-active', li === item);
+    });
+  }
 
-      timelineItems.forEach(function (item) {
-        var rect = item.getBoundingClientRect();
-        var markerY = rect.top + 14;
-        var distance = Math.abs(markerY - targetY);
-        if (distance < currentDistance) {
-          current = item;
-          currentDistance = distance;
-        }
-      });
+  function updateActiveTimelineOnScroll() {
+    var items = getTimelineItems();
+    if (!items.length) return;
+    var targetY = window.innerHeight * 0.42;
+    var current = items[0];
+    var currentDistance = Infinity;
 
-      activateTimelineItem(current);
-    }
+    items.forEach(function (item) {
+      var rect = item.getBoundingClientRect();
+      var markerY = rect.top + 14;
+      var distance = Math.abs(markerY - targetY);
+      if (distance < currentDistance) {
+        current = item;
+        currentDistance = distance;
+      }
+    });
 
-    function requestTimelineUpdate() {
-      if (timelineTick) return;
-      timelineTick = true;
-      requestAnimationFrame(function () {
-        updateActiveTimelineOnScroll();
-        timelineTick = false;
-      });
-    }
+    activateTimelineItem(current);
+  }
 
-    activateTimelineItem(timelineItems[0]);
-    window.addEventListener('scroll', requestTimelineUpdate, { passive: true });
-    window.addEventListener('resize', requestTimelineUpdate);
+  function requestTimelineUpdate() {
+    if (timelineTick) return;
+    timelineTick = true;
+    requestAnimationFrame(function () {
+      updateActiveTimelineOnScroll();
+      timelineTick = false;
+    });
+  }
+
+  function initTimelineScroll() {
+    var items = getTimelineItems();
+    if (!items.length) return;
+
+    activateTimelineItem(items[0]);
     requestTimelineUpdate();
 
+    if (timelineObserver) timelineObserver.disconnect();
+
     if ('IntersectionObserver' in window && !reduceMotion.matches) {
-      var timelineObserver = new IntersectionObserver(function (entries) {
+      timelineObserver = new IntersectionObserver(function (entries) {
         if (entries.some(function (entry) { return entry.isIntersecting; })) {
           requestTimelineUpdate();
         }
@@ -231,9 +253,14 @@
         threshold: [0, 0.25, 0.5, 0.75, 1]
       });
 
-      timelineItems.forEach(function (item) { timelineObserver.observe(item); });
+      items.forEach(function (item) { timelineObserver.observe(item); });
     }
   }
+
+  initTimelineScroll();
+  window.addEventListener('scroll', requestTimelineUpdate, { passive: true });
+  window.addEventListener('resize', requestTimelineUpdate);
+  window.ENZA_reinitTimeline = initTimelineScroll;
 
   /* ---------- CONTACT FORM MAILTO ---------- */
   var form = document.getElementById('contactForm');
@@ -327,6 +354,43 @@
     document.execCommand('copy');
     markCopied();
   });
+
+  /* ---------- copy email address ---------- */
+  var copyEmailBtn = document.getElementById('copyEmailBtn');
+  if (copyEmailBtn) {
+    copyEmailBtn.addEventListener('click', function () {
+      var email = copyEmailBtn.getAttribute('data-email');
+
+      function markCopied() {
+        var lang = body.getAttribute('data-lang') || 'it';
+        var defaultLabel = copyEmailBtn.getAttribute('data-' + lang + '-label');
+        copyEmailBtn.classList.add('is-copied');
+        copyEmailBtn.setAttribute('aria-label', lang === 'en' ? 'Copied' : 'Copiato');
+        copyEmailBtn.setAttribute('title', lang === 'en' ? 'Copied' : 'Copiato');
+        clearTimeout(copyEmailBtn._t);
+        copyEmailBtn._t = setTimeout(function () {
+          copyEmailBtn.classList.remove('is-copied');
+          copyEmailBtn.setAttribute('aria-label', defaultLabel);
+          copyEmailBtn.setAttribute('title', defaultLabel);
+        }, 1800);
+      }
+
+      if (navigator.clipboard && window.isSecureContext) {
+        navigator.clipboard.writeText(email).then(markCopied);
+        return;
+      }
+
+      var temp = document.createElement('textarea');
+      temp.value = email;
+      temp.style.position = 'fixed';
+      temp.style.opacity = '0';
+      document.body.appendChild(temp);
+      temp.select();
+      document.execCommand('copy');
+      document.body.removeChild(temp);
+      markCopied();
+    });
+  }
 
   /* ---------- shrink floating UI on scroll (mobile) ---------- */
   var scrollTick = false;

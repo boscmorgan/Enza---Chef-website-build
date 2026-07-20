@@ -81,7 +81,7 @@ GitHub e Vercel ripubblica il sito in automatico — nessun database, nessun hos
   - **Foto del sito** → `content/site.json`: foto hero / chi-sono / corsi.
 - Il sito legge i JSON via `js/content.js`. Per i testi: ogni elemento editabile in `index.html` ha un attributo `data-copy="sezione.chiave"`; al caricamento gli attributi `data-it`/`data-en` vengono sovrascritti con i valori del JSON, così il toggle IT/EN continua a funzionare. La timeline della Biografia viene generata dal JSON (si possono aggiungere/togliere tappe dal pannello). Il markup statico resta come fallback se il fetch fallisce.
 - Per aggiungere un nuovo testo editabile: aggiungi la coppia `*_it`/`*_en` in `content/copy.json`, il campo in `admin/config.yml` e `data-copy="sezione.chiave"` sull'elemento in `index.html`.
-- Immagini caricate dal pannello finiscono in `images/uploads/` e vengono committate nel repo.
+- La libreria foto del pannello punta a `images/`: Enza vede e può scegliere tutte le foto già online (comprese quelle nella sottocartella `FOTO/`), e le nuove foto caricate vengono committate nel repo.
 - Login: un solo account GitHub condiviso, che deve avere accesso in scrittura a questo repo.
 
 **Setup una tantum (da fare voi, richiede accesso agli account GitHub/Vercel):**

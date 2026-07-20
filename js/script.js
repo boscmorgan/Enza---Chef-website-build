@@ -123,13 +123,32 @@
     if (animate) jiggle();
   }
 
+  var LANG_STORAGE_KEY = 'enza-lang';
+
   langButtons.forEach(function (b) {
     b.addEventListener('click', function () {
-      applyLang(b.getAttribute('data-set-lang'), true);
+      var lang = b.getAttribute('data-set-lang');
+      applyLang(lang, true);
+      try { localStorage.setItem(LANG_STORAGE_KEY, lang); } catch (e) { /* ignore (private mode, etc.) */ }
     });
   });
 
-  applyLang('it', false); // default, no animation on load
+  /* Default to Italian; only switch to English if the visitor's browser is
+     clearly set to English and hasn't already picked a language on this site. */
+  function detectLang() {
+    var saved;
+    try { saved = localStorage.getItem(LANG_STORAGE_KEY); } catch (e) { saved = null; }
+    if (saved === 'it' || saved === 'en') return saved;
+
+    var prefs = (navigator.languages && navigator.languages.length) ? navigator.languages : [navigator.language || ''];
+    for (var i = 0; i < prefs.length; i++) {
+      if (/^en/i.test(prefs[i])) return 'en';
+      if (/^it/i.test(prefs[i])) return 'it';
+    }
+    return 'it';
+  }
+
+  applyLang(detectLang(), false); // default, no animation on load
 
   /* ---------- EXPAND / "Espandi" ---------- */
   var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');

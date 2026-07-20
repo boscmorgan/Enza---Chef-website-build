@@ -121,8 +121,14 @@
     if (!img || !photos || !photos.length) return;
     var choice = photos[Math.floor(Math.random() * photos.length)];
     img.src = choice.image;
-    if (choice.alt_en || choice.alt_it) {
-      img.alt = choice['alt_' + currentLang()] || choice.alt_it || img.alt || '';
+    if (choice.alt_it) img.setAttribute('data-it-alt', choice.alt_it);
+    if (choice.alt_en) {
+      img.setAttribute('data-en-alt', choice.alt_en);
+    } else if (choice.alt_it) {
+      img.setAttribute('data-en-alt', choice.alt_it);
+    }
+    if (choice.alt_it || choice.alt_en) {
+      img.alt = choice['alt_' + currentLang()] || choice.alt_it || choice.alt_en || img.alt || '';
     }
   }
 

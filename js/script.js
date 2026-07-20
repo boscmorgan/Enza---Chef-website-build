@@ -9,7 +9,6 @@
   'use strict';
 
   var body = document.body;
-  var sideMenu = document.getElementById('sideMenu');
   var btnOpen = document.getElementById('menuOpen');
   var btnClose = document.getElementById('menuClose');
   var scrim = document.getElementById('menuScrim');
@@ -57,7 +56,11 @@
       var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
       target.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'start' });
       target.setAttribute('tabindex', '-1');
-      target.focus({ preventScroll: true });
+      try {
+        target.focus({ preventScroll: true });
+      } catch (_) {
+        target.focus();
+      }
       if (!DESKTOP.matches) closeMenu();
     });
   });
@@ -105,7 +108,13 @@
         el.setAttribute('title', val);
       }
     });
-
+ 
+    // image alt text for dynamically rendered hero photos
+    document.querySelectorAll('[data-it-alt], [data-en-alt]').forEach(function (el) {
+      var alt = el.getAttribute('data-' + lang + '-alt') || el.getAttribute('data-it-alt') || el.getAttribute('data-en-alt');
+      if (alt !== null) el.alt = alt;
+    });
+ 
     // expand/collapse buttons keep the right label for their current state
     document.querySelectorAll('.read-more').forEach(function (b) {
       var open = b.getAttribute('aria-expanded') === 'true';
@@ -353,7 +362,7 @@
     copyMailFallback.addEventListener('click', function () {
       function markCopied() {
         var lang = body.getAttribute('data-lang') || 'it';
-        var defaultLabel = copyMailFallback.getAttribute('data-' + lang) || 'Copia messaggio';
+        var defaultLabel = copyMailFallback.getAttribute('data-' + lang) || (lang === 'en' ? 'Copy message' : 'Copia messaggio');
         copyMailFallback.textContent = lang === 'en' ? 'Copied' : 'Copiato';
         if (mailFallbackText && mailFallbackText.blur) mailFallbackText.blur();
         if (window.getSelection) window.getSelection().removeAllRanges();
@@ -390,7 +399,7 @@
 
       function markCopied() {
         var lang = body.getAttribute('data-lang') || 'it';
-        var defaultLabel = copyEmailBtn.getAttribute('data-' + lang + '-label');
+        var defaultLabel = copyEmailBtn.getAttribute('data-' + lang + '-label') || (lang === 'en' ? 'Copy email address' : 'Copia indirizzo email');
         copyEmailBtn.classList.add('is-copied');
         copyEmailBtn.setAttribute('aria-label', lang === 'en' ? 'Copied' : 'Copiato');
         copyEmailBtn.setAttribute('title', lang === 'en' ? 'Copied' : 'Copiato');

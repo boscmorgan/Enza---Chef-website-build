@@ -287,13 +287,9 @@
     if (corsiSub) corsiSub.hidden = false;
     if (corsiEmpty) corsiEmpty.hidden = true;
 
-    // Upcoming classes on the left (soonest first), then past classes as a
-    // chronological archive — each group reads oldest → newest left to right.
-    var now = new Date();
-    all.sort(function (a, b) { return new Date(a.date) - new Date(b.date); });
-    var upcoming = all.filter(function (c) { return new Date(c.date) >= now; });
-    var past = all.filter(function (c) { return new Date(c.date) < now; });
-    var ordered = upcoming.concat(past);
+    // Newest date on the left, oldest on the right — one descending timeline,
+    // regardless of whether a class is upcoming or past.
+    var ordered = all.sort(function (a, b) { return new Date(b.date) - new Date(a.date); });
 
     var preservedScrollLeft = hasSetInitialView ? track.scrollLeft : null;
 
@@ -303,8 +299,8 @@
     if (prevBtn) prevBtn.hidden = !needsArrows;
     if (nextBtn) nextBtn.hidden = !needsArrows;
 
-    // Upcoming classes sit at the far left by construction, so the default
-    // view is simply the start of the track.
+    // The newest (upcoming) classes sit at the far left by construction, so
+    // the default view is simply the start of the track.
     track.scrollLeft = preservedScrollLeft !== null ? preservedScrollLeft : 0;
     hasSetInitialView = true;
     updateArrows();

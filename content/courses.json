@@ -8,7 +8,7 @@
       "description_it": "Una colazione preparata insieme, tra ricette dolci e chiacchiere.",
       "description_en": "A breakfast made together, with sweet recipes and good conversation.",
       "price": "€60",
-      "image": "images/corso-colazione-insieme.jpg"
+      "image": "images/FOTO/CORSI_COOKIES_2.webp"
     },
     {
       "title_it": "Svezzamento e Tagli Sicuri",
@@ -18,7 +18,7 @@
       "description_it": "Incontro pratico su svezzamento e tagli sicuri in cucina, con la dott.ssa nutrizionista Francesca Coppini.",
       "description_en": "A hands-on session on weaning and safe kitchen cuts, with nutritionist Dr. Francesca Coppini.",
       "price": "€50",
-      "image": "images/corso-svezzamento-tagli.jpg"
+      "image": "images/FOTO/CORSI_APPUNTI_2.webp"
     },
     {
       "title_it": "Frolle e Biscotti senza Latte né Uova",
@@ -28,7 +28,7 @@
       "description_it": "Impariamo a preparare frolle e biscotti senza latte né uova.",
       "description_en": "Learn to make shortcrust pastry and biscuits without milk or eggs.",
       "price": "€60",
-      "image": "images/corso-frolle-biscotti.jpg"
+      "image": "images/FOTO/TORTE_SOPRA.webp"
     },
     {
       "title_it": "Alimentazione Veg per Sportivə",
@@ -38,7 +38,7 @@
       "description_it": "Alimentazione vegetale per sportivə e persone attive, con la dott.ssa nutrizionista Francesca Coppini.",
       "description_en": "Plant-based nutrition for athletes and active people, with nutritionist Dr. Francesca Coppini.",
       "price": "€55",
-      "image": "images/corso-alimentazione-sportivi.jpg"
+      "image": "images/FOTO/CORSO_CLOSE_UP_CAPONATA.webp"
     },
     {
       "title_it": "Le Proteine Vegetali che Compri",
@@ -47,7 +47,7 @@
       "location": "Pasticceria Buonamici, Via dell'Orto 31r, Firenze",
       "description_it": "Valorizzare tofu e seitan: come sceglierli e cucinarli al meglio.",
       "description_en": "Making the most of tofu and seitan: how to choose and cook them well.",
-      "image": "images/corso-proteine-vegetali.jpg"
+      "image": "images/FOTO/CORSO_CLOSE_UP_SEITAN.webp"
     },
     {
       "title_it": "\"Anto', fa caldo!\"",
@@ -56,7 +56,7 @@
       "location": "Pasticceria Buonamici, Via dell'Orto 31r, Firenze",
       "description_it": "Cucina fresca e veloce per quando hai fame ma non hai voglia di cucinare.",
       "description_en": "Fresh, quick cooking for when you're hungry but don't feel like cooking.",
-      "image": "images/corso-anto-fa-caldo.jpg"
+      "image": "images/FOTO/CORSO_CLOSE_UP_MELANZANE.webp"
     },
     {
       "title_it": "Colazione Insieme (prima delle vacanze)",
@@ -65,7 +65,7 @@
       "location": "Pasticceria Buonamici, Via dell'Orto 31r, Firenze",
       "description_it": "Ci salutiamo prima delle vacanze con un'ultima colazione insieme.",
       "description_en": "One last breakfast together before we say goodbye for the summer break.",
-      "image": "images/corso-colazione-vacanze.jpg"
+      "image": "images/FOTO/CORSI_COOKIES_2.webp"
     }
   ]
 }

@@ -287,12 +287,7 @@
     if (corsiSub) corsiSub.hidden = false;
     if (corsiEmpty) corsiEmpty.hidden = true;
 
-    var now = new Date();
-    var upcoming = all.filter(function (c) { return new Date(c.date) >= now; })
-      .sort(function (a, b) { return new Date(a.date) - new Date(b.date); });
-    var past = all.filter(function (c) { return new Date(c.date) < now; })
-      .sort(function (a, b) { return new Date(b.date) - new Date(a.date); });
-    var ordered = upcoming.concat(past);
+    var ordered = all.sort(function (a, b) { return new Date(a.date) - new Date(b.date); });
 
     var preservedScrollLeft = hasSetInitialView ? track.scrollLeft : null;
 
@@ -302,9 +297,25 @@
     if (prevBtn) prevBtn.hidden = !needsArrows;
     if (nextBtn) nextBtn.hidden = !needsArrows;
 
-    // Upcoming classes (soonest first) sit at the far left by construction,
-    // so the default view is simply the start of the track.
-    track.scrollLeft = preservedScrollLeft !== null ? preservedScrollLeft : 0;
+    // Strict chronological order, with the initial view scrolled to the first
+    // upcoming class — past ones sit behind the left arrow. Suspend the CSS
+    // smooth behavior so the initial position doesn't animate on load.
+    var targetScrollLeft = 0;
+    if (preservedScrollLeft !== null) {
+      targetScrollLeft = preservedScrollLeft;
+    } else {
+      var firstTile = track.firstElementChild;
+      var firstUpcoming = track.querySelector('.corso-tile:not(.corso-tile--past)');
+      if (firstUpcoming && firstTile) {
+        targetScrollLeft = firstUpcoming.offsetLeft - firstTile.offsetLeft;
+      } else {
+        // everything is past: land on the most recent classes
+        targetScrollLeft = track.scrollWidth;
+      }
+    }
+    track.style.scrollBehavior = 'auto';
+    track.scrollLeft = targetScrollLeft;
+    track.style.scrollBehavior = '';
     hasSetInitialView = true;
     updateArrows();
   }

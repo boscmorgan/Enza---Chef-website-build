@@ -56,6 +56,7 @@
       "location": "Pasticceria Buonamici, Via dell'Orto 31r, Firenze",
       "description_it": "Cucina fresca e veloce per quando hai fame ma non hai voglia di cucinare.",
       "description_en": "Fresh, quick cooking for when you're hungry but don't feel like cooking.",
+      "price": "",
       "image": "images/FOTO/CORSO_CLOSE_UP_MELANZANE.webp"
     },
     {
@@ -65,6 +66,7 @@
       "location": "Pasticceria Buonamici, Via dell'Orto 31r, Firenze",
       "description_it": "Ci salutiamo prima delle vacanze con un'ultima colazione insieme.",
       "description_en": "One last breakfast together before we say goodbye for the summer break.",
+      "price": "",
       "image": "images/FOTO/CORSI_COOKIES_2.webp"
     }
   ]

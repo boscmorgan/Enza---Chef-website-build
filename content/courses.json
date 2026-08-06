@@ -1,14 +1,14 @@
 {
   "courses": [
     {
-      "title_it": "Colazione Insieme",
-      "title_en": "Breakfast Together",
-      "date": "2026-05-16T08:30:00.000Z",
+      "title_it": "A Tutto Tofu!",
+      "title_en": "Everything about Tofu",
+      "date": "2026-09-05T16:30",
       "location": "Pasticceria Buonamici, Via dell'Orto 31r, Firenze",
-      "description_it": "Una colazione preparata insieme, tra ricette dolci e chiacchiere.",
-      "description_en": "A breakfast made together, with sweet recipes and good conversation.",
+      "description_it": "Vieni a scoprire come acquistare, cucinare e valorizzare uno degli ingredienti più versatili della cucina vegetale: il Tofu! Ricetta salate ( e anche un dolcetto) che ti faranno rivalutare questo piccolo amico troppo spesso bistrattato.",
+      "description_en": "Come and learn everything you ever wondered and never dared to ask about Tofu.",
       "price": "€60",
-      "image": "images/FOTO/CORSI_COOKIES_2.webp"
+      "image": "/images/FOTO/CROSO_CLOSE_TOFU_1.webp"
     },
     {
       "title_it": "Svezzamento e Tagli Sicuri",
@@ -47,6 +47,7 @@
       "location": "Pasticceria Buonamici, Via dell'Orto 31r, Firenze",
       "description_it": "Valorizzare tofu e seitan: come sceglierli e cucinarli al meglio.",
       "description_en": "Making the most of tofu and seitan: how to choose and cook them well.",
+      "price": "",
       "image": "images/FOTO/CORSO_CLOSE_UP_SEITAN.webp"
     },
     {
@@ -66,8 +67,38 @@
       "location": "Pasticceria Buonamici, Via dell'Orto 31r, Firenze",
       "description_it": "Ci salutiamo prima delle vacanze con un'ultima colazione insieme.",
       "description_en": "One last breakfast together before we say goodbye for the summer break.",
-      "price": "",
+      "price": "60",
       "image": "images/FOTO/CORSI_COOKIES_2.webp"
+    },
+    {
+      "title_it": "Alimentazione Veg per Gente Attiva e Sportiva",
+      "title_en": "Veg Meals for Gym Folks",
+      "date": "2026-09-10T18:30",
+      "location": "Pasticceria Buonamici",
+      "description_it": "Con l'aiuto della Dott.ssa Nutrizionista Francesca Coppini, capiremo come integrare un'alimentazione vegetale e un vita sportiva, smontando qualche pregiudizio e imparando a gestire performance sportiva ed equilibrio alimentare.",
+      "description_en": "Plant-based nutrition for athletes and active people, with nutritionist Dr. Francesca Coppini.",
+      "price": "60 euro",
+      "image": "/images/FOTO/CORSI_ATTENTI.webp"
+    },
+    {
+      "title_it": "Colazione Insieme",
+      "title_en": "Breakfast Together",
+      "date": "2026-09-26T10:30",
+      "location": "Pasticceria Buonamici",
+      "description_it": "Tante preparazioni dolci e salate per iniziare bene la giornata e una grande tavola per condividere tutto quel che prepariamo.",
+      "description_en": "Enjoy this morning lesson: sweet and savoury options for your breakfast!",
+      "price": "60",
+      "image": "/images/FOTO/CORSI_TAVOLA_COLAZIONE.webp"
+    },
+    {
+      "title_it": "Schiscetta Remix",
+      "title_en": "Packed Lunch",
+      "date": "2026-10-03T16:30",
+      "location": "Pasticceria Buonamici",
+      "description_it": "Idee e ricette per pasti colorati e nutrienti da portarsi fuori casa.",
+      "description_en": "Ideas and recipes for creative and nutritious meals on the go.",
+      "price": "60",
+      "image": "/images/FOTO/CORSO_CLOSE_UP_MELANZANE.webp"
     }
   ]
 }

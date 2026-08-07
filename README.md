@@ -79,17 +79,28 @@ chiama un **deploy hook** di Vercel. L'hook è attribuito all'account che lo
 possiede, non all'autore del commit, quindi il controllo non scatta mai e
 chiunque abbia accesso al CMS può pubblicare.
 
-**Setup una tantum:**
+`vercel.json` completa il quadro con `git.deploymentEnabled: false`: spegne il
+deploy automatico dell'integrazione Git, così l'unica strada verso la
+produzione è il workflow e ogni push produce una build sola.
+
+**Setup una tantum — l'ordine conta:**
 1. Vercel → progetto → **Settings → Git → Deploy Hooks**: crea un hook sul
    branch `main` (nome consigliato: `github-actions`) e copia l'URL.
 2. GitHub → repo → **Settings → Secrets and variables → Actions → New
    repository secret**: nome `VERCEL_DEPLOY_HOOK_URL`, valore l'URL del punto 1.
-3. Vercel → **Settings → Git**: disattiva **Automatic deployments**, altrimenti
-   ogni push tenta due build (una delle quali fallisce comunque il controllo).
+3. Solo **dopo** i punti 1 e 2, porta `vercel.json` su `main`. Vercel legge
+   `deploymentEnabled` dal commit che riceve: se arriva prima che l'hook
+   esista, il deploy automatico è già spento e nulla lo sostituisce.
 
 L'URL dell'hook è una credenziale: vive solo nel secret di GitHub, mai nel repo.
 Per pubblicare a mano senza aspettare un push: GitHub → **Actions → Deploy to
 Vercel → Run workflow**.
+
+**Se il sito smette di aggiornarsi:** guarda prima l'esito del workflow su
+GitHub → Actions. Workflow verde ma nessuna build su Vercel significa che
+l'hook è stato cancellato o rigenerato — ricrea l'hook e aggiorna il secret.
+Per sbloccare subito la produzione: **Redeploy** dalla dashboard Vercel, oppure
+togli `git.deploymentEnabled` da `vercel.json` per riaccendere il deploy da Git.
 
 ## Admin / CMS (testi, calendario corsi e foto)
 

@@ -16,8 +16,10 @@ name: Deploy to Vercel
 #      Create a hook named "github-actions" pointing at branch `main`, copy the URL.
 #   2. GitHub → repo → Settings → Secrets and variables → Actions → New secret
 #      Name: VERCEL_DEPLOY_HOOK_URL   Value: the URL from step 1.
-#   3. Vercel → Project → Settings → Git → turn OFF "Automatic deployments"
-#      so a push doesn't try (and fail) to build twice.
+#   3. Only after 1 and 2: merge vercel.json's `git.deploymentEnabled: false`
+#      to main. That switch is read from the commit Vercel receives, so landing
+#      it before the hook exists turns off Git deploys with nothing to replace
+#      them. Order matters here.
 # The hook URL is a write credential — keep it in the secret, never in the repo.
 
 on:

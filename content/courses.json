@@ -7,68 +7,68 @@
       "location": "Pasticceria Buonamici, Via dell'Orto 31r, Firenze",
       "description_it": "Vieni a scoprire come acquistare, cucinare e valorizzare uno degli ingredienti più versatili della cucina vegetale: il Tofu! Ricetta salate ( e anche un dolcetto) che ti faranno rivalutare questo piccolo amico troppo spesso bistrattato.",
       "description_en": "Come and learn everything you ever wondered and never dared to ask about Tofu.",
-      "price": "€60",
+      "price": "60",
       "image": "/images/FOTO/CROSO_CLOSE_TOFU_1.webp"
     },
     {
       "title_it": "Svezzamento e Tagli Sicuri",
       "title_en": "Weaning & Safe Cuts",
-      "date": "2026-05-19T08:00:00.000Z",
+      "date": "2026-05-19T10:00",
       "location": "Pasticceria Buonamici, Via dell'Orto 31r, Firenze",
       "description_it": "Incontro pratico su svezzamento e tagli sicuri in cucina, con la dott.ssa nutrizionista Francesca Coppini.",
       "description_en": "A hands-on session on weaning and safe kitchen cuts, with nutritionist Dr. Francesca Coppini.",
-      "price": "€50",
-      "image": "images/FOTO/CORSI_APPUNTI_2.webp"
+      "price": "50",
+      "image": "/images/FOTO/CORSI_APPUNTI_2.webp"
     },
     {
       "title_it": "Frolle e Biscotti senza Latte né Uova",
       "title_en": "Egg- & Dairy-Free Shortcrust & Biscuits",
-      "date": "2026-05-28T16:30:00.000Z",
+      "date": "2026-05-28T18:30",
       "location": "Pasticceria Buonamici, Via dell'Orto 31r, Firenze",
       "description_it": "Impariamo a preparare frolle e biscotti senza latte né uova.",
       "description_en": "Learn to make shortcrust pastry and biscuits without milk or eggs.",
-      "price": "€60",
-      "image": "images/FOTO/TORTE_SOPRA.webp"
+      "price": "60",
+      "image": "/images/FOTO/TORTE_SOPRA.webp"
     },
     {
       "title_it": "Alimentazione Veg per Sportivə",
       "title_en": "Plant-Based Nutrition for Active People",
-      "date": "2026-06-09T16:30:00.000Z",
+      "date": "2026-06-09T18:30",
       "location": "Pasticceria Buonamici, Via dell'Orto 31r, Firenze",
       "description_it": "Alimentazione vegetale per sportivə e persone attive, con la dott.ssa nutrizionista Francesca Coppini.",
       "description_en": "Plant-based nutrition for athletes and active people, with nutritionist Dr. Francesca Coppini.",
-      "price": "€55",
-      "image": "images/FOTO/CORSO_CLOSE_UP_CAPONATA.webp"
+      "price": "55",
+      "image": "/images/FOTO/CORSO_CLOSE_UP_CAPONATA.webp"
     },
     {
       "title_it": "Le Proteine Vegetali che Compri",
       "title_en": "The Plant Proteins You Buy",
-      "date": "2026-07-09T16:30:00.000Z",
+      "date": "2026-07-09T18:30",
       "location": "Pasticceria Buonamici, Via dell'Orto 31r, Firenze",
       "description_it": "Valorizzare tofu e seitan: come sceglierli e cucinarli al meglio.",
       "description_en": "Making the most of tofu and seitan: how to choose and cook them well.",
       "price": "",
-      "image": "images/FOTO/CORSO_CLOSE_UP_SEITAN.webp"
+      "image": "/images/FOTO/CORSO_CLOSE_UP_SEITAN.webp"
     },
     {
       "title_it": "\"Anto', fa caldo!\"",
       "title_en": "\"Anto', it's hot!\"",
-      "date": "2026-07-23T16:30:00.000Z",
+      "date": "2026-07-23T18:30",
       "location": "Pasticceria Buonamici, Via dell'Orto 31r, Firenze",
       "description_it": "Cucina fresca e veloce per quando hai fame ma non hai voglia di cucinare.",
       "description_en": "Fresh, quick cooking for when you're hungry but don't feel like cooking.",
       "price": "",
-      "image": "images/FOTO/CORSO_CLOSE_UP_MELANZANE.webp"
+      "image": "/images/FOTO/CORSO_CLOSE_UP_MELANZANE.webp"
     },
     {
       "title_it": "Colazione Insieme (prima delle vacanze)",
       "title_en": "Breakfast Together (Before the Break)",
-      "date": "2026-08-01T08:30:00.000Z",
+      "date": "2026-08-01T10:30",
       "location": "Pasticceria Buonamici, Via dell'Orto 31r, Firenze",
       "description_it": "Ci salutiamo prima delle vacanze con un'ultima colazione insieme.",
       "description_en": "One last breakfast together before we say goodbye for the summer break.",
       "price": "60",
-      "image": "images/FOTO/CORSI_COOKIES_2.webp"
+      "image": "/images/FOTO/CORSI_COOKIES_2.webp"
     },
     {
       "title_it": "Alimentazione Veg per Gente Attiva e Sportiva",
@@ -77,7 +77,7 @@
       "location": "Pasticceria Buonamici",
       "description_it": "Con l'aiuto della Dott.ssa Nutrizionista Francesca Coppini, capiremo come integrare un'alimentazione vegetale e un vita sportiva, smontando qualche pregiudizio e imparando a gestire performance sportiva ed equilibrio alimentare.",
       "description_en": "Plant-based nutrition for athletes and active people, with nutritionist Dr. Francesca Coppini.",
-      "price": "60 euro",
+      "price": "60",
       "image": "/images/FOTO/CORSI_ATTENTI.webp"
     },
     {

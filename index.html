@@ -269,11 +269,27 @@
         <p class="eyebrow light" data-copy="calendario.eyebrow" data-it="Calendario" data-en="Calendar">Calendario</p>
         <h2 class="section-title light" data-copy="calendario.title" data-it="Corsi" data-en="Classes">Corsi</h2>
         <p class="servizi-sub" id="corsiSub" data-copy="calendario.sub"
-           data-it="I corsi in ordine cronologico: scorri o usa le frecce per vedere quelli passati."
-           data-en="Classes in chronological order: scroll or use the arrows to see past ones.">
-          I corsi in ordine cronologico: scorri o usa le frecce per vedere quelli passati.
+           data-it="Scorri per sfogliare i corsi: tocca una scheda per i dettagli."
+           data-en="Swipe through the classes: tap a card for the details.">
+          Scorri per sfogliare i corsi: tocca una scheda per i dettagli.
         </p>
       </header>
+
+      <div class="corsi-tabs-row">
+      <div class="corsi-tabs" id="corsiTabs" role="tablist"
+           data-it-label="Filtra i corsi" data-en-label="Filter classes" aria-label="Filtra i corsi" hidden>
+        <button type="button" class="corsi-tab is-active" role="tab" data-bucket="upcoming"
+                aria-selected="true" aria-controls="corsiCarousel">
+          <span data-copy="calendario.tab_upcoming" data-it="Prossimi" data-en="Upcoming">Prossimi</span>
+          <span class="corsi-tab-count" aria-hidden="true"></span>
+        </button>
+        <button type="button" class="corsi-tab" role="tab" data-bucket="past"
+                aria-selected="false" tabindex="-1" aria-controls="corsiCarousel">
+          <span data-copy="calendario.tab_past" data-it="Passati" data-en="Past">Passati</span>
+          <span class="corsi-tab-count" aria-hidden="true"></span>
+        </button>
+      </div>
+      </div>
 
       <div class="carousel">
         <button type="button" class="carousel-arrow carousel-prev" id="corsiPrev"
@@ -287,14 +303,21 @@
         </button>
       </div>
 
-      <div class="corsi-empty" id="corsiEmpty" hidden>
-        <p class="servizi-sub" data-copy="calendario.empty"
+      <div class="carousel-dots" id="corsiDots" aria-hidden="true" hidden></div>
+
+      <div class="corsi-empty">
+        <p class="servizi-sub" id="corsiEmpty" data-copy="calendario.empty"
            data-it="Al momento non ci sono corsi in programma."
-           data-en="There are no classes scheduled right now.">
+           data-en="There are no classes scheduled right now." hidden>
           Al momento non ci sono corsi in programma.
         </p>
-        <a href="#contatti" data-scroll class="btn btn-pink" data-copy="calendario.cta_notify"
-           data-it="Scrivimi per essere avvisata →" data-en="Message me to be notified →">Scrivimi per essere avvisata →</a>
+        <p class="servizi-sub" id="corsiEmptyPast" data-copy="calendario.empty_past"
+           data-it="Non c'è ancora un archivio di corsi passati."
+           data-en="No past classes yet." hidden>
+          Non c'è ancora un archivio di corsi passati.
+        </p>
+        <a href="#contatti" data-scroll class="btn btn-pink" id="corsiEmptyCta" data-copy="calendario.cta_notify"
+           data-it="Scrivimi per essere avvisata →" data-en="Message me to be notified →" hidden>Scrivimi per essere avvisata →</a>
       </div>
 
       <div class="corso-modal" id="corsoModal" hidden>

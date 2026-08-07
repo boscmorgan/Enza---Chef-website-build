@@ -32,18 +32,75 @@
     return currentLang() === 'en' ? 'en-GB' : 'it-IT';
   }
 
+  /* ---------- dates ----------
+     The CMS stores a course date as plain Italian wall-clock time
+     ("2026-09-05T16:30"). Handing that to new Date() reads it in the
+     *visitor's* zone, so the same class would show at a different hour for
+     someone browsing from London or New York. Resolve it against Rome
+     instead. Older entries that still carry a Z or a numeric offset are
+     already absolute instants, so they pass straight through. */
+  var ROME = 'Europe/Rome';
+  var NAIVE_DATE = /^(\d{4})-(\d{2})-(\d{2})[T ](\d{2}):(\d{2})(?::(\d{2}))?$/;
+  var romeParts = new Intl.DateTimeFormat('en-US', {
+    timeZone: ROME, year: 'numeric', month: '2-digit', day: '2-digit',
+    hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false
+  });
+
+  // How far Rome sits from UTC at a given instant, in milliseconds.
+  function romeOffsetMs(instantMs) {
+    var p = {};
+    romeParts.formatToParts(new Date(instantMs)).forEach(function (part) {
+      if (part.type !== 'literal') p[part.type] = parseInt(part.value, 10);
+    });
+    // hour12:false renders midnight as 24 in some engines.
+    return Date.UTC(p.year, p.month - 1, p.day, p.hour % 24, p.minute, p.second) - instantMs;
+  }
+
+  function parseCourseDate(value) {
+    if (!value) return null;
+    var m = NAIVE_DATE.exec(String(value).trim());
+    if (!m) {
+      var absolute = new Date(value);
+      return isNaN(absolute) ? null : absolute;
+    }
+    var wall = Date.UTC(+m[1], +m[2] - 1, +m[3], +m[4], +m[5], +(m[6] || 0));
+    // Two passes, so a time sitting near a DST switch lands on the right side.
+    var utc = wall - romeOffsetMs(wall);
+    utc = wall - romeOffsetMs(utc);
+    var d = new Date(utc);
+    return isNaN(d) ? null : d;
+  }
+
+  // Midnight tonight in Rome: a class stays "upcoming" for the whole of its
+  // own day rather than flipping to "past" the minute it starts.
+  function startOfTodayInRome() {
+    var ymd = new Intl.DateTimeFormat('en-CA', {
+      timeZone: ROME, year: 'numeric', month: '2-digit', day: '2-digit'
+    }).format(new Date());
+    return parseCourseDate(ymd + 'T00:00');
+  }
+
   function shortDate(dateStr) {
-    var d = new Date(dateStr);
-    if (isNaN(d)) return '';
-    return new Intl.DateTimeFormat(locale(), { day: 'numeric', month: 'short', timeZone: 'Europe/Rome' }).format(d);
+    var d = parseCourseDate(dateStr);
+    if (!d) return '';
+    return new Intl.DateTimeFormat(locale(), { day: 'numeric', month: 'short', timeZone: ROME }).format(d);
   }
 
   function longDate(dateStr) {
-    var d = new Date(dateStr);
-    if (isNaN(d)) return '';
+    var d = parseCourseDate(dateStr);
+    if (!d) return '';
     return new Intl.DateTimeFormat(locale(), {
-      day: 'numeric', month: 'long', year: 'numeric', hour: '2-digit', minute: '2-digit', timeZone: 'Europe/Rome'
+      day: 'numeric', month: 'long', year: 'numeric', hour: '2-digit', minute: '2-digit', timeZone: ROME
     }).format(d);
+  }
+
+  /* The CMS now stores the number on its own ("60") and the € is ours to add,
+     so every card reads the same. Anything that isn't a bare number — a
+     legacy "€60", or free text like "Gratis" — is left exactly as written. */
+  function formatPrice(value) {
+    var s = String(value == null ? '' : value).trim();
+    if (!s) return '';
+    return /^\d+([.,]\d{1,2})?$/.test(s) ? '€' + s : s;
   }
 
   function pinSvg() {
@@ -74,6 +131,10 @@
       el.textContent = lang === 'en' && en ? en : it;
     });
     renderTimeline();
+    // Course cards carry copy of their own (the "next up" badge), and copy.json
+    // may land after courses.json — re-render so it isn't left on the fallback.
+    // Only once the courses are actually in, or we'd flash the empty state.
+    if (state.courses) renderCourses();
   }
 
   function renderTimeline() {
@@ -156,7 +217,7 @@
     var metaParts = [];
     if (data.date) metaParts.push(longDate(data.date));
     if (data.location) metaParts.push(data.location);
-    if (data.price) metaParts.push(data.price);
+    if (formatPrice(data.price)) metaParts.push(formatPrice(data.price));
     if (modalMeta) modalMeta.textContent = metaParts.join(' · ');
     if (modalCta) modalCta.hidden = !!data.isPast;
     if (modalImg) {
@@ -196,8 +257,19 @@
   var nextBtn = document.getElementById('corsiNext');
   var carousel = document.querySelector('#corsi-calendario .carousel');
   var corsiEmpty = document.getElementById('corsiEmpty');
+  var corsiEmptyPast = document.getElementById('corsiEmptyPast');
+  var corsiEmptyCta = document.getElementById('corsiEmptyCta');
   var corsiSub = document.getElementById('corsiSub');
-  var hasSetInitialView = false;
+  var tabsEl = document.getElementById('corsiTabs');
+  var dotsEl = document.getElementById('corsiDots');
+  var activeBucket = 'upcoming';
+
+  function tileStep() {
+    var tile = track && track.querySelector('.corso-tile');
+    if (!tile) return track ? track.clientWidth : 0;
+    var gap = parseFloat(getComputedStyle(track).columnGap || getComputedStyle(track).gap) || 0;
+    return tile.getBoundingClientRect().width + gap;
+  }
 
   function updateArrows() {
     if (!track || !prevBtn || !nextBtn) return;
@@ -208,16 +280,42 @@
 
   function scrollByOneTile(direction) {
     if (!track) return;
-    var tile = track.querySelector('.corso-tile');
-    var step = tile ? tile.getBoundingClientRect().width + 24 : track.clientWidth;
-    track.scrollBy({ left: direction * step, behavior: 'smooth' });
+    track.scrollBy({ left: direction * tileStep(), behavior: 'smooth' });
+  }
+
+  /* Stories-style progress bars under the track: one per card, the current
+     one filled. CSS hides them above the phone breakpoint, where three cards
+     are on screen at once and a position indicator would just be noise. */
+  function renderDots(count) {
+    if (!dotsEl) return;
+    dotsEl.hidden = count < 2;
+    if (dotsEl.hidden) { dotsEl.innerHTML = ''; return; }
+    var bars = '';
+    for (var i = 0; i < count; i++) bars += '<span class="carousel-dot"></span>';
+    dotsEl.innerHTML = bars;
+    updateDots();
+  }
+
+  function updateDots() {
+    if (!dotsEl || dotsEl.hidden || !track) return;
+    var step = tileStep();
+    var index = step ? Math.round(track.scrollLeft / step) : 0;
+    var dots = dotsEl.children;
+    if (index > dots.length - 1) index = dots.length - 1;
+    if (index < 0) index = 0;
+    for (var i = 0; i < dots.length; i++) {
+      dots[i].classList.toggle('is-active', i === index);
+    }
   }
 
   if (prevBtn) prevBtn.addEventListener('click', function () { scrollByOneTile(-1); });
   if (nextBtn) nextBtn.addEventListener('click', function () { scrollByOneTile(1); });
 
   if (track) {
-    track.addEventListener('scroll', updateArrows, { passive: true });
+    track.addEventListener('scroll', function () {
+      updateArrows();
+      updateDots();
+    }, { passive: true });
     track.addEventListener('click', function (e) {
       var tile = e.target.closest('.corso-tile');
       if (!tile) return;
@@ -240,29 +338,83 @@
     });
   }
 
-  function tileHtml(c) {
+  function copyText(key, fallback) {
+    var section = state.copy && state.copy.calendario;
+    var value = section && section[key + '_' + currentLang()];
+    if (!value) value = section && section[key + '_it'];
+    return value || fallback;
+  }
+
+  function tileHtml(c, isPast, isNext) {
     var title = pick(c, 'title');
     var desc = pick(c, 'description');
-    var isPast = new Date(c.date) < new Date();
     var img = c.image
       ? '<img src="' + escapeHtml(c.image) + '" alt="' + escapeHtml(title) + '" loading="lazy" />'
       : '';
     var tag = shortDate(c.date)
       ? '<span class="corso-tile-tag">' + escapeHtml(shortDate(c.date)) + '</span>'
       : '';
-    var ribbon = isPast
-      ? '<span class="corso-tile-ribbon">' + (currentLang() === 'en' ? 'Past' : 'Passato') + '</span>'
-      : '';
-    var metaLine = c.location
-      ? '<p class="corso-tile-meta">' + pinSvg() + '<span>' + escapeHtml(c.location) + '</span></p>'
-      : '';
-    return '<article class="corso-tile' + (isPast ? ' corso-tile--past' : '') + '" tabindex="0" role="button" aria-haspopup="dialog" ' +
+    var ribbon = '';
+    if (isPast) {
+      ribbon = '<span class="corso-tile-ribbon">' + (currentLang() === 'en' ? 'Past' : 'Passato') + '</span>';
+    } else if (isNext) {
+      ribbon = '<span class="corso-tile-ribbon corso-tile-ribbon--next">' +
+        escapeHtml(copyText('next_badge', currentLang() === 'en' ? 'Next up' : 'Il prossimo')) + '</span>';
+    }
+    var price = formatPrice(c.price);
+    var metaBits = '';
+    if (c.location) {
+      metaBits += '<p class="corso-tile-meta">' + pinSvg() + '<span>' + escapeHtml(c.location) + '</span></p>';
+    }
+    if (price) {
+      metaBits += '<p class="corso-tile-price">' + escapeHtml(price) + '</p>';
+    }
+    return '<article class="corso-tile' + (isPast ? ' corso-tile--past' : '') +
+      (isNext ? ' corso-tile--next' : '') + '" tabindex="0" role="button" aria-haspopup="dialog" ' +
       'data-full-title="' + escapeHtml(title) + '" data-full-desc="' + escapeHtml(desc) + '" ' +
       'data-full-image="' + escapeHtml(c.image || '') + '" data-full-date="' + escapeHtml(c.date || '') + '" ' +
       'data-full-location="' + escapeHtml(c.location || '') + '" data-full-price="' + escapeHtml(c.price || '') + '">' +
       img + '<div class="corso-tile-scrim"></div>' + ribbon + tag +
-      '<div class="corso-tile-body"><h3>' + escapeHtml(title) + '</h3><p>' + escapeHtml(desc) + '</p>' + metaLine + '</div>' +
+      '<div class="corso-tile-body"><h3>' + escapeHtml(title) + '</h3>' +
+      '<p class="corso-tile-desc">' + escapeHtml(desc) + '</p>' + metaBits + '</div>' +
       '</article>';
+  }
+
+  /* Upcoming soonest-first (what a visitor is actually shopping for), past
+     most-recent-first (an archive reads backwards). A course with no usable
+     date is still being planned, so it sits at the end of the upcoming list
+     rather than disappearing. */
+  function splitCourses(all) {
+    var todayStart = startOfTodayInRome();
+    var floor = todayStart ? todayStart.getTime() : Date.now();
+    var upcoming = [], past = [], undated = [];
+
+    all.forEach(function (course) {
+      var when = parseCourseDate(course.date);
+      if (!when) undated.push({ course: course, when: null });
+      else if (when.getTime() >= floor) upcoming.push({ course: course, when: when });
+      else past.push({ course: course, when: when });
+    });
+
+    upcoming.sort(function (a, b) { return a.when - b.when; });
+    past.sort(function (a, b) { return b.when - a.when; });
+    return { upcoming: upcoming.concat(undated), past: past };
+  }
+
+  function updateTabs(counts) {
+    if (!tabsEl) return;
+    // With nothing in the archive there's nothing to switch between, so the
+    // control would only be clutter.
+    tabsEl.hidden = !counts.past || !(counts.upcoming + counts.past);
+    tabsEl.querySelectorAll('.corsi-tab').forEach(function (tab) {
+      var bucket = tab.getAttribute('data-bucket');
+      var isActive = bucket === activeBucket;
+      tab.classList.toggle('is-active', isActive);
+      tab.setAttribute('aria-selected', isActive ? 'true' : 'false');
+      tab.tabIndex = isActive ? 0 : -1;
+      var count = tab.querySelector('.corsi-tab-count');
+      if (count) count.textContent = counts[bucket] ? String(counts[bucket]) : '';
+    });
   }
 
   function renderCourses() {
@@ -274,37 +426,74 @@
     // to #corsi-calendario) — fall back to a friendly message when there's
     // currently nothing to show, instead of hiding the whole section.
     section.hidden = false;
-    if (!all.length) {
+
+    var buckets = splitCourses(all);
+    var counts = { upcoming: buckets.upcoming.length, past: buckets.past.length };
+    if (!counts[activeBucket] && counts.upcoming) activeBucket = 'upcoming';
+    updateTabs(counts);
+
+    var shown = buckets[activeBucket] || [];
+    var isPastBucket = activeBucket === 'past';
+
+    if (!shown.length) {
       track.innerHTML = '';
       if (carousel) carousel.hidden = true;
       if (corsiSub) corsiSub.hidden = true;
-      if (corsiEmpty) corsiEmpty.hidden = false;
+      if (corsiEmpty) corsiEmpty.hidden = isPastBucket;
+      if (corsiEmptyPast) corsiEmptyPast.hidden = !isPastBucket;
+      if (corsiEmptyCta) corsiEmptyCta.hidden = isPastBucket;
       if (prevBtn) prevBtn.hidden = true;
       if (nextBtn) nextBtn.hidden = true;
+      renderDots(0);
       return;
     }
+
     if (carousel) carousel.hidden = false;
     if (corsiSub) corsiSub.hidden = false;
     if (corsiEmpty) corsiEmpty.hidden = true;
+    if (corsiEmptyPast) corsiEmptyPast.hidden = true;
+    if (corsiEmptyCta) corsiEmptyCta.hidden = true;
 
-    // Newest date on the left, oldest on the right — one descending timeline,
-    // regardless of whether a class is upcoming or past.
-    var ordered = all.sort(function (a, b) { return new Date(b.date) - new Date(a.date); });
+    track.innerHTML = shown.map(function (entry, i) {
+      return tileHtml(entry.course, isPastBucket, !isPastBucket && i === 0 && !!entry.when);
+    }).join('');
 
-    var preservedScrollLeft = hasSetInitialView ? track.scrollLeft : null;
-
-    track.innerHTML = ordered.map(tileHtml).join('');
-
-    var needsArrows = ordered.length > 3;
+    var needsArrows = shown.length > 3;
     if (prevBtn) prevBtn.hidden = !needsArrows;
     if (nextBtn) nextBtn.hidden = !needsArrows;
 
-    // The newest (upcoming) classes sit at the far left by construction, so
-    // the default view is simply the start of the track.
-    track.scrollLeft = preservedScrollLeft !== null ? preservedScrollLeft : 0;
-    hasSetInitialView = true;
+    // Both lists start with the card that matters most — the next class, or
+    // the most recent one — so the opening view is the start of the track.
+    track.scrollLeft = 0;
+    renderDots(shown.length);
     updateArrows();
   }
+
+  if (tabsEl) {
+    tabsEl.addEventListener('click', function (e) {
+      var tab = e.target.closest('.corsi-tab');
+      if (!tab) return;
+      var bucket = tab.getAttribute('data-bucket');
+      if (!bucket || bucket === activeBucket) return;
+      activeBucket = bucket;
+      renderCourses();
+    });
+    // Left/right arrows move between tabs, as the tablist pattern expects.
+    tabsEl.addEventListener('keydown', function (e) {
+      if (e.key !== 'ArrowRight' && e.key !== 'ArrowLeft') return;
+      var tabs = Array.prototype.slice.call(tabsEl.querySelectorAll('.corsi-tab'));
+      var current = tabs.indexOf(e.target.closest('.corsi-tab'));
+      if (current < 0) return;
+      e.preventDefault();
+      var next = tabs[(current + (e.key === 'ArrowRight' ? 1 : tabs.length - 1)) % tabs.length];
+      if (next) { next.click(); next.focus(); }
+    });
+  }
+
+  window.addEventListener('resize', function () {
+    updateArrows();
+    updateDots();
+  }, { passive: true });
 
   fetchJson('content/site.json').then(function (d) { state.site = d; renderSite(); });
   fetchJson('content/courses.json').then(function (d) { state.courses = d; renderCourses(); });

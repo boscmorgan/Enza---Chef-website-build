@@ -67,6 +67,30 @@ git commit -m "Enza e basta — sito"
 Su Vercel: **Framework Preset = Other**, nessun build command, output = root.
 Il sito è statico, quindi va online così com'è.
 
+### Deploy: perché passa da GitHub Actions
+
+Il piano Hobby di Vercel pubblica **solo i commit il cui autore Git fa parte
+dell'account Vercel**. Sveltia CMS però firma ogni salvataggio con l'account
+GitHub di chi è collegato al pannello: i commit di Enza arrivano su `main`, ma
+Vercel li ignora e il sito resta fermo, senza errori visibili.
+
+La soluzione è `.github/workflows/deploy.yml`: a ogni push su `main` il workflow
+chiama un **deploy hook** di Vercel. L'hook è attribuito all'account che lo
+possiede, non all'autore del commit, quindi il controllo non scatta mai e
+chiunque abbia accesso al CMS può pubblicare.
+
+**Setup una tantum:**
+1. Vercel → progetto → **Settings → Git → Deploy Hooks**: crea un hook sul
+   branch `main` (nome consigliato: `github-actions`) e copia l'URL.
+2. GitHub → repo → **Settings → Secrets and variables → Actions → New
+   repository secret**: nome `VERCEL_DEPLOY_HOOK_URL`, valore l'URL del punto 1.
+3. Vercel → **Settings → Git**: disattiva **Automatic deployments**, altrimenti
+   ogni push tenta due build (una delle quali fallisce comunque il controllo).
+
+L'URL dell'hook è una credenziale: vive solo nel secret di GitHub, mai nel repo.
+Per pubblicare a mano senza aspettare un push: GitHub → **Actions → Deploy to
+Vercel → Run workflow**.
+
 ## Admin / CMS (testi, calendario corsi e foto)
 
 Enza può modificare i testi del sito, il calendario dei corsi (carosello) e alcune
@@ -76,13 +100,19 @@ GitHub e Vercel ripubblica il sito in automatico — nessun database, nessun hos
 
 **Come funziona:**
 - Backend: [Sveltia CMS](https://github.com/sveltia/sveltia-cms) (gratuito, open source), configurato in `admin/config.yml`. Tre raccolte:
-  - **Corsi (calendario)** → `content/courses.json`: i corsi del carosello Calendario. La data decide se un corso appare come prossimo o passato; il carosello mostra prima i prossimi, poi i passati.
+  - **Corsi (calendario)** → `content/courses.json`: i corsi del carosello Calendario. La data decide se un corso finisce sotto **Prossimi** o **Passati**, le due linguette sopra al carosello (i passati compaiono solo quando ce n'è almeno uno). I prossimi sono ordinati dal più vicino, con l'etichetta "Il prossimo" sulla prima scheda; i passati dal più recente. Un corso resta fra i prossimi per tutta la sua giornata, non sparisce all'ora di inizio.
+    Tre regole sui campi, pensate per non dover più sistemare i dati a mano:
+    - **Data e ora**: sempre ora italiana, salvata come `2026-09-05T16:30`. Il sito la interpreta come fuso di Roma, quindi l'orario resta giusto anche per chi apre il sito dall'estero.
+    - **Prezzo**: solo il numero (`60`). Il simbolo € lo aggiunge il sito, così tutte le schede sono uguali. Vuoto = prezzo non mostrato.
+    - **Foto**: i percorsi sono assoluti (`/images/FOTO/...`); ci pensa il pannello.
   - **Testi del sito** → `content/copy.json`: tutti i testi editabili (IT + EN), raggruppati per sezione (Hero, Corsi, Calendario, Chi Sono, Altri Servizi, Biografia + tappe del percorso, Contatti, Newsletter, piè di pagina).
   - **Foto del sito** → `content/site.json`: foto hero / chi-sono / corsi.
 - Il sito legge i JSON via `js/content.js`. Per i testi: ogni elemento editabile in `index.html` ha un attributo `data-copy="sezione.chiave"`; al caricamento gli attributi `data-it`/`data-en` vengono sovrascritti con i valori del JSON, così il toggle IT/EN continua a funzionare. La timeline della Biografia viene generata dal JSON (si possono aggiungere/togliere tappe dal pannello). Il markup statico resta come fallback se il fetch fallisce.
 - Per aggiungere un nuovo testo editabile: aggiungi la coppia `*_it`/`*_en` in `content/copy.json`, il campo in `admin/config.yml` e `data-copy="sezione.chiave"` sull'elemento in `index.html`.
 - La libreria foto del pannello punta a `images/`: Enza vede e può scegliere tutte le foto già online (comprese quelle nella sottocartella `FOTO/`), e le nuove foto caricate vengono committate nel repo.
-- Login: un solo account GitHub condiviso, che deve avere accesso in scrittura a questo repo.
+- Login: un account GitHub con accesso in scrittura a questo repo. Non serve che
+  sia lo stesso account collegato a Vercel — a pubblicare ci pensa il workflow
+  descritto sopra.
 
 **Setup una tantum (da fare voi, richiede accesso agli account GitHub/Vercel):**
 1. Su GitHub → **Settings → Developer settings → OAuth Apps → New OAuth App**:

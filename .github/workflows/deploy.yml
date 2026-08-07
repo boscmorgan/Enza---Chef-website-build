@@ -1,0 +1,66 @@
+name: Deploy to Vercel
+
+# Why this exists
+# ---------------
+# Vercel's Git integration only builds commits whose *author* belongs to the
+# Vercel account. Sveltia CMS commits as whoever is logged into /admin, so
+# every edit Enza saves lands on main and is then ignored by Vercel — the site
+# silently stops updating.
+#
+# A deploy hook is attributed to the account that owns the hook, not to the
+# commit author, so triggering the build from here sidesteps that check
+# entirely. Anyone with CMS access can publish, and the site deploys.
+#
+# Setup (one time):
+#   1. Vercel → Project → Settings → Git → Deploy Hooks
+#      Create a hook named "github-actions" pointing at branch `main`, copy the URL.
+#   2. GitHub → repo → Settings → Secrets and variables → Actions → New secret
+#      Name: VERCEL_DEPLOY_HOOK_URL   Value: the URL from step 1.
+#   3. Vercel → Project → Settings → Git → turn OFF "Automatic deployments"
+#      so a push doesn't try (and fail) to build twice.
+# The hook URL is a write credential — keep it in the secret, never in the repo.
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch: {}
+
+# Never let two production builds race; queue them instead.
+concurrency:
+  group: vercel-production
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    name: Trigger production build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Call Vercel deploy hook
+        env:
+          DEPLOY_HOOK_URL: ${{ secrets.VERCEL_DEPLOY_HOOK_URL }}
+        run: |
+          set -euo pipefail
+
+          if [ -z "${DEPLOY_HOOK_URL}" ]; then
+            echo "::error::VERCEL_DEPLOY_HOOK_URL is not set. See the setup notes at the top of .github/workflows/deploy.yml"
+            exit 1
+          fi
+
+          status=$(curl --silent --show-error \
+                        --request POST \
+                        --max-time 30 \
+                        --retry 3 --retry-delay 5 --retry-connrefused \
+                        --output response.json \
+                        --write-out '%{http_code}' \
+                        "${DEPLOY_HOOK_URL}")
+
+          echo "Deploy hook responded with HTTP ${status}:"
+          cat response.json || true
+          echo
+
+          if [ "${status}" -ge 300 ]; then
+            echo "::error::Deploy hook failed (HTTP ${status}). Check that the hook still exists in Vercel → Settings → Git → Deploy Hooks."
+            exit 1
+          fi
+
+          echo "::notice::Production build queued on Vercel for ${GITHUB_SHA}."

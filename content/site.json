@@ -1,17 +1,23 @@
 {
-  "chi_sono_image": "images/FOTO/ENZA_PANE_PRIMO_PIANO.webp",
-  "corsi_image": "images/FOTO/CORSI_TAVOLA_COLAZIONE_2.webp",
-  "biografia_image": "images/FOTO/ENZA_PASTA_DUMPLING.webp",
+  "chi_sono_image": "/images/FOTO/ENZA_PANE_PRIMO_PIANO.webp",
+  "corsi_image": "/images/FOTO/CORSI_TAVOLA_COLAZIONE_2.webp",
+  "biografia_image": "/images/FOTO/ENZA_PASTA_DUMPLING.webp",
   "hero_photos": [
-    { "image": "images/FOTO/ENZA_STRINGE_BANDANA.webp", "alt_it": "La chef Enza sorride mentre si annoda la bandana in testa" },
-    { "image": "images/FOTO/ENZA_RITRATTO_PIATTO.webp", "alt_it": "La chef Enza sorride mentre porge un piatto pronto da servire" }
+    {
+      "image": "/images/FOTO/ENZA_STRINGE_BANDANA.webp",
+      "alt_it": "La chef Enza sorride mentre si annoda la bandana in testa"
+    },
+    {
+      "image": "/images/FOTO/ENZA_RITRATTO_PIATTO.webp",
+      "alt_it": "La chef Enza sorride mentre porge un piatto pronto da servire"
+    }
   ],
   "domicilio_photos": [
-    "images/FOTO/IMPIATTAMENTO_TORTELLI.webp",
-    "images/FOTO/PIATTI_SOPRA.webp"
+    "/images/FOTO/IMPIATTAMENTO_TORTELLI.webp",
+    "/images/FOTO/PIATTI_SOPRA.webp"
   ],
   "aziendali_photos": [
-    "images/FOTO/IMPIATTAMENTO_TORTELLI_2.webp",
-    "images/FOTO/PASTA_IN_MANO_2.webp"
+    "/images/FOTO/IMPIATTAMENTO_TORTELLI_2.webp",
+    "/images/FOTO/PASTA_IN_MANO_2.webp"
   ]
 }

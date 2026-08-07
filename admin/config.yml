@@ -8,7 +8,10 @@ backend:
   auth_endpoint: api/auth
 
 media_folder: "images"
-public_folder: "images"
+# Absolute so every path the CMS writes looks the same ("/images/FOTO/x.webp").
+# Sveltia already emitted absolute paths for new uploads while this said
+# "images", which is how the mixed paths in content/*.json crept in.
+public_folder: "/images"
 
 collections:
   - name: "courses"
@@ -25,11 +28,32 @@ collections:
             fields:
               - { label: "Titolo (IT)", name: "title_it", widget: "string" }
               - { label: "Titolo (EN)", name: "title_en", widget: "string" }
-              - { label: "Data e ora", name: "date", widget: "datetime", hint: "Determina se il corso appare come prossimo o passato." }
-              - { label: "Luogo", name: "location", widget: "string", required: false }
+              # Salvato come "2026-09-05T16:30" — sempre ora italiana, senza fuso.
+              # Determina se il corso finisce fra i "Prossimi" o fra i "Passati".
+              - label: "Data e ora"
+                name: "date"
+                widget: "datetime"
+                format: "YYYY-MM-DDTHH:mm"
+                date_format: "DD/MM/YYYY"
+                time_format: "HH:mm"
+                picker_utc: false
+                hint: "Ora italiana. Determina se il corso appare fra i prossimi o fra i passati."
+              - label: "Luogo"
+                name: "location"
+                widget: "string"
+                required: false
+                default: "Pasticceria Buonamici, Via dell'Orto 31r, Firenze"
+                hint: "Lascia l'indirizzo completo: compare sotto al titolo nella scheda."
               - { label: "Descrizione (IT)", name: "description_it", widget: "text" }
               - { label: "Descrizione (EN)", name: "description_en", widget: "text" }
-              - { label: "Prezzo", name: "price", widget: "string", required: false }
+              # Solo il numero: il simbolo € lo aggiunge il sito, così tutte le
+              # schede sono uguali. Lascia vuoto se il prezzo non è ancora deciso.
+              - label: "Prezzo"
+                name: "price"
+                widget: "string"
+                required: false
+                pattern: ['^[0-9]*$', "Scrivi solo il numero, senza € e senza la parola euro (es. 60)."]
+                hint: "Solo il numero, es. 60 — il simbolo € lo aggiunge il sito. Vuoto = prezzo non mostrato."
               - { label: "Foto", name: "image", widget: "image", required: false }
 
   - name: "copy"
@@ -90,10 +114,18 @@ collections:
               - { label: "Titolo (EN)", name: "title_en", widget: "string" }
               - { label: "Sottotitolo (IT)", name: "sub_it", widget: "text" }
               - { label: "Sottotitolo (EN)", name: "sub_en", widget: "text" }
+              - { label: "Linguetta \"prossimi corsi\" (IT)", name: "tab_upcoming_it", widget: "string", required: false, default: "Prossimi" }
+              - { label: "Linguetta \"prossimi corsi\" (EN)", name: "tab_upcoming_en", widget: "string", required: false, default: "Upcoming" }
+              - { label: "Linguetta \"corsi passati\" (IT)", name: "tab_past_it", widget: "string", required: false, default: "Passati" }
+              - { label: "Linguetta \"corsi passati\" (EN)", name: "tab_past_en", widget: "string", required: false, default: "Past" }
+              - { label: "Etichetta sul primo corso in programma (IT)", name: "next_badge_it", widget: "string", required: false, default: "Il prossimo" }
+              - { label: "Etichetta sul primo corso in programma (EN)", name: "next_badge_en", widget: "string", required: false, default: "Next up" }
               - { label: "Bottone contatti nella scheda corso (IT)", name: "cta_contact_it", widget: "string" }
               - { label: "Bottone contatti nella scheda corso (EN)", name: "cta_contact_en", widget: "string" }
               - { label: "Messaggio se nessun corso in programma (IT)", name: "empty_it", widget: "text" }
               - { label: "Messaggio se nessun corso in programma (EN)", name: "empty_en", widget: "text" }
+              - { label: "Messaggio se non c'è ancora un archivio (IT)", name: "empty_past_it", widget: "text", required: false, default: "Non c'è ancora un archivio di corsi passati." }
+              - { label: "Messaggio se non c'è ancora un archivio (EN)", name: "empty_past_en", widget: "text", required: false, default: "No past classes yet." }
               - { label: "Bottone \"avvisami\" se nessun corso (IT)", name: "cta_notify_it", widget: "string" }
               - { label: "Bottone \"avvisami\" se nessun corso (EN)", name: "cta_notify_en", widget: "string" }
 

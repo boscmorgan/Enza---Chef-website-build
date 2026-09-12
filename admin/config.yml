@@ -56,6 +56,28 @@ collections:
                 hint: "Solo il numero, es. 60 — il simbolo € lo aggiunge il sito. Vuoto = prezzo non mostrato."
               - { label: "Foto", name: "image", widget: "image", required: false }
 
+  - name: "reviews"
+    label: "Recensioni"
+    files:
+      - name: "list"
+        label: "Elenco recensioni"
+        file: "content/reviews.json"
+        fields:
+          - name: "reviews"
+            label: "Recensioni"
+            label_singular: "Recensione"
+            widget: "list"
+            summary: "{{fields.name}} — {{fields.role_it}}"
+            hint: "Trascina per riordinare: appaiono nel carosello in quest'ordine."
+            fields:
+              - { label: "Recensione (IT)", name: "quote_it", widget: "text", hint: "Tienila breve: 1-2 frasi stanno meglio nella scheda." }
+              - { label: "Recensione (EN)", name: "quote_en", widget: "text", required: false, hint: "Se vuota, viene mostrata quella italiana." }
+              - { label: "Nome", name: "name", widget: "string" }
+              - { label: "Ruolo / descrizione (IT)", name: "role_it", widget: "string", required: false, hint: "Es. appassionata di cucina, musicista, turista, ristoratore." }
+              - { label: "Ruolo / descrizione (EN)", name: "role_en", widget: "string", required: false }
+              - { label: "Foto (tonda)", name: "image", widget: "image", required: false, hint: "Facoltativa: senza foto compaiono le iniziali. Meglio una foto quadrata." }
+              - { label: "Nascondi", name: "hidden", widget: "boolean", default: false, required: false, hint: "Attiva per togliere la recensione dal sito senza cancellarla." }
+
   - name: "copy"
     label: "Testi del sito"
     files:
@@ -191,6 +213,18 @@ collections:
                   - { label: "Titolo (EN)", name: "title_en", widget: "string" }
                   - { label: "Testo (IT)", name: "text_it", widget: "text" }
                   - { label: "Testo (EN)", name: "text_en", widget: "text" }
+
+          - name: "recensioni"
+            label: "Recensioni (intestazione)"
+            widget: "object"
+            collapsed: true
+            fields:
+              - { label: "Occhiello (IT)", name: "eyebrow_it", widget: "string" }
+              - { label: "Occhiello (EN)", name: "eyebrow_en", widget: "string" }
+              - { label: "Titolo (IT)", name: "title_it", widget: "string" }
+              - { label: "Titolo (EN)", name: "title_en", widget: "string" }
+              - { label: "Sottotitolo (IT)", name: "sub_it", widget: "text" }
+              - { label: "Sottotitolo (EN)", name: "sub_en", widget: "text" }
 
           - name: "contatti"
             label: "Contatti"

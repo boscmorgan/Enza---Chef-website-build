@@ -141,6 +141,14 @@
         </a>
       </li>
       <li>
+        <a href="#recensioni" data-scroll>
+          <span class="ico" style="--ico:var(--saffron)" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="22" height="22"><path d="M12 4l2.4 4.9 5.4.8-3.9 3.8.9 5.4-4.8-2.6-4.8 2.6.9-5.4L4.2 9.7l5.4-.8z" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"/></svg>
+          </span>
+          <span data-it="Recensioni" data-en="Reviews">Recensioni</span>
+        </a>
+      </li>
+      <li>
         <a href="#contatti" data-scroll>
           <span class="ico" style="--ico:var(--violet)" aria-hidden="true">
             <svg viewBox="0 0 24 24" width="22" height="22"><path d="M4 6h16v12H4zM4 7l8 6 8-6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -534,6 +542,36 @@
       </div>
     </section>
 
+    <!-- ===== RECENSIONI ===== -->
+    <section id="recensioni" class="recensioni" hidden>
+      <header class="servizi-head">
+        <p class="eyebrow light" data-copy="recensioni.eyebrow" data-it="Dicono di me" data-en="Kind words">Dicono di me</p>
+        <h2 class="section-title light" data-copy="recensioni.title" data-it="Recensioni" data-en="Reviews">Recensioni</h2>
+        <p class="servizi-sub" data-copy="recensioni.sub"
+           data-it="Le parole di chi ha cucinato, mangiato e lavorato con me."
+           data-en="Words from people who have cooked, eaten and worked with me.">
+          Le parole di chi ha cucinato, mangiato e lavorato con me.
+        </p>
+      </header>
+
+      <div class="carousel reviews-carousel" id="recensioniCarousel">
+        <button type="button" class="carousel-arrow carousel-prev" id="recensioniPrev"
+                data-it-label="Recensione precedente" data-en-label="Previous review" aria-label="Recensione precedente">
+          <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M15 5l-7 7 7 7" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <div class="carousel-track reviews-track" id="recensioniTrack"
+             role="group" aria-roledescription="carousel"
+             data-it-label="Recensioni" data-en-label="Reviews" aria-label="Recensioni"></div>
+        <button type="button" class="carousel-arrow carousel-next" id="recensioniNext"
+                data-it-label="Recensione successiva" data-en-label="Next review" aria-label="Recensione successiva">
+          <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M9 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+      </div>
+
+      <div class="reviews-dots" id="recensioniDots" role="tablist"
+           data-it-label="Vai alla recensione" data-en-label="Go to review" aria-label="Vai alla recensione"></div>
+    </section>
+
     <!-- ===== CONTATTI ===== -->
     <section id="contatti" class="contatti">
       <div class="contatti-grid">
@@ -691,5 +729,6 @@
 
   <script src="js/script.js"></script>
   <script src="js/content.js"></script>
+  <script src="js/reviews.js"></script>
 </body>
 </html>

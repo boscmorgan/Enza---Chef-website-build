@@ -925,6 +925,118 @@ body.menu-open .lang-toggle{
 body.modal-open{overflow:hidden;}
 
 /* =========================================================
+   RECENSIONI (carosello auto-scorrevole sopra i Contatti)
+   ========================================================= */
+.recensioni{
+  background:var(--amethyst);
+  color:#fff;padding:96px 6vw 104px;
+  overflow:hidden;
+}
+.recensioni[hidden]{display:none;}
+
+/* Same shell as the courses carousel, but the track is driven by
+   transform (not scrollLeft) so the auto-advance, drag and arrows all
+   speak one language. */
+.reviews-carousel{max-width:1120px;}
+.reviews-viewport{
+  flex:1;min-width:0;overflow:hidden;
+  padding:4px 0 12px;
+  /* cards are sized from the viewport, not the track: the track is a flex
+     row as wide as its clones, so a percentage basis would be meaningless */
+  --reviews-gap:24px;
+  --reviews-per-view:3;
+}
+.reviews-track{
+  display:flex;gap:var(--reviews-gap,24px);
+  width:max-content;
+  overflow:visible;
+  scroll-snap-type:none;
+  padding:0;
+  will-change:transform;
+  touch-action:pan-y;
+  cursor:grab;
+}
+.reviews-track.is-dragging{cursor:grabbing;}
+.reviews-track.is-animating{transition:transform .62s cubic-bezier(.22,.61,.36,1);}
+
+.review-card{
+  /* --reviews-card-w is set by reviews.js from the viewport width, because
+     the track is max-content wide and can't be a percentage reference */
+  flex:0 0 var(--reviews-card-w,320px);
+  width:var(--reviews-card-w,320px);
+  box-sizing:border-box;
+  margin:0;                 /* <figure> carries a 40px UA margin */
+  display:flex;flex-direction:column;align-items:center;text-align:center;
+  padding:30px 26px 28px;
+  background:var(--paper);color:var(--violet);
+  border:4px solid var(--paper);border-radius:12px;
+  box-shadow:6px 6px 0 rgba(34,14,15,.55);
+  transform:rotate(-1deg);
+  transition:transform .2s;
+  user-select:none;
+}
+.reviews-track .review-card:nth-child(even){transform:rotate(1deg);}
+.reviews-track:not(.is-dragging) .review-card:hover{transform:rotate(0deg) translateY(-3px);}
+
+/* the quote leads the card, so keep every card the same height: the wrapper
+   centres the text block, the inner <p> carries the quotation marks inline */
+.review-quote{
+  margin:0 0 22px;
+  flex:1 1 auto;display:flex;align-items:center;justify-content:center;
+}
+.review-quote p{
+  margin:0;
+  font-size:1.02rem;line-height:1.55;
+}
+.review-quote p::before{content:"\201C";}
+.review-quote p::after{content:"\201D";}
+.review-avatar{
+  width:76px;height:76px;flex:0 0 76px;
+  border-radius:50%;overflow:hidden;
+  border:3px solid var(--violet);
+  background:var(--rose-tint);
+  display:grid;place-items:center;
+  box-shadow:3px 3px 0 var(--rose);
+  margin-bottom:12px;
+}
+.review-avatar img{width:100%;height:100%;object-fit:cover;display:block;}
+/* no photo → initials keep the circle from reading as a broken image */
+.review-avatar span{
+  font-family:var(--display);font-size:1.5rem;line-height:1;
+  color:var(--violet);
+}
+.review-name{
+  font-family:var(--display);text-transform:uppercase;
+  font-size:1.16rem;line-height:1.1;margin:0 0 4px;
+  color:var(--violet);
+}
+.review-role{
+  margin:0;font-size:.88rem;font-weight:600;
+  color:var(--rose);
+}
+
+/* dots — the touch-friendly way to jump between reviews */
+.reviews-dots{
+  display:flex;justify-content:center;align-items:center;gap:10px;
+  margin:26px auto 0;max-width:1120px;
+}
+.reviews-dots[hidden]{display:none;}
+.reviews-dots button{
+  width:11px;height:11px;padding:0;border-radius:50%;
+  background:transparent;border:2px solid var(--paper);
+  opacity:.55;cursor:pointer;
+  transition:opacity .18s,transform .18s,background .18s;
+}
+.reviews-dots button:hover{opacity:.85;}
+.reviews-dots button.is-active{background:var(--paper);opacity:1;transform:scale(1.25);}
+.reviews-dots button:focus-visible{outline:3px solid var(--paper);outline-offset:3px;}
+
+@media (prefers-reduced-motion:reduce){
+  .reviews-track.is-animating{transition:none;}
+  .reviews-track:not(.is-dragging) .review-card:hover{transform:rotate(0deg);}
+}
+
+/* =========================================================
    CONTATTI
    ========================================================= */
 .contatti{position:relative;background:var(--saffron-tint);padding:88px 6vw 64px;overflow:hidden;}
@@ -1088,7 +1200,7 @@ body.modal-open{overflow:hidden;}
   .bio-photo{position:static;}
   .bio-photo .organic-frame{position:relative;top:auto;}
   .servizi-head{margin-bottom:34px;}
-  .chi-sono,.servizi,.corsi-calendario,.biografia,.corsi,.contatti{padding-top:96px;}
+  .chi-sono,.servizi,.corsi-calendario,.recensioni,.biografia,.corsi,.contatti{padding-top:96px;}
   .newsletter{padding:52px 6vw;}
   .chi-text{padding-left:24px;}
   .cards{grid-template-columns:1fr;max-width:390px;}
@@ -1101,6 +1213,7 @@ body.modal-open{overflow:hidden;}
   .corsi-photo .organic-frame{margin:0 auto;}
   .corsi-ctas{justify-content:flex-start;}
   .corso-tile{flex-basis:calc((100% - 24px) / 2);}
+  .reviews-viewport{--reviews-per-view:2;}
 }
 @media (max-width:620px){
   body{font-size:17px;}
@@ -1123,7 +1236,7 @@ body.modal-open{overflow:hidden;}
   .hero-text .btn{margin-top:24px;min-height:50px;padding:14px 24px;}
   .kicker{font-size:.72rem;line-height:1.45;}
   .sticker{left:-14px;bottom:64px;width:72px;height:72px;font-size:1.08rem;border-width:2px;box-shadow:3px 3px 0 var(--violet);}
-  .chi-sono,.servizi,.corsi-calendario,.biografia,.corsi,.contatti{padding-top:88px;padding-bottom:76px;}
+  .chi-sono,.servizi,.corsi-calendario,.recensioni,.biografia,.corsi,.contatti{padding-top:88px;padding-bottom:76px;}
   .newsletter{padding:44px 5vw;}
   .newsletter-lead{font-size:.98rem;margin-bottom:20px;}
   .newsletter-form-row{flex-direction:column;}
@@ -1132,7 +1245,7 @@ body.modal-open{overflow:hidden;}
   .chi-photo .organic-frame{max-width:330px;}
   .chi-photo::before{width:min(330px,100%);}
   .chi-text{padding-left:18px;}
-  .servizi,.corsi-calendario{padding-left:5vw;padding-right:5vw;}
+  .servizi,.corsi-calendario,.recensioni{padding-left:5vw;padding-right:5vw;}
   .servizi-head{text-align:left;margin-bottom:28px;}
   .cards{gap:22px;}
   /* Instagram-stories tray: one tall card fills the screen, the next one
@@ -1166,6 +1279,11 @@ body.modal-open{overflow:hidden;}
   .corsi-tabs-row{margin-bottom:18px;}
   .corsi-tabs{flex:1;width:auto;}
   .corsi-tab{flex:1;justify-content:center;padding:9px 12px;}
+  /* reviews: one card, swipe + dots (the arrows are hidden above) */
+  .reviews-viewport{--reviews-per-view:1;--reviews-gap:16px;}
+  .review-card{transform:none;padding:26px 20px 24px;}
+  .reviews-track .review-card:nth-child(even){transform:none;}
+  .review-quote{font-size:.98rem;margin-bottom:18px;}
   .corso-modal-panel{max-height:92vh;}
   .corso-modal-body{padding:20px 20px 24px;}
   .card-body h3{font-size:1.28rem;}

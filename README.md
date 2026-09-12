@@ -10,13 +10,14 @@ Punk-editorial poster style, fully responsive, no build step — plain HTML/CSS/
 ├── index.html          # tutta la pagina (sezioni + contenuti bilingue)
 ├── css/style.css       # stile completo (palette, layout, responsive)
 ├── js/script.js        # menu, scroll, toggle lingua, form mailto
+├── js/reviews.js       # carosello recensioni (auto-scorrimento, frecce, drag/swipe)
 ├── images/             # foto ottimizzate per il web
 ├── source-photos/      # foto originali ad alta risoluzione (non servite)
 └── fonts/README.md     # come passare ai font self-hosted
 ```
 
 ## Sezioni
-Hero · Chi Sono · Progetti/Servizi (4 card) · Biografia (timeline) · Contatti (form).
+Hero · Chi Sono · Progetti/Servizi (4 card) · Biografia (timeline) · Recensioni (carosello) · Contatti (form).
 Menu laterale con apri/chiudi (X + hamburger) e scroll fluido alle ancore.
 
 ## Lingua
@@ -117,8 +118,9 @@ GitHub e Vercel ripubblica il sito in automatico — nessun database, nessun hos
     - **Prezzo**: solo il numero (`60`). Il simbolo € lo aggiunge il sito, così tutte le schede sono uguali. Vuoto = prezzo non mostrato.
     - **Foto**: i percorsi sono assoluti (`/images/FOTO/...`); ci pensa il pannello.
   - **Testi del sito** → `content/copy.json`: tutti i testi editabili (IT + EN), raggruppati per sezione (Hero, Corsi, Calendario, Chi Sono, Altri Servizi, Biografia + tappe del percorso, Contatti, Newsletter, piè di pagina).
+  - **Recensioni** → `content/reviews.json`: le recensioni del carosello sopra i Contatti. Ogni voce ha citazione (IT/EN), nome, ruolo e foto tonda facoltativa; l'interruttore "Nascondi" toglie una recensione dal sito senza cancellarla. L'ordine della lista è l'ordine del carosello.
   - **Foto del sito** → `content/site.json`: foto hero / chi-sono / corsi.
-- Il sito legge i JSON via `js/content.js`. Per i testi: ogni elemento editabile in `index.html` ha un attributo `data-copy="sezione.chiave"`; al caricamento gli attributi `data-it`/`data-en` vengono sovrascritti con i valori del JSON, così il toggle IT/EN continua a funzionare. La timeline della Biografia viene generata dal JSON (si possono aggiungere/togliere tappe dal pannello). Il markup statico resta come fallback se il fetch fallisce.
+- Il sito legge i JSON via `js/content.js` (e `js/reviews.js` per le recensioni). Per i testi: ogni elemento editabile in `index.html` ha un attributo `data-copy="sezione.chiave"`; al caricamento gli attributi `data-it`/`data-en` vengono sovrascritti con i valori del JSON, così il toggle IT/EN continua a funzionare. La timeline della Biografia viene generata dal JSON (si possono aggiungere/togliere tappe dal pannello). Il markup statico resta come fallback se il fetch fallisce.
 - Per aggiungere un nuovo testo editabile: aggiungi la coppia `*_it`/`*_en` in `content/copy.json`, il campo in `admin/config.yml` e `data-copy="sezione.chiave"` sull'elemento in `index.html`.
 - La libreria foto del pannello punta a `images/`: Enza vede e può scegliere tutte le foto già online (comprese quelle nella sottocartella `FOTO/`), e le nuove foto caricate vengono committate nel repo.
 - Login: un account GitHub con accesso in scrittura a questo repo. Non serve che

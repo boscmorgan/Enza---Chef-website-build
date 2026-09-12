@@ -143,6 +143,14 @@
       }
     ]
   },
+  "recensioni": {
+    "eyebrow_it": "Dicono di me",
+    "eyebrow_en": "Kind words",
+    "title_it": "Recensioni",
+    "title_en": "Reviews",
+    "sub_it": "Le parole di chi ha cucinato, mangiato e lavorato con me.",
+    "sub_en": "Words from people who have cooked, eaten and worked with me."
+  },
   "contatti": {
     "eyebrow_it": "04 — Contatti",
     "eyebrow_en": "04 — Contact",

@@ -1,3 +1,13 @@
 {
-  "reviews": []
+  "reviews": [
+    {
+      "quote_it": "I corsi di Enza sono stupendi, ci lascia ricette facili, con prodotti che riusciamo a recuperare facilmente, e con uno studio di un'esperienza dietro che non ha nulla a che fare con ricette che riesco a recuperare online da solo!",
+      "quote_en": "Enza's classes are wonderful. She leaves you with easy recipes, using ingredients you can actually find, backed by real study and experience — nothing like the recipes I can dig up online on my own.",
+      "name": "Morgan",
+      "role_it": "Appassionato di cucina",
+      "role_en": "Home cook",
+      "image": "images/FOTO/RECENSIONE_MORGAN.webp",
+      "hidden": false
+    }
+  ]
 }

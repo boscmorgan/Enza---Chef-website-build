@@ -970,6 +970,8 @@ body.modal-open{overflow:hidden;}
   cursor:grab;
 }
 .reviews-track.is-dragging{cursor:grabbing;}
+/* nothing to scroll: centre the cards and drop the grab affordance */
+.reviews-track.is-static{width:100%;justify-content:center;cursor:default;}
 .reviews-track.is-animating{transition:transform .62s cubic-bezier(.22,.61,.36,1);}
 
 .review-card{

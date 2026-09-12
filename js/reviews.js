@@ -150,6 +150,8 @@
   }
 
   function position(logicalIndex) {
+    // static mode: the flex row centres itself, so leave it untranslated
+    if (reviews.length && reviews.length <= perView) return 0;
     return -(logicalIndex + offset) * step();
   }
 
@@ -157,12 +159,22 @@
     if (!reviews.length) return;
     setCardWidth();
 
-    // Enough clones on each side to cover a full view, so no gap is ever
-    // visible mid-transition however few reviews there are.
-    offset = Math.min(reviews.length, Math.max(perView, 1));
-    var head = reviews.slice(reviews.length - offset);
-    var tail = reviews.slice(0, offset);
-    var loops = head.concat(reviews, tail);
+    // When everything already fits there is nothing to scroll: render the
+    // reviews once, centred, with no clones. Cloning here would just show
+    // the same review twice side by side.
+    var loops;
+    if (reviews.length <= perView) {
+      offset = 0;
+      loops = reviews;
+      track.classList.add('is-static');
+    } else {
+      // Enough clones on each side to cover a full view, so no gap is ever
+      // visible mid-transition however few reviews there are.
+      offset = Math.min(reviews.length, Math.max(perView, 1));
+      loops = reviews.slice(reviews.length - offset)
+        .concat(reviews, reviews.slice(0, offset));
+      track.classList.remove('is-static');
+    }
 
     track.innerHTML = loops.map(cardHtml).join('');
     // Clones are duplicates — keep them out of the a11y tree and tab order.
@@ -173,6 +185,7 @@
     });
 
     index = Math.min(index, reviews.length - 1);
+    if (reviews.length <= perView) index = 0;
     pitch = measure();          // now that the cards are laid out
     setTranslate(position(index), false);
     renderDots();

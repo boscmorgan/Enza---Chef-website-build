@@ -39,6 +39,16 @@
   var paused = false;        // hover / focus / drag / tab hidden
   var animating = false;
 
+  // Hiding the section has to take its menu entry with it, or the side menu
+  // offers a link that scrolls nowhere.
+  function showSection(show) {
+    section.hidden = !show;
+    document.querySelectorAll('.side-links a[href="#recensioni"]').forEach(function (a) {
+      var li = a.closest('li') || a;
+      li.hidden = !show;
+    });
+  }
+
   function currentLang() {
     return document.body.getAttribute('data-lang') || 'it';
   }
@@ -78,13 +88,32 @@
 
   // The track is max-content wide (it carries clones), so the cards can't
   // size themselves off it — measure the viewport and hand CSS the width.
-  function measure() {
+  // Set the card width from the viewport's content box. The track is
+  // max-content wide (it carries clones) so the cards can't size themselves
+  // off it, and clientWidth includes the bleed padding they must not spill
+  // into.
+  function setCardWidth() {
     perView = slidesPerView();
-    var gap = gapPx();
-    var avail = viewport.clientWidth;
-    var w = (avail - gap * (perView - 1)) / perView;
+    var cs = getComputedStyle(viewport);
+    var padL = parseFloat(cs.paddingLeft) || 0;
+    var padR = parseFloat(cs.paddingRight) || 0;
+    var avail = viewport.clientWidth - padL - padR;
+    var w = (avail - gapPx() * (perView - 1)) / perView;
     viewport.style.setProperty('--reviews-card-w', w + 'px');
-    return w + gap;
+  }
+
+  // Read the pitch back from layout rather than trusting the width we just
+  // asked for: sub-pixel rounding and any CSS that overrides the card width
+  // would otherwise desync every translate from where the cards really are.
+  function measure() {
+    setCardWidth();
+    var cards = track.querySelectorAll('.review-card');
+    if (cards.length > 1) return cards[1].offsetLeft - cards[0].offsetLeft;
+    if (cards.length === 1) return cards[0].offsetWidth + gapPx();
+    var cs = getComputedStyle(viewport);
+    var avail = viewport.clientWidth
+      - (parseFloat(cs.paddingLeft) || 0) - (parseFloat(cs.paddingRight) || 0);
+    return (avail - gapPx() * (perView - 1)) / perView + gapPx();
   }
 
   function initials(name) {
@@ -126,7 +155,7 @@
 
   function render() {
     if (!reviews.length) return;
-    pitch = measure();
+    setCardWidth();
 
     // Enough clones on each side to cover a full view, so no gap is ever
     // visible mid-transition however few reviews there are.
@@ -144,6 +173,7 @@
     });
 
     index = Math.min(index, reviews.length - 1);
+    pitch = measure();          // now that the cards are laid out
     setTranslate(position(index), false);
     renderDots();
     updateControls();
@@ -389,8 +419,8 @@
       reviews = list.filter(function (r) {
         return r && !r.hidden && (r.quote_it || r.quote_en) && r.name;
       });
-      if (!reviews.length) { section.hidden = true; return; }
-      section.hidden = false;
+      if (!reviews.length) { showSection(false); return; }
+      showSection(true);
       render();
       startAuto();
     });

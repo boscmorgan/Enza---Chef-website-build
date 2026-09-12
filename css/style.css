@@ -197,6 +197,9 @@ body.menu-open .side-lang-toggle{
 }
 
 .side-links{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:6px;flex:1;}
+/* flex children ignore the [hidden] UA rule, so say it explicitly —
+   reviews.js hides this entry when there are no reviews to link to */
+.side-links li[hidden]{display:none;}
 .side-links a{
   display:flex;align-items:center;gap:14px;
   padding:12px 14px;border-radius:var(--radius-ui);
@@ -940,11 +943,21 @@ body.modal-open{overflow:hidden;}
 .reviews-carousel{max-width:1120px;}
 .reviews-viewport{
   flex:1;min-width:0;overflow:hidden;
-  padding:4px 0 12px;
   /* cards are sized from the viewport, not the track: the track is a flex
      row as wide as its clones, so a percentage basis would be meaningless */
   --reviews-gap:24px;
   --reviews-per-view:3;
+  /* Cards are rotated and carry a shadow offset down-right, so their painted
+     area is bigger than their box. Pad the clipping viewport by that overhang
+     so no edge, corner or shadow is cut off. The shadow only falls right and
+     down, so those sides need more room than the left and top — splitting it
+     this way keeps the card optically centred in the section.
+     reviews.js subtracts the horizontal padding when sizing the cards, so the
+     row still fits exactly. */
+  --reviews-bleed:4px;         /* left / top: rotated corners only */
+  --reviews-bleed-end:12px;    /* right / bottom: corners + 6px shadow */
+  padding:var(--reviews-bleed) var(--reviews-bleed-end)
+          var(--reviews-bleed-end) var(--reviews-bleed);
 }
 .reviews-track{
   display:flex;gap:var(--reviews-gap,24px);
@@ -1018,7 +1031,7 @@ body.modal-open{overflow:hidden;}
 /* dots — the touch-friendly way to jump between reviews */
 .reviews-dots{
   display:flex;justify-content:center;align-items:center;gap:10px;
-  margin:26px auto 0;max-width:1120px;
+  margin:18px auto 0;max-width:1120px;   /* viewport already bleeds 10px */
 }
 .reviews-dots[hidden]{display:none;}
 .reviews-dots button{
@@ -1279,8 +1292,14 @@ body.modal-open{overflow:hidden;}
   .corsi-tabs-row{margin-bottom:18px;}
   .corsi-tabs{flex:1;width:auto;}
   .corsi-tab{flex:1;justify-content:center;padding:9px 12px;}
-  /* reviews: one card, swipe + dots (the arrows are hidden above) */
-  .reviews-viewport{--reviews-per-view:1;--reviews-gap:16px;}
+  /* reviews: one card, swipe + dots (the arrows are hidden above).
+     Cards aren't rotated here, so only the shadow overhangs — but the bleed
+     still has to be even on both sides or the single card sits off-centre.
+     The gap stays wider than the bleed so the next card can't peek in. */
+  .reviews-viewport{
+    --reviews-per-view:1;--reviews-gap:26px;
+    --reviews-bleed:8px;--reviews-bleed-end:8px;
+  }
   .review-card{transform:none;padding:26px 20px 24px;}
   .reviews-track .review-card:nth-child(even){transform:none;}
   .review-quote{font-size:.98rem;margin-bottom:18px;}

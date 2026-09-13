@@ -146,7 +146,15 @@
         return;
       }
 
-      render();
+      // Kept out of the .catch() below: that one is there to swallow a failed
+      // fetch (offline, 404), where leaving the static message up is right. A
+      // throw from render() is a bug in this file, and silently showing the
+      // "couldn't load" message for it would send you hunting the network tab.
+      try {
+        render();
+      } catch (err) {
+        console.error('updates: render failed', err);
+      }
     })
-    .catch(function () { /* static fallback message stays visible */ });
+    .catch(function () { /* fetch or JSON failed — static fallback stays visible */ });
 })();

@@ -1,5 +1,8 @@
+# /updates.html is deliberately absent here. It carries <meta name="robots"
+# content="noindex, nofollow">, which keeps it out of search results. Listing it
+# under Disallow would advertise the URL to anyone reading this file *and* stop
+# crawlers fetching the page, so they'd never see the noindex.
 User-agent: *
 Allow: /
-Disallow: /updates.html
 
 Sitemap: https://enzaebasta.it/sitemap.xml

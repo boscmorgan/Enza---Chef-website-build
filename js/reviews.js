@@ -64,6 +64,17 @@
     });
   }
 
+  // Avatar paths come from the CMS; "javascript:" in an src executes, and
+  // escapeHtml won't stop it. Mirrors safeImageUrl in content.js.
+  function safeImageUrl(value) {
+    var s = String(value == null ? '' : value).trim();
+    if (!s) return '';
+    var probe = s.replace(/[\u0000-\u001F\u007F\s]/g, '').toLowerCase();
+    if (/^(?:javascript|vbscript|file):/.test(probe)) return '';
+    if (/^data:/.test(probe) && !/^data:image\//.test(probe)) return '';
+    return s;
+  }
+
   function prefersReducedMotion() {
     return window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   }
@@ -127,8 +138,9 @@
     var quote = pick(r, 'quote');
     var role = pick(r, 'role');
     var name = r.name || '';
-    var avatar = r.image
-      ? '<img src="' + escapeHtml(r.image) + '" alt="' + escapeHtml(name) + '" loading="lazy" draggable="false" />'
+    var avatarSrc = safeImageUrl(r.image);
+    var avatar = avatarSrc
+      ? '<img src="' + escapeHtml(avatarSrc) + '" alt="' + escapeHtml(name) + '" loading="lazy" draggable="false" />'
       : '<span aria-hidden="true">' + escapeHtml(initials(name)) + '</span>';
     return '<figure class="review-card">' +
       '<blockquote class="review-quote"><p>' + escapeHtml(quote) + '</p></blockquote>' +
@@ -158,6 +170,16 @@
   function render() {
     if (!reviews.length) return;
     setCardWidth();
+
+    // Rebuilding the track kills any in-flight transition without firing
+    // transitionend, which would leave `animating` stuck true — after that
+    // every drag skips the freeze step and jumps.
+    animating = false;
+    track.classList.remove('is-animating');
+    if (drag) {
+      drag = null;
+      track.classList.remove('is-dragging');
+    }
 
     // When everything already fits there is nothing to scroll: render the
     // reviews once, centred, with no clones. Cloning here would just show
@@ -412,6 +434,7 @@
   document.querySelectorAll('[data-set-lang]').forEach(function (btn) {
     btn.addEventListener('click', function () {
       render();
+      startAuto();   // render() can change perView/clone count; requeue the clock
       var lang = currentLang();
       [prevBtn, nextBtn, track, dotsWrap].forEach(function (el) {
         if (!el) return;

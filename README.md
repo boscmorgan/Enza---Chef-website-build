@@ -135,6 +135,15 @@ GitHub e Vercel ripubblica il sito in automatico — nessun database, nessun hos
 2. Su Vercel → progetto → **Settings → Environment Variables**, aggiungi:
    - `OAUTH_CLIENT_ID` = il Client ID
    - `OAUTH_CLIENT_SECRET` = il Client Secret
+   - `OAUTH_ALLOWED_ORIGIN` (facoltativa) = le origini ammesse, separate da
+     virgola. Di default vale `https://www.enzaebasta.it,https://enzaebasta.it`
+     (con e senza `www`, così il login funziona da entrambi gli indirizzi).
+     Serve solo se il sito vive altrove, per esempio su un deploy di anteprima.
+     Il token GitHub viene consegnato **solo** a queste origini, e il
+     `redirect_uri` usa la prima della lista: non viene mai ricavato dagli
+     header della richiesta, che sono falsificabili. La prima origine deve
+     combaciare con il callback registrato nella OAuth App e con `base_url`
+     in `admin/config.yml`.
    Poi rifai il deploy.
 3. Apri `admin/config.yml` e aggiorna `base_url` con l'URL reale del sito (deve combaciare con l'Homepage URL sopra).
 4. Vai su `/admin`, accedi con l'account GitHub condiviso (deve essere collaboratore del repo) e pubblica.

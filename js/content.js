@@ -22,6 +22,20 @@
     });
   }
 
+  /* Image paths come from the CMS, so they're only as trustworthy as the
+     GitHub account that wrote them. Anything but a plain relative path or an
+     http(s)/data image is dropped: "javascript:..." in an src is script
+     execution, and escapeHtml does nothing to stop it. */
+  function safeImageUrl(value) {
+    var s = String(value == null ? '' : value).trim();
+    if (!s) return '';
+    // Strip control characters browsers ignore when parsing a scheme.
+    var probe = s.replace(/[\u0000-\u001F\u007F\s]/g, '').toLowerCase();
+    if (/^(?:javascript|vbscript|file):/.test(probe)) return '';
+    if (/^data:/.test(probe) && !/^data:image\//.test(probe)) return '';
+    return s;
+  }
+
   function fetchJson(path) {
     return fetch(path, { cache: 'no-store' })
       .then(function (r) { return r.ok ? r.json() : null; })
@@ -167,8 +181,10 @@
     Object.keys(map).forEach(function (id) {
       var src = map[id];
       if (!src) return;
+      var safe = safeImageUrl(src);
+      if (!safe) return;
       var img = document.getElementById(id);
-      if (img) img.src = src;
+      if (img) img.src = safe;
     });
 
     renderHeroPhoto(s.hero_photos);
@@ -181,7 +197,8 @@
     var img = document.getElementById('heroPhotoImg');
     if (!img || !photos || !photos.length) return;
     var choice = photos[Math.floor(Math.random() * photos.length)];
-    img.src = choice.image;
+    var heroSrc = safeImageUrl(choice.image);
+    if (heroSrc) img.src = heroSrc;
     if (choice.alt_it) img.setAttribute('data-it-alt', choice.alt_it);
     if (choice.alt_en) {
       img.setAttribute('data-en-alt', choice.alt_en);
@@ -196,7 +213,8 @@
   function renderAlternatingPhoto(id, photos) {
     var img = document.getElementById(id);
     if (!img || !photos || !photos.length) return;
-    img.src = photos[Math.floor(Math.random() * photos.length)];
+    var src = safeImageUrl(photos[Math.floor(Math.random() * photos.length)]);
+    if (src) img.src = src;
   }
 
   /* ---------- overlay (click on a tile) ---------- */
@@ -221,8 +239,9 @@
     if (modalMeta) modalMeta.textContent = metaParts.join(' · ');
     if (modalCta) modalCta.hidden = !!data.isPast;
     if (modalImg) {
-      if (data.image) {
-        modalImg.src = data.image;
+      var modalSrc = safeImageUrl(data.image);
+      if (modalSrc) {
+        modalImg.src = modalSrc;
         modalImg.alt = data.title || '';
         modalImg.hidden = false;
       } else {
@@ -348,8 +367,9 @@
   function tileHtml(c, isPast, isNext) {
     var title = pick(c, 'title');
     var desc = pick(c, 'description');
-    var img = c.image
-      ? '<img src="' + escapeHtml(c.image) + '" alt="' + escapeHtml(title) + '" loading="lazy" />'
+    var tileSrc = safeImageUrl(c.image);
+    var img = tileSrc
+      ? '<img src="' + escapeHtml(tileSrc) + '" alt="' + escapeHtml(title) + '" loading="lazy" />'
       : '';
     var tag = shortDate(c.date)
       ? '<span class="corso-tile-tag">' + escapeHtml(shortDate(c.date)) + '</span>'
@@ -372,7 +392,7 @@
     return '<article class="corso-tile' + (isPast ? ' corso-tile--past' : '') +
       (isNext ? ' corso-tile--next' : '') + '" tabindex="0" role="button" aria-haspopup="dialog" ' +
       'data-full-title="' + escapeHtml(title) + '" data-full-desc="' + escapeHtml(desc) + '" ' +
-      'data-full-image="' + escapeHtml(c.image || '') + '" data-full-date="' + escapeHtml(c.date || '') + '" ' +
+      'data-full-image="' + escapeHtml(tileSrc) + '" data-full-date="' + escapeHtml(c.date || '') + '" ' +
       'data-full-location="' + escapeHtml(c.location || '') + '" data-full-price="' + escapeHtml(c.price || '') + '">' +
       img + '<div class="corso-tile-scrim"></div>' + ribbon + tag +
       '<div class="corso-tile-body"><h3>' + escapeHtml(title) + '</h3>' +

@@ -1,0 +1,44 @@
+{
+  "updates": [
+    {
+      "date": "2026-09-13",
+      "tag": "nuova-sezione",
+      "title_it": "Le recensioni arrivano sul sito",
+      "title_en": "Reviews land on the site",
+      "body_it": "Sopra i Contatti c'è un nuovo carosello con le parole di chi ha seguito i corsi e gli eventi. Puoi aggiungere, riordinare e nascondere le recensioni da /admin, con foto o con le sole iniziali.",
+      "body_en": "Above Contact there's a new carousel with words from people who joined the classes and events. You can add, reorder and hide reviews from /admin, with a photo or just initials."
+    },
+    {
+      "date": "2026-09-12",
+      "tag": "migliorie",
+      "title_it": "Il calendario dei corsi diventa un carosello",
+      "title_en": "The class calendar becomes a carousel",
+      "body_it": "I corsi ora scorrono come le storie: prossimi e passati divisi in due linguette, con foto vere, prezzo e luogo su ogni scheda. Tocca una scheda per aprire tutti i dettagli.",
+      "body_en": "Classes now scroll like stories: upcoming and past split into two tabs, with real photos, price and location on every card. Tap a card to open the full details."
+    },
+    {
+      "date": "2026-07-16",
+      "tag": "nuova-sezione",
+      "title_it": "Tutti i testi si modificano da soli",
+      "title_en": "All the text is now self-editable",
+      "body_it": "Da /admin puoi riscrivere ogni testo del sito, in italiano e in inglese, senza toccare il codice: apertura, Chi Sono, servizi, biografia, contatti e newsletter.",
+      "body_en": "From /admin you can rewrite every piece of text on the site, in Italian and English, without touching any code: the opening, About Me, services, biography, contact and newsletter."
+    },
+    {
+      "date": "2026-06-24",
+      "tag": "nuova-sezione",
+      "title_it": "Iscrizione alla newsletter",
+      "title_en": "Newsletter signup",
+      "body_it": "In fondo alla pagina c'è un modulo per raccogliere gli indirizzi di chi vuole essere avvisato dei prossimi corsi. Gli iscritti finiscono direttamente su Mailchimp.",
+      "body_en": "At the bottom of the page there's a form to collect addresses from people who want to hear about upcoming classes. Subscribers go straight into Mailchimp."
+    },
+    {
+      "date": "2026-05-29",
+      "tag": "online",
+      "title_it": "Il sito è online",
+      "title_en": "The site goes live",
+      "body_it": "Prima versione pubblica di enzaebasta.it: apertura, Chi Sono, servizi, biografia e contatti, in italiano e in inglese.",
+      "body_en": "First public version of enzaebasta.it: opening, About Me, services, biography and contact, in Italian and English."
+    }
+  ]
+}

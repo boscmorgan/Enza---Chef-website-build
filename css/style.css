@@ -1143,6 +1143,94 @@ body.modal-open{overflow:hidden;}
 }
 .mail-fallback .mail-copy{justify-self:start;}
 
+/* =========================================================
+   AGGIORNAMENTI (updates.html)
+   Pagina interna, linkata solo dal footer. Riprende la timeline
+   della biografia: binario tratteggiato + pallino per ogni voce.
+   ========================================================= */
+.updates{
+  padding:104px 6vw 40px;
+  background:var(--paper);
+}
+.updates-inner{max-width:760px;margin:0 auto;}
+
+.updates-back{
+  display:inline-flex;align-items:center;gap:8px;
+  font-weight:700;font-size:.92rem;text-decoration:none;
+  color:var(--rose);margin-bottom:26px;
+  border-bottom:2px solid transparent;
+  transition:gap .2s ease,color .2s ease,border-color .2s ease;
+}
+.updates-back:hover,.updates-back:focus{gap:12px;color:var(--violet);border-color:var(--violet);}
+
+.updates-head{margin:0 0 44px;}
+.updates-head .section-title{font-size:clamp(2.4rem,6vw,4rem);}
+.updates-sub{
+  margin:6px 0 0;max-width:52ch;
+  font-size:1.05rem;color:rgba(127,17,23,.86);font-weight:500;
+}
+.updates-squiggle{display:block;margin-top:18px;color:var(--rose);font-size:1.2rem;}
+
+.updates-list{
+  --marker:18px;
+  --rail:3px;
+  list-style:none;margin:0;padding:0;position:relative;
+}
+.update{position:relative;padding:0 0 44px 48px;}
+.update::before{
+  content:"";position:absolute;left:0;top:6px;z-index:2;
+  width:var(--marker);height:var(--marker);
+  background:var(--paper);border:3px solid var(--violet);border-radius:50%;
+}
+.update::after{
+  content:"";position:absolute;z-index:0;
+  left:calc((var(--marker) - var(--rail)) / 2 + 3px);
+  top:calc(6px + var(--marker) + 6px);
+  bottom:6px;
+  width:var(--rail);background:var(--rose-tint-2);
+}
+.update:last-child{padding-bottom:0;}
+.update:last-child::after{display:none;}
+.update > *{position:relative;z-index:1;}
+
+.update-meta{
+  display:flex;align-items:center;flex-wrap:wrap;gap:10px;
+  margin:0 0 6px;
+}
+.update-meta time{
+  font-family:var(--display);text-transform:uppercase;
+  font-size:1.2rem;line-height:1;color:var(--violet);
+}
+.update-tag{
+  font-size:.7rem;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;
+  padding:4px 10px;border-radius:999px;
+  background:var(--grape);color:#fff;
+  border:2px solid var(--violet);
+  box-shadow:var(--shadow-hard-sm);
+}
+.update-tag--nuova-sezione{background:var(--rose);color:#fff;}
+.update-tag--migliorie{background:var(--rose-tint-2);color:var(--violet);}
+.update-tag--correzioni{background:var(--grape);color:#fff;}
+.update-tag--online{background:var(--violet);color:var(--saffron);}
+
+.update-title{
+  margin:0 0 6px;font-size:1.2rem;font-weight:800;
+  color:var(--violet);line-height:1.25;
+}
+.update-body{margin:0;font-size:1rem;color:var(--violet);max-width:62ch;}
+
+.updates-empty{
+  margin:0;padding:22px 24px;
+  border:3px dashed var(--rose-tint-2);border-radius:var(--radius-panel);
+  color:rgba(127,17,23,.8);font-weight:500;
+}
+.updates-empty[hidden]{display:none;}
+
+@media (max-width:620px){
+  .updates{padding:96px 6vw 32px;}
+  .update{padding-left:38px;padding-bottom:38px;}
+}
+
 .footer{
   max-width:1120px;margin:0 auto;padding:26px 6vw;
   border-top:3px dashed var(--violet);
@@ -1153,6 +1241,10 @@ body.modal-open{overflow:hidden;}
 .footer-note{display:flex;flex-direction:column;align-items:flex-end;gap:4px;}
 .site-credit{font-size:.78rem;font-weight:500;line-height:1.3;}
 .site-credit a{color:var(--rose);font-weight:700;text-decoration:underline;text-underline-offset:3px;}
+/* Link discreto alla pagina Aggiornamenti, accanto ai crediti. */
+.credit-sep{margin:0 5px;opacity:.5;}
+.site-credit .updates-link{font-weight:600;opacity:.75;transition:opacity .2s ease;}
+.site-credit .updates-link:hover,.site-credit .updates-link:focus{opacity:1;}
 
 /* =========================================================
    NEWSLETTER

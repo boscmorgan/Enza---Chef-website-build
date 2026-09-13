@@ -78,6 +78,43 @@ collections:
               - { label: "Foto (tonda)", name: "image", widget: "image", required: false, hint: "Facoltativa: senza foto compaiono le iniziali. Meglio una foto quadrata." }
               - { label: "Nascondi", name: "hidden", widget: "boolean", default: false, required: false, hint: "Attiva per togliere la recensione dal sito senza cancellarla." }
 
+  - name: "updates"
+    label: "Aggiornamenti del sito"
+    files:
+      - name: "list"
+        label: "Elenco aggiornamenti"
+        file: "content/updates.json"
+        fields:
+          - name: "updates"
+            label: "Aggiornamenti"
+            label_singular: "Aggiornamento"
+            widget: "list"
+            summary: "{{fields.date}} — {{fields.title_it}}"
+            hint: "Compaiono nella pagina /updates.html, dal più recente al più vecchio (ordinati per data, non serve trascinarli)."
+            fields:
+              - label: "Data"
+                name: "date"
+                widget: "datetime"
+                format: "YYYY-MM-DD"
+                date_format: "DD/MM/YYYY"
+                time_format: false
+                picker_utc: false
+              - label: "Etichetta"
+                name: "tag"
+                widget: "select"
+                required: false
+                options:
+                  - { label: "Nuova sezione", value: "nuova-sezione" }
+                  - { label: "Migliorie", value: "migliorie" }
+                  - { label: "Correzioni", value: "correzioni" }
+                  - { label: "Online", value: "online" }
+                hint: "Facoltativa: è il colore/pallino accanto alla data."
+              - { label: "Titolo (IT)", name: "title_it", widget: "string" }
+              - { label: "Titolo (EN)", name: "title_en", widget: "string", required: false, hint: "Se vuoto, viene mostrato quello italiano." }
+              - { label: "Descrizione (IT)", name: "body_it", widget: "text" }
+              - { label: "Descrizione (EN)", name: "body_en", widget: "text", required: false, hint: "Se vuota, viene mostrata quella italiana." }
+              - { label: "Nascondi", name: "hidden", widget: "boolean", default: false, required: false, hint: "Attiva per togliere l'aggiornamento dalla pagina senza cancellarlo." }
+
   - name: "copy"
     label: "Testi del sito"
     files:

@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" >
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" >
+
+  <title>Aggiornamenti del sito — Enza e basta</title>
+  <meta name="description" content="Cosa è cambiato sul sito di Enza e basta, aggiornamento dopo aggiornamento." >
+  <!-- Pagina interna: raggiungibile dal link nel footer, fuori dai motori di ricerca. -->
+  <meta name="robots" content="noindex, nofollow" >
+  <meta name="color-scheme" content="light" >
+  <meta name="theme-color" content="#7f1117" >
+
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%2322162b'/%3E%3Ctext x='16' y='24' font-size='22' font-family='Arial,sans-serif' font-weight='bold' text-anchor='middle' fill='%23f8c630'%3Ee%3C/text%3E%3C/svg%3E" >
+  <link rel="stylesheet" href="css/style.css" >
+</head>
+<body>
+
+  <!-- ====== SKIP LINK ====== -->
+  <a class="skip-link" href="#updates" data-it="Vai al contenuto" data-en="Skip to content">Vai al contenuto</a>
+
+  <!-- ====== HAMBURGER (shows when menu closed) ====== -->
+  <button type="button" id="menuOpen" class="hamburger" aria-label="Apri il menu" aria-controls="sideMenu" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+
+  <!-- ====== SIDE MENU ====== -->
+  <nav id="sideMenu" class="side-menu" aria-label="Menu principale">
+    <button type="button" id="menuClose" class="menu-close" aria-label="Chiudi il menu">
+      <svg viewBox="0 0 24 24" width="26" height="26" aria-hidden="true"><path d="M5 5l14 14M19 5L5 19" stroke="currentColor" stroke-width="3" stroke-linecap="round"></path></svg>
+    </button>
+
+    <a href="index.html#hero" class="side-brand" aria-label="Enza e basta">
+      <img src="images/enza-e-basta_cream_shadow.webp" alt="Enza e basta" width="3476" height="1450" >
+    </a>
+
+    <div class="side-lang-toggle" role="group" aria-label="Lingua / Language">
+      <button type="button" data-set-lang="it" class="is-active" aria-pressed="true">IT</button>
+      <span aria-hidden="true">/</span>
+      <button type="button" data-set-lang="en" aria-pressed="false">EN</button>
+    </div>
+
+    <ul class="side-links">
+      <li>
+        <a href="index.html#corsi">
+          <span class="ico" style="--ico:var(--rose)" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="22" height="22"><path d="M6 13c-1.7 0-3-1.3-3-3 0-1.4 1-2.6 2.3-2.9A3.5 3.5 0 0112 5a3.5 3.5 0 016.7 2.1C20 7.4 21 8.6 21 10c0 1.7-1.3 3-3 3M6 13v6h12v-6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+          <span data-it="Corsi" data-en="Classes">Corsi</span>
+        </a>
+      </li>
+      <li>
+        <a href="index.html#chi-sono">
+          <span class="ico" style="--ico:var(--saffron)" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="22" height="22"><path d="M12 12a4 4 0 100-8 4 4 0 000 8zm-7 8a7 7 0 0114 0" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>
+          </span>
+          <span data-it="Chi Sono" data-en="About Me">Chi Sono</span>
+        </a>
+      </li>
+      <li>
+        <a href="index.html#servizi">
+          <span class="ico" style="--ico:var(--rose)" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="22" height="22"><path d="M6 3v8a3 3 0 006 0V3M9 3v18M18 3c-1.5 1.5-2 4-2 7s.5 4 2 4v7" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+          <span data-it="Altri Servizi" data-en="Other Services">Altri Servizi</span>
+        </a>
+      </li>
+      <li>
+        <a href="index.html#biografia">
+          <span class="ico" style="--ico:var(--grape)" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="22" height="22"><path d="M5 4h11l3 3v13H5zM9 4v16M8 9h7M8 13h7" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+          <span data-it="Biografia" data-en="Biography">Biografia</span>
+        </a>
+      </li>
+      <li>
+        <a href="index.html#recensioni">
+          <span class="ico" style="--ico:var(--saffron)" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="22" height="22"><path d="M12 4l2.4 4.9 5.4.8-3.9 3.8.9 5.4-4.8-2.6-4.8 2.6.9-5.4L4.2 9.7l5.4-.8z" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"/></svg>
+          </span>
+          <span data-it="Recensioni" data-en="Reviews">Recensioni</span>
+        </a>
+      </li>
+      <li>
+        <a href="index.html#contatti">
+          <span class="ico" style="--ico:var(--violet)" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="22" height="22"><path d="M4 6h16v12H4zM4 7l8 6 8-6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+          <span data-it="Contatti" data-en="Contact">Contatti</span>
+        </a>
+      </li>
+    </ul>
+
+    <div class="side-foot">
+      <div class="side-socials" role="group" aria-label="Link social">
+        <a href="mailto:info@enzaebasta.it" aria-label="Email info@enzaebasta.it">
+          <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
+            <rect x="3" y="5" width="18" height="14" rx="2" fill="none" stroke="currentColor" stroke-width="2.2"/>
+            <path d="M4 7l8 6 8-6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <span>info@enzaebasta.it</span>
+        </a>
+        <a href="https://www.instagram.com/enza_ebbasta/" target="_blank" rel="noopener" aria-label="Instagram @enza_ebbasta">
+          <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
+            <rect x="4" y="4" width="16" height="16" rx="5" fill="none" stroke="currentColor" stroke-width="2.2"/>
+            <circle cx="12" cy="12" r="3.2" fill="none" stroke="currentColor" stroke-width="2.2"/>
+            <circle cx="17" cy="7" r="1.2" fill="currentColor"/>
+          </svg>
+          <span>@enza_ebbasta</span>
+        </a>
+        <a href="https://www.google.com/maps/search/?api=1&query=Firenze%2C%20Toscana%2C%20Italia" target="_blank" rel="noopener" aria-label="Google Maps: Firenze, Toscana">
+          <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
+            <path d="M12 21s7-5.6 7-12a7 7 0 10-14 0c0 6.4 7 12 7 12z" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"/>
+            <circle cx="12" cy="9" r="2.4" fill="none" stroke="currentColor" stroke-width="2.2"/>
+          </svg>
+          <span data-it="Firenze" data-en="Florence">Firenze</span>
+        </a>
+      </div>
+    </div>
+  </nav>
+  <div id="menuScrim" class="menu-scrim" hidden></div>
+
+  <!-- ====== LANGUAGE TOGGLE ====== -->
+  <div class="lang-toggle" role="group" aria-label="Lingua / Language">
+    <button type="button" data-set-lang="it" class="is-active" aria-pressed="true">IT</button>
+    <span aria-hidden="true">/</span>
+    <button type="button" data-set-lang="en" aria-pressed="false">EN</button>
+  </div>
+  <!-- ====== MAIN ====== -->
+  <main class="content">
+
+    <section id="updates" class="updates">
+      <div class="updates-inner">
+        <a class="updates-back" href="index.html">
+          <span aria-hidden="true">&#8592;</span>
+          <span data-it="Torna al sito" data-en="Back to the site">Torna al sito</span>
+        </a>
+
+        <header class="updates-head">
+          <p class="eyebrow" data-it="Dietro le quinte" data-en="Behind the scenes">Dietro le quinte</p>
+          <h1 class="section-title" data-it="Aggiornamenti" data-en="Updates">Aggiornamenti</h1>
+          <p class="updates-sub"
+             data-it="Il diario di bordo di questo sito: cosa &egrave; stato aggiunto, sistemato o rifatto, dal pi&ugrave; recente."
+             data-en="This site&rsquo;s logbook: what was added, fixed or rebuilt, newest first.">Il diario di bordo di questo sito: cosa &egrave; stato aggiunto, sistemato o rifatto, dal pi&ugrave; recente.</p>
+          <span class="updates-squiggle" aria-hidden="true">&#65374; &#10022; &#65374;</span>
+        </header>
+
+        <!-- Riempita da js/updates.js con content/updates.json.
+             Se il caricamento fallisce resta il messaggio qui sotto. -->
+        <ol id="updatesList" class="updates-list" hidden></ol>
+
+        <p id="updatesEmpty" class="updates-empty"
+           data-it="Gli aggiornamenti non si caricano in questo momento. Riprova fra poco."
+           data-en="The updates aren&rsquo;t loading right now. Please try again shortly.">Gli aggiornamenti non si caricano in questo momento. Riprova fra poco.</p>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <span>&copy; <span id="year"></span> Enza e basta</span>
+      <span class="foot-squiggle" aria-hidden="true">&#65374; &#10022; &#65374;</span>
+      <span class="footer-note">
+        <span data-it="La mia fame mi precede." data-en="My hunger precedes me.">La mia fame mi precede.</span>
+        <span class="site-credit">
+          Crediti Sito - <a href="https://www.soundniccolo.com" target="_blank" rel="noopener">Sound Niccol&ograve; Studio</a>
+        </span>
+      </span>
+    </footer>
+
+  </main>
+
+  <script src="js/script.js"></script>
+  <script src="js/updates.js"></script>
+</body>
+</html>

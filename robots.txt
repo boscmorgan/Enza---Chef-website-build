@@ -1,4 +1,5 @@
 User-agent: *
 Allow: /
+Disallow: /updates.html
 
 Sitemap: https://enzaebasta.it/sitemap.xml

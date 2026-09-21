@@ -1,6 +1,26 @@
 {
   "courses": [
     {
+      "title_it": "Svezzamento e Tagli Sicuri",
+      "title_en": "Weaning & Safe Cuts",
+      "date": "2026-05-19T10:00",
+      "location": "Pasticceria Buonamici, Via dell'Orto 31r, Firenze",
+      "description_it": "Incontro pratico su svezzamento e tagli sicuri in cucina, con la dott.ssa nutrizionista Francesca Coppini.",
+      "description_en": "A hands-on session on weaning and safe kitchen cuts, with nutritionist Dr. Francesca Coppini.",
+      "price": "50",
+      "image": "/images/FOTO/CORSI_APPUNTI_2.webp"
+    },
+    {
+      "title_it": "Frolle e Biscotti senza Latte né Uova",
+      "title_en": "Egg- & Dairy-Free Shortcrust & Biscuits",
+      "date": "2026-05-28T18:30",
+      "location": "Pasticceria Buonamici, Via dell'Orto 31r, Firenze",
+      "description_it": "Impariamo a preparare frolle e biscotti senza latte né uova.",
+      "description_en": "Learn to make shortcrust pastry and biscuits without milk or eggs.",
+      "price": "60",
+      "image": "/images/FOTO/TORTE_SOPRA.webp"
+    },
+    {
       "title_it": "Alimentazione Veg per Sportivə",
       "title_en": "Plant-Based Nutrition for Active People",
       "date": "2026-06-09T18:30",

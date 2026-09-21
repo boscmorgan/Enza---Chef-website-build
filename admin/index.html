@@ -11,5 +11,11 @@
        bad or compromised release would land straight in the panel that holds
        write access to the repo. Bump this deliberately after checking the notes. -->
   <script src="https://unpkg.com/@sveltia/cms@0.211.2/dist/sveltia-cms.js" type="module"></script>
+
+  <!-- Tells whoever is editing whether a save actually reached the live site.
+       Sveltia only knows the commit landed on GitHub; Vercel can still block
+       the build afterwards, which is invisible from here. See the notes at the
+       top of deploy-status.js. Self-contained, read-only, no secrets. -->
+  <script src="deploy-status.js"></script>
 </body>
 </html>

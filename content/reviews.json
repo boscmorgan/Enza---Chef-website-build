@@ -8,6 +8,33 @@
       "role_en": "Home cook",
       "image": "images/FOTO/RECENSIONE_MORGAN.webp",
       "hidden": false
+    },
+    {
+      "quote_it": "Sono rimasta rapita dalla  passione unita ai principi di sostenibilità, qualità e cura, tutti declinati verso i prodotti, la cucina e il tuo lavoro. Ci tenevo a ringraziarti per la generosità con cui hai condiviso la tua conoscenza e il tuo mondo, e per la delicatezza con cui entri in contatto con il cibo e con le persone.",
+      "quote_en": "I was truly captivated by your passion, combined with your principles of sustainability, quality, and care—all reflected in your ingredients, your cooking, and your work. I really wanted to thank you for the generosity with which you shared your knowledge and your world, and for the gentle touch you bring to food and to people.",
+      "name": "Rebecca",
+      "role_it": "",
+      "role_en": "",
+      "image": "",
+      "hidden": false
+    },
+    {
+      "quote_it": "Grazie  per la bella serata -ricca di informazioni- e per avermi fatto scoprire il \"tofu vellutato\" con i suoi molteplici usi sia dolci che salati!!",
+      "quote_en": "Thank you for the wonderful evening—so full of information—and for introducing me to silken tofu and its many uses, both sweet and savory!",
+      "name": "Letizia",
+      "role_it": "",
+      "role_en": "",
+      "image": "",
+      "hidden": false
+    },
+    {
+      "quote_it": "Mi è piaciuto molto il tuo modo di insegnare concreto ‘scientifico’ con cognizione della materia anche da un punto di vista ‘chimico’ e al contempo divertente ed ho intuito anche dalla scelta di alcuni ingredienti del menu che probabilmente non la pensiamo diversamente su alcune tematiche di attualità cosa che ho molto apprezzato!",
+      "quote_en": "I really enjoyed your practical and 'scientific' way of teaching, rooted in a deep understanding of the subject even from a 'chemical' perspective, while keeping it fun at the same time. I also sensed from the choice of certain ingredients in the menu that we probably share similar views on some current issues, which I truly appreciated!",
+      "name": "Marysol",
+      "role_it": "",
+      "role_en": "",
+      "image": "",
+      "hidden": false
     }
   ]
 }

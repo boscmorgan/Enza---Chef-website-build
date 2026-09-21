@@ -99,16 +99,6 @@
       "description_en": "Come and learn everything you ever wondered and never dared to ask about Tofu.",
       "price": "60",
       "image": "/images/FOTO/CROSO_CLOSE_TOFU_1.webp"
-    },
-    {
-      "title_it": "test",
-      "title_en": "test",
-      "date": "2026-09-21T14:14",
-      "location": "Pasticceria Buonamici, Via dell'Orto 31r, Firenze",
-      "description_it": "trest",
-      "description_en": "test",
-      "price": "3",
-      "image": ""
     }
   ]
 }

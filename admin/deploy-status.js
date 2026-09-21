@@ -15,11 +15,10 @@
 
    Design notes
    ------------
-   * No backend, no secret. GitHub's commit-status API is public for this repo
-     and sends `access-control-allow-origin: *`, so the browser can read it.
-     If a Sveltia GitHub token happens to be in local storage we send it, purely
-     to get the 5000/h authenticated rate limit instead of 60/h per IP; the
-     badge works without it.
+   * No backend, no secret, no token. GitHub's commit-status API is public for
+     this repo and sends `access-control-allow-origin: *`, so the browser reads
+     it directly — which also means the unauthenticated 60/hour-per-IP limit
+     applies, and the polling intervals below are sized to stay under it.
    * Read-only, and scoped to this one repo's status endpoint.
    * Everything is namespaced under `.dpl-` and lives in a fixed-position
      element, so nothing here depends on Sveltia's internal DOM or CSS. A CMS
@@ -31,13 +30,27 @@
   var REPO = 'boscmorgan/Enza---Chef-website-build';
   var BRANCH = 'main';
 
-  // Vercel builds take a couple of minutes; poll faster while something is in
-  // flight so the badge turns green shortly after the save, then back off.
-  var POLL_IDLE = 60000;
-  var POLL_ACTIVE = 15000;
+  // Unauthenticated GitHub allows 60 requests/hour per IP, shared with
+  // everything else on that connection — and we get no token (see token()
+  // in api()). So the budget, not the UI, sets the pace: idle polling is rare,
+  // and the fast polling only runs while a build is actually in flight, which
+  // lasts a couple of minutes at most.
+  var POLL_IDLE = 300000;   // 5 min — 12 checks/hour when nothing is happening
+  var POLL_ACTIVE = 20000;  // during a build only
+  var POLL_THROTTLED = 600000; // after a 403: back off hard until the reset
+  var FOCUS_MIN_GAP = 60000;   // ignore tab-focus re-checks inside this window
 
   var els = {};
-  var state = { sha: null, open: false, timer: null, lastGood: null };
+  var state = {
+    sha: null, open: false, timer: null,
+    lastFetch: 0,       // when the last network round-trip happened
+    lastView: null,     // last rendered view, reused while throttled
+    commitMeta: null,   // author/message/date for the current sha
+    etagCommits: null,  // ETags save bandwidth; they do not save quota
+    etagStatus: null,
+    cacheCommits: null,
+    cacheStatus: null
+  };
 
   function css() {
     var s = document.createElement('style');
@@ -110,31 +123,44 @@
     document.body.appendChild(root);
   }
 
-  // Sveltia keeps its GitHub token in local storage. We only borrow it for the
-  // rate limit — every call here is a read of this repo's public status.
-  function token() {
-    try {
-      for (var i = 0; i < localStorage.length; i++) {
-        var k = localStorage.key(i);
-        if (!k || k.toLowerCase().indexOf('sveltia') === -1) continue;
-        var raw = localStorage.getItem(k);
-        if (!raw || raw.indexOf('token') === -1) continue;
-        var hit = JSON.parse(raw);
-        var t = hit && (hit.token || (hit.github && hit.github.token));
-        if (typeof t === 'string' && t) return t;
-      }
-    } catch (_) { /* private mode, or a shape we don't recognise */ }
-    return null;
-  }
-
-  function api(path) {
+  // No token. An earlier version tried to reuse Sveltia's GitHub token for the
+  // higher rate limit, but Sveltia does not keep it anywhere we can read: local
+  // storage holds only prefs and a translations blob, and its IndexedDB holds
+  // only UI settings. Reaching further into its internals would be guesswork
+  // that breaks on the next CMS upgrade, so the badge stays unauthenticated and
+  // lives within the 60/hour budget instead — see the polling constants above.
+  //
+  // ETags are still sent, but only to save bandwidth: measured against this
+  // repo, an unauthenticated 304 DOES decrement x-ratelimit-remaining, so they
+  // buy no extra headroom. The polling intervals are what keep us inside the
+  // budget — at worst 2 requests per 5 min idle (24/h), leaving room for the
+  // faster polling during a build and for anything else sharing the IP.
+  function api(path, etagKey, cacheKey) {
     var headers = { Accept: 'application/vnd.github+json' };
-    var t = token();
-    if (t) headers.Authorization = 'Bearer ' + t;
+    if (state[etagKey]) headers['If-None-Match'] = state[etagKey];
+
     return fetch('https://api.github.com/repos/' + REPO + path, { headers: headers })
       .then(function (r) {
+        var remaining = r.headers.get('x-ratelimit-remaining');
+        if (remaining !== null) state.remaining = Number(remaining);
+
+        if (r.status === 304 && state[cacheKey]) return state[cacheKey];
+
+        if (r.status === 403 || r.status === 429) {
+          var err = new Error('rate limit GitHub esaurito');
+          err.throttled = true;
+          err.reset = r.headers.get('x-ratelimit-reset');
+          throw err;
+        }
+
         if (!r.ok) throw new Error('GitHub API ' + r.status + ' su ' + path);
-        return r.json();
+
+        var tag = r.headers.get('etag');
+        if (tag) state[etagKey] = tag;
+        return r.json().then(function (body) {
+          state[cacheKey] = body;
+          return body;
+        });
       });
   }
 
@@ -237,29 +263,62 @@
   }
 
   function tick() {
-    api('/commits?sha=' + BRANCH + '&per_page=1')
-      .then(function (list) {
-        if (!list || !list.length) throw new Error('nessun commit su ' + BRANCH);
-        var commit = list[0];
-        state.sha = commit.sha;
-        return api('/commits/' + commit.sha + '/status').then(function (st) {
-          return interpret(commit, (st && st.statuses) || []);
-        });
+    state.lastFetch = Date.now();
+    // One request covers the common case: /commits/<branch>/status resolves the
+    // branch itself and returns both the head sha and its statuses. The commit
+    // details (author, message, date) need a second request, so we only spend
+    // it when the sha has actually changed — on a quiet repo that is never.
+    api('/commits/' + BRANCH + '/status', 'etagStatus', 'cacheStatus')
+      .then(function (st) {
+        var sha = st && st.sha;
+        if (!sha) throw new Error('nessuno stato per ' + BRANCH);
+        var statuses = (st && st.statuses) || [];
+
+        if (state.commitMeta && state.commitMeta.sha === sha) {
+          return interpret(state.commitMeta, statuses);
+        }
+        state.sha = sha;
+        return api('/commits/' + sha, 'etagCommits', 'cacheCommits')
+          .then(function (commit) {
+            state.commitMeta = commit;
+            return interpret(commit, statuses);
+          });
       })
       .then(function (view) {
+        state.lastView = view;
         render(view);
         schedule(view.tone === 'wait' ? POLL_ACTIVE : POLL_IDLE);
       })
       .catch(function (err) {
+        // Running out of quota says nothing about the deploy. Keep showing the
+        // last known answer rather than replacing it with an alarm, and just
+        // note underneath that the check is paused.
+        if (err && err.throttled && state.lastView) {
+          var stale = {};
+          for (var k in state.lastView) stale[k] = state.lastView[k];
+          stale.did = 'Controllo in pausa per qualche minuto (limite di richieste a GitHub). ' +
+            'Il dato qui sopra è l\'ultimo verificato; riprendo da solo.';
+          stale.meta = metaBlock(null, null,
+            'HTTP 403: rate limit GitHub non autenticato (60/h per IP) esaurito. Ripresa automatica.');
+          render(stale);
+          schedule(POLL_THROTTLED);
+          return;
+        }
+
         // A failed check is not a failed deploy — say so, rather than implying
         // the site is broken.
+        var throttled = !!(err && err.throttled);
         render({
           tone: '', short: 'Stato pubblicazione non disponibile',
           what: 'Non riesco a controllare se il sito è aggiornato.',
-          did: 'Non è detto che ci sia un problema: probabilmente è solo la connessione. Riprovo da solo.',
-          meta: metaBlock(null, null, String(err && err.message || err))
+          did: throttled
+            ? 'Non è un problema del sito: ho fatto troppe richieste a GitHub e devo aspettare. Riprendo da solo fra qualche minuto.'
+            : 'Non è detto che ci sia un problema: probabilmente è solo la connessione. Riprovo da solo.',
+          meta: metaBlock(null, null, throttled
+            ? 'HTTP 403: rate limit GitHub non autenticato (60/h per IP) esaurito. Ripresa automatica.'
+            : String(err && err.message || err))
         });
-        schedule(POLL_IDLE);
+        schedule(err && err.throttled ? POLL_THROTTLED : POLL_IDLE);
       });
   }
 
@@ -275,7 +334,9 @@
     // A save is the moment the answer changes, so re-check shortly after the
     // tab comes back into focus too.
     document.addEventListener('visibilitychange', function () {
-      if (!document.hidden) schedule(1500);
+      // Rate-limited, so don't re-check on every tab switch: only if the last
+      // round-trip is old enough to be worth spending a request on.
+      if (!document.hidden && Date.now() - state.lastFetch > FOCUS_MIN_GAP) schedule(1500);
     });
   }
 

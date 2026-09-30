@@ -99,6 +99,26 @@
       "description_en": "Come and learn everything you ever wondered and never dared to ask about Tofu.",
       "price": "60",
       "image": "/images/FOTO/CROSO_CLOSE_TOFU_1.webp"
+    },
+    {
+      "title_it": "Frolle e Biscotti Vegani",
+      "title_en": "Vegan Tarts and Cookies",
+      "date": "2026-11-05T18:30",
+      "location": "Pasticceria Buonamici, Via dell'Orto 31r, Firenze",
+      "description_it": "Una lezione teorica e pratica per imparare a bilancare le frolle per biscotti e crostate senza latte, uova e burro.",
+      "description_en": "A theoretical and practical lesson to learn how to balance dairy-free, egg-free, and butter-free shortcrust pastry for cookies and tarts.",
+      "price": "60",
+      "image": "/images/FOTO/ENZA_FETTA_TORTA_PRIMO_PIANO.webp"
+    },
+    {
+      "title_it": "Zucca EBBASTA",
+      "title_en": "Just Pumpkin!",
+      "date": "2026-05-14T16:30",
+      "location": "Pasticceria Buonamici, Via dell'Orto 31r, Firenze",
+      "description_it": "Una lezione sulla Regina dell' Autunno, con ricette vegetali dolci e salate.",
+      "description_en": "A full lesson about fall's queen, with sweet and salty recepices all vegan.",
+      "price": "60",
+      "image": "/images/FOTO/CORSO_AIUTANDO_2.webp"
     }
   ]
 }

@@ -117,6 +117,9 @@ GitHub e Vercel ripubblica il sito in automatico — nessun database, nessun hos
     - **Data e ora**: sempre ora italiana, salvata come `2026-09-05T16:30`. Il sito la interpreta come fuso di Roma, quindi l'orario resta giusto anche per chi apre il sito dall'estero.
     - **Prezzo**: solo il numero (`60`). Il simbolo € lo aggiunge il sito, così tutte le schede sono uguali. Vuoto = prezzo non mostrato.
     - **Foto**: i percorsi sono assoluti (`/images/FOTO/...`); ci pensa il pannello.
+    - **Sold out**: l'interruttore mette la fascia SOLD OUT sulla scheda e toglie il bottone per prenotare.
+
+    Prima di ogni salvataggio dei corsi, `admin/course-checks.js` chiede conferma se nota un possibile errore: data passata, molto lontana o mancante, un doppione, due corsi nello stesso giorno o con lo stesso titolo, oppure un corso messo o tolto da sold out. "Torna a modificare" annulla il salvataggio senza perdere nulla.
   - **Testi del sito** → `content/copy.json`: tutti i testi editabili (IT + EN), raggruppati per sezione (Hero, Corsi, Calendario, Chi Sono, Altri Servizi, Biografia + tappe del percorso, Contatti, Newsletter, piè di pagina).
   - **Recensioni** → `content/reviews.json`: le recensioni del carosello sopra i Contatti. Ogni voce ha citazione (IT/EN), nome, ruolo e foto tonda facoltativa; l'interruttore "Nascondi" toglie una recensione dal sito senza cancellarla. L'ordine della lista è l'ordine del carosello.
   - **Foto del sito** → `content/site.json`: foto hero / chi-sono / corsi.

@@ -841,6 +841,19 @@ body.menu-open .lang-toggle{
 .corso-tile-ribbon--next{
   background:var(--saffron);color:var(--violet);
 }
+/* full class: a stamped band across the poster, like a sticker slapped on */
+.corso-tile-soldout{
+  position:absolute;left:-12%;right:-12%;top:38%;z-index:3;
+  font-family:var(--display);font-size:1.5rem;letter-spacing:.08em;text-transform:uppercase;
+  text-align:center;line-height:1;
+  background:var(--saffron);color:var(--violet);
+  border-top:3px solid var(--violet);border-bottom:3px solid var(--violet);
+  padding:9px 0;
+  transform:rotate(-12deg);
+  box-shadow:3px 3px 0 rgba(0,0,0,.35);
+  pointer-events:none;
+}
+.corso-tile--soldout img{filter:saturate(.55) contrast(1) grayscale(.25);}
 .corso-tile--past img{filter:saturate(.4) contrast(1) grayscale(.3);}
 .corso-tile-price{
   margin:6px 0 0;

@@ -236,8 +236,11 @@
     if (data.date) metaParts.push(longDate(data.date));
     if (data.location) metaParts.push(data.location);
     if (formatPrice(data.price)) metaParts.push(formatPrice(data.price));
+    if (data.soldOut && !data.isPast) metaParts.push(copyText('sold_out_badge', 'Sold out'));
     if (modalMeta) modalMeta.textContent = metaParts.join(' · ');
-    if (modalCta) modalCta.hidden = !!data.isPast;
+    // A full class takes no more bookings, so the "message me to book" button
+    // would only invite the requests the sold-out band is there to stop.
+    if (modalCta) modalCta.hidden = !!data.isPast || !!data.soldOut;
     if (modalImg) {
       var modalSrc = safeImageUrl(data.image);
       if (modalSrc) {
@@ -345,7 +348,8 @@
         date: tile.getAttribute('data-full-date'),
         location: tile.getAttribute('data-full-location'),
         price: tile.getAttribute('data-full-price'),
-        isPast: tile.classList.contains('corso-tile--past')
+        isPast: tile.classList.contains('corso-tile--past'),
+        soldOut: tile.classList.contains('corso-tile--soldout')
       });
     });
     track.addEventListener('keydown', function (e) {
@@ -362,6 +366,11 @@
     var value = section && section[key + '_' + currentLang()];
     if (!value) value = section && section[key + '_it'];
     return value || fallback;
+  }
+
+  // The CMS writes a real boolean, but a hand-edited file may say "true".
+  function isSoldOut(value) {
+    return value === true || value === 'true';
   }
 
   function tileHtml(c, isPast, isNext) {
@@ -381,6 +390,11 @@
       ribbon = '<span class="corso-tile-ribbon corso-tile-ribbon--next">' +
         escapeHtml(copyText('next_badge', currentLang() === 'en' ? 'Next up' : 'Il prossimo')) + '</span>';
     }
+    // Only meaningful while the class is still ahead: a past one is over anyway.
+    var soldOut = !isPast && isSoldOut(c.sold_out);
+    var soldOutBand = soldOut
+      ? '<span class="corso-tile-soldout">' + escapeHtml(copyText('sold_out_badge', 'Sold out')) + '</span>'
+      : '';
     var price = formatPrice(c.price);
     var metaBits = '';
     if (c.location) {
@@ -390,11 +404,11 @@
       metaBits += '<p class="corso-tile-price">' + escapeHtml(price) + '</p>';
     }
     return '<article class="corso-tile' + (isPast ? ' corso-tile--past' : '') +
-      (isNext ? ' corso-tile--next' : '') + '" tabindex="0" role="button" aria-haspopup="dialog" ' +
+      (isNext ? ' corso-tile--next' : '') + (soldOut ? ' corso-tile--soldout' : '') + '" tabindex="0" role="button" aria-haspopup="dialog" ' +
       'data-full-title="' + escapeHtml(title) + '" data-full-desc="' + escapeHtml(desc) + '" ' +
       'data-full-image="' + escapeHtml(tileSrc) + '" data-full-date="' + escapeHtml(c.date || '') + '" ' +
       'data-full-location="' + escapeHtml(c.location || '') + '" data-full-price="' + escapeHtml(c.price || '') + '">' +
-      img + '<div class="corso-tile-scrim"></div>' + ribbon + tag +
+      img + '<div class="corso-tile-scrim"></div>' + ribbon + tag + soldOutBand +
       '<div class="corso-tile-body"><h3>' + escapeHtml(title) + '</h3>' +
       '<p class="corso-tile-desc">' + escapeHtml(desc) + '</p>' + metaBits + '</div>' +
       '</article>';

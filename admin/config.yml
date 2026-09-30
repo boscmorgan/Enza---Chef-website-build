@@ -55,6 +55,12 @@ collections:
                 pattern: ['^[0-9]*$', "Scrivi solo il numero, senza € e senza la parola euro (es. 60)."]
                 hint: "Solo il numero, es. 60 — il simbolo € lo aggiunge il sito. Vuoto = prezzo non mostrato."
               - { label: "Foto", name: "image", widget: "image", required: false }
+              - label: "Sold out"
+                name: "sold_out"
+                widget: "boolean"
+                default: false
+                required: false
+                hint: "Attiva quando il corso è pieno: compare la fascia SOLD OUT e sparisce il bottone per prenotare."
 
   - name: "reviews"
     label: "Recensioni"
@@ -179,6 +185,8 @@ collections:
               - { label: "Linguetta \"corsi passati\" (EN)", name: "tab_past_en", widget: "string", required: false, default: "Past" }
               - { label: "Etichetta sul primo corso in programma (IT)", name: "next_badge_it", widget: "string", required: false, default: "Il prossimo" }
               - { label: "Etichetta sul primo corso in programma (EN)", name: "next_badge_en", widget: "string", required: false, default: "Next up" }
+              - { label: "Fascia corso pieno (IT)", name: "sold_out_badge_it", widget: "string", required: false, default: "Sold out" }
+              - { label: "Fascia corso pieno (EN)", name: "sold_out_badge_en", widget: "string", required: false, default: "Sold out" }
               - { label: "Bottone contatti nella scheda corso (IT)", name: "cta_contact_it", widget: "string" }
               - { label: "Bottone contatti nella scheda corso (EN)", name: "cta_contact_en", widget: "string" }
               - { label: "Messaggio se nessun corso in programma (IT)", name: "empty_it", widget: "text" }

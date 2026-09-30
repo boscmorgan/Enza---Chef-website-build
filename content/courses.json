@@ -131,17 +131,6 @@
       "price": "60",
       "image": "/images/FOTO/CORSO_AIUTANDO_2.webp",
       "sold_out": false
-    },
-    {
-      "title_it": "Test corso",
-      "title_en": "Test",
-      "date": "2026-09-23T13:05",
-      "location": "Pasticceria Buonamici, Via dell'Orto 31r, Firenze",
-      "description_it": "Test",
-      "description_en": "Test",
-      "price": "30",
-      "image": "",
-      "sold_out": false
     }
   ]
 }

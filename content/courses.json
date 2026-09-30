@@ -8,7 +8,8 @@
       "description_it": "Incontro pratico su svezzamento e tagli sicuri in cucina, con la dott.ssa nutrizionista Francesca Coppini.",
       "description_en": "A hands-on session on weaning and safe kitchen cuts, with nutritionist Dr. Francesca Coppini.",
       "price": "50",
-      "image": "/images/FOTO/CORSI_APPUNTI_2.webp"
+      "image": "/images/FOTO/CORSI_APPUNTI_2.webp",
+      "sold_out": false
     },
     {
       "title_it": "Frolle e Biscotti senza Latte né Uova",
@@ -18,7 +19,8 @@
       "description_it": "Impariamo a preparare frolle e biscotti senza latte né uova.",
       "description_en": "Learn to make shortcrust pastry and biscuits without milk or eggs.",
       "price": "60",
-      "image": "/images/FOTO/TORTE_SOPRA.webp"
+      "image": "/images/FOTO/TORTE_SOPRA.webp",
+      "sold_out": false
     },
     {
       "title_it": "Alimentazione Veg per Sportivə",
@@ -28,7 +30,8 @@
       "description_it": "Alimentazione vegetale per sportivə e persone attive, con la dott.ssa nutrizionista Francesca Coppini.",
       "description_en": "Plant-based nutrition for athletes and active people, with nutritionist Dr. Francesca Coppini.",
       "price": "55",
-      "image": "/images/FOTO/CORSO_CLOSE_UP_CAPONATA.webp"
+      "image": "/images/FOTO/CORSO_CLOSE_UP_CAPONATA.webp",
+      "sold_out": false
     },
     {
       "title_it": "Le Proteine Vegetali che Compri",
@@ -38,7 +41,8 @@
       "description_it": "Valorizzare tofu e seitan: come sceglierli e cucinarli al meglio.",
       "description_en": "Making the most of tofu and seitan: how to choose and cook them well.",
       "price": "",
-      "image": "/images/FOTO/CORSO_CLOSE_UP_SEITAN.webp"
+      "image": "/images/FOTO/CORSO_CLOSE_UP_SEITAN.webp",
+      "sold_out": false
     },
     {
       "title_it": "\"Anto', fa caldo!\"",
@@ -48,7 +52,8 @@
       "description_it": "Cucina fresca e veloce per quando hai fame ma non hai voglia di cucinare.",
       "description_en": "Fresh, quick cooking for when you're hungry but don't feel like cooking.",
       "price": "",
-      "image": "/images/FOTO/CORSO_CLOSE_UP_MELANZANE.webp"
+      "image": "/images/FOTO/CORSO_CLOSE_UP_MELANZANE.webp",
+      "sold_out": false
     },
     {
       "title_it": "Colazione Insieme (prima delle vacanze)",
@@ -58,7 +63,8 @@
       "description_it": "Ci salutiamo prima delle vacanze con un'ultima colazione insieme.",
       "description_en": "One last breakfast together before we say goodbye for the summer break.",
       "price": "60",
-      "image": "/images/FOTO/CORSI_COOKIES_2.webp"
+      "image": "/images/FOTO/CORSI_COOKIES_2.webp",
+      "sold_out": false
     },
     {
       "title_it": "Alimentazione Veg per Gente Attiva e Sportiva",
@@ -68,7 +74,8 @@
       "description_it": "Con l'aiuto della Dott.ssa Nutrizionista Francesca Coppini, capiremo come integrare un'alimentazione vegetale e un vita sportiva, smontando qualche pregiudizio e imparando a gestire performance sportiva ed equilibrio alimentare.",
       "description_en": "Plant-based nutrition for athletes and active people, with nutritionist Dr. Francesca Coppini.",
       "price": "60",
-      "image": "/images/FOTO/CORSI_ATTENTI.webp"
+      "image": "/images/FOTO/CORSI_ATTENTI.webp",
+      "sold_out": false
     },
     {
       "title_it": "Colazione Insieme",
@@ -78,7 +85,8 @@
       "description_it": "Tante preparazioni dolci e salate per iniziare bene la giornata e una grande tavola per condividere tutto quel che prepariamo.",
       "description_en": "Enjoy this morning lesson: sweet and savoury options for your breakfast!",
       "price": "60",
-      "image": "/images/FOTO/CORSI_TAVOLA_COLAZIONE.webp"
+      "image": "/images/FOTO/CORSI_TAVOLA_COLAZIONE.webp",
+      "sold_out": false
     },
     {
       "title_it": "Schiscetta Remix",
@@ -88,7 +96,8 @@
       "description_it": "Idee e ricette per pasti colorati e nutrienti da portarsi fuori casa.",
       "description_en": "Ideas and recipes for creative and nutritious meals on the go.",
       "price": "60",
-      "image": "/images/FOTO/CORSO_CLOSE_UP_MELANZANE.webp"
+      "image": "/images/FOTO/CORSO_CLOSE_UP_MELANZANE.webp",
+      "sold_out": false
     },
     {
       "title_it": "A Tutto Tofu!",
@@ -98,7 +107,8 @@
       "description_it": "Vieni a scoprire come acquistare, cucinare e valorizzare uno degli ingredienti più versatili della cucina vegetale: il Tofu! Ricetta salate ( e anche un dolcetto) che ti faranno rivalutare questo piccolo amico troppo spesso bistrattato.",
       "description_en": "Come and learn everything you ever wondered and never dared to ask about Tofu.",
       "price": "60",
-      "image": "/images/FOTO/CROSO_CLOSE_TOFU_1.webp"
+      "image": "/images/FOTO/CROSO_CLOSE_TOFU_1.webp",
+      "sold_out": false
     },
     {
       "title_it": "Frolle e Biscotti Vegani",
@@ -108,7 +118,8 @@
       "description_it": "Una lezione teorica e pratica per imparare a bilanciare le frolle per biscotti e crostate senza latte, uova e burro.",
       "description_en": "A theoretical and practical lesson to learn how to balance dairy-free, egg-free, and butter-free shortcrust pastry for cookies and tarts.",
       "price": "60",
-      "image": "/images/FOTO/ENZA_FETTA_TORTA_PRIMO_PIANO.webp"
+      "image": "/images/FOTO/ENZA_FETTA_TORTA_PRIMO_PIANO.webp",
+      "sold_out": false
     },
     {
       "title_it": "Zucca EBBASTA",
@@ -118,7 +129,19 @@
       "description_it": "Corso a tutto tondo sulla Regina dell' Autunno, con ricette vegetali dolci e salate.",
       "description_en": "A full lesson about fall's queen, with sweet and salty recepices all vegan.",
       "price": "60",
-      "image": "/images/FOTO/CORSO_AIUTANDO_2.webp"
+      "image": "/images/FOTO/CORSO_AIUTANDO_2.webp",
+      "sold_out": false
+    },
+    {
+      "title_it": "Test corso",
+      "title_en": "Test",
+      "date": "2026-09-23T13:05",
+      "location": "Pasticceria Buonamici, Via dell'Orto 31r, Firenze",
+      "description_it": "Test",
+      "description_en": "Test",
+      "price": "30",
+      "image": "",
+      "sold_out": false
     }
   ]
 }

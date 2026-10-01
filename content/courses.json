@@ -97,7 +97,7 @@
       "description_en": "Ideas and recipes for creative and nutritious meals on the go.",
       "price": "60",
       "image": "/images/FOTO/CORSO_CLOSE_UP_MELANZANE.webp",
-      "sold_out": false
+      "sold_out": true
     },
     {
       "title_it": "A Tutto Tofu!",

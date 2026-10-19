@@ -108,7 +108,7 @@
       "description_en": "Come and learn everything you ever wondered and never dared to ask about Tofu.",
       "price": "60",
       "image": "/images/FOTO/CROSO_CLOSE_TOFU_1.webp",
-      "sold_out": false
+      "sold_out": true
     },
     {
       "title_it": "Frolle e Biscotti Vegani",
@@ -130,6 +130,17 @@
       "description_en": "A full lesson about fall's queen, with sweet and salty recepices all vegan.",
       "price": "60",
       "image": "/images/FOTO/CORSO_AIUTANDO_2.webp",
+      "sold_out": true
+    },
+    {
+      "title_it": "Odissea: Cucina Vegetale del Sud",
+      "title_en": "Odissey: Vegan recepis of South Italy",
+      "date": "2026-11-07T18:30",
+      "location": "Firenze",
+      "description_it": "Viaggio tra le ricette vegetali del Sud Italia, tra musica, poesia, letteratura e buon cibo.\nCorso in collaborazione con Cib'aria Firenze!",
+      "description_en": "A trip between vegan recepes of South Italy, with music, poetry, literature and amazing food. Lesson in partnership with Cib'aria Firenze!",
+      "price": "75",
+      "image": "/images/photo_5944755683297267397_y.jpg",
       "sold_out": false
     }
   ]
